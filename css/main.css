@@ -251,8 +251,147 @@ screen and (-ms-high-contrast: none) {
 
 
 
+#extracurricular {
+    background-color: #36d1dc;
+    background-image: linear-gradient(135deg, #800000FF 0%, #800000FF 100%);
+    color: #FFF;
+    height: 150vh;
+    /* clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); */
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
 
 
+@media (max-width: 75em) {
+    #extracurricular {
+        height: 100%;
+        clip-path: none
+    }
+}
+
+#extracurricular .about-wrapper {
+    grid-template-columns: 1fr 1fr
+}
+
+@media (max-width: 37.5em) {
+    #extracurricular .about-wrapper {
+        padding-bottom: 5rem;
+        grid-template-columns: 1fr
+    }
+}
+
+#extracurricular .about-wrapper__image {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center
+}
+
+#extracurricular .about-wrapper__image img {
+    max-width: 350px;
+    width: 100%
+}
+
+@media (max-width: 75em) {
+    #extracurricular .about-wrapper__image {
+        height: 100%
+    }
+}
+
+@media (max-width: 48em) {
+    #extracurricular .about-wrapper__image {
+        padding-bottom: 4rem
+    }
+}
+
+#extracurricular .about-wrapper__info {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left
+}
+
+@media (max-width: 48em) {
+    #extracurricular .about-wrapper__info {
+        align-items: center;
+        text-align: center
+    }
+}
+
+
+
+
+
+#education {
+    background-color: #36d1dc;
+    background-image: linear-gradient(135deg, #fff 0%, #fff 100%);
+    color: #272341;
+    height: 150vh;
+    /* clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); */
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+
+@media (max-width: 75em) {
+    #education {
+        height: 100%;
+        clip-path: none
+    }
+}
+
+#education .about-wrapper {
+    grid-template-columns: 1fr 1fr
+}
+
+@media (max-width: 37.5em) {
+    #education .about-wrapper {
+        padding-bottom: 5rem;
+        grid-template-columns: 1fr
+    }
+}
+
+#education .about-wrapper__image {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center
+}
+
+#education .about-wrapper__image img {
+    max-width: 350px;
+    width: 100%
+}
+
+@media (max-width: 75em) {
+    #education .about-wrapper__image {
+        height: 100%
+    }
+}
+
+@media (max-width: 48em) {
+    #education .about-wrapper__image {
+        padding-bottom: 4rem
+    }
+}
+
+#education .about-wrapper__info {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left
+}
+
+@media (max-width: 48em) {
+    #education .about-wrapper__info {
+        align-items: center;
+        text-align: center
+    }
+}
 
 
 
