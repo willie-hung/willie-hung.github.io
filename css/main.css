@@ -21,6 +21,8 @@ h1 {
     font-weight: 700
 }
 
+
+
 p,
 a {
     font-size: 1.6rem
@@ -35,12 +37,10 @@ a:hover {
 }
 
 .section-title {
-    margin-bottom: 4.5rem;
-    font-size: 4rem;
+    margin-bottom: 6rem;
+    font-size: 4.5rem;
     text-transform: uppercase
 }
-
-
 
 @media (max-width: 37.5em) {
     .section-title {
@@ -72,7 +72,7 @@ a:hover {
     .text-color-main {
         margin: 0;
         background-image: none;
-        -webkit-text-fill-color: #fff;
+        -webkit-text-fill-color: #800000FF;
         box-shadow: none
     }
 }
@@ -255,10 +255,9 @@ screen and (-ms-high-contrast: none) {
     background-color: #36d1dc;
     background-image: linear-gradient(135deg, #800000FF 0%, #800000FF 100%);
     color: #FFF;
-    height: 150vh;
+    height: 100vh;
     /* clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); */
     text-align: center;
-    display: flex;
     align-items: center;
 }
 
@@ -271,7 +270,7 @@ screen and (-ms-high-contrast: none) {
 }
 
 #extracurricular .about-wrapper {
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr 1fr 1fr
 }
 
 @media (max-width: 37.5em) {
@@ -335,6 +334,11 @@ screen and (-ms-high-contrast: none) {
     align-items: center;
 }
 
+#education p{
+    font-size: 2.2rem;
+    
+}
+
 
 @media (max-width: 75em) {
     #education {
@@ -356,7 +360,8 @@ screen and (-ms-high-contrast: none) {
 
 #education .about-wrapper__image {
     display: flex;
-    height: 100%;
+    height: auto;
+    padding: 8vh;
     align-items: center;
     justify-content: center
 }
@@ -599,7 +604,7 @@ screen and (-ms-high-contrast: none) {
 }
 
 section {
-    padding: 5rem 0rem
+    padding: 6rem 0rem
 }
 
 @media (max-width: 37.5em) {
@@ -613,7 +618,7 @@ section {
 section .row {
     display: grid;
     gap: 2rem;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
 }
 
@@ -635,7 +640,7 @@ section .row p+p {
 }
 
 section .row span {
-    margin-top: 2rem
+    margin-top: 4rem
 }
 
 .container {
@@ -1015,7 +1020,7 @@ section .row span {
     background-color: #800000FF;
     color: #fff;
     padding-top: 15rem;
-    height: 200vh;
+    height: 100vh;
 }
 
 @media (max-width: 75em) {
@@ -1032,7 +1037,10 @@ section .row span {
 }
 
 #projects .project-wrapper {
-    margin-bottom: 15rem
+    display: grid;
+    margin-bottom: 15rem;
+    /* grid-template-columns: repeat(4, 1fr); */
+    /* width: 30 */
 }
 
 @media (max-width: 37.5em) {
@@ -1125,3 +1133,51 @@ section .row span {
         transform: none
     }
 }
+
+
+
+#extracurricular .about-wrapper {
+    grid-template-columns: 1fr;
+}
+
+@media (max-width: 37.5em) {
+    #extracurricular .about-wrapper {
+        grid-template-columns: 1fr
+    }
+}
+
+#extracurricular .about-wrapper__info {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left
+
+}
+
+@media (max-width: 48em) {
+    #extracurricular .about-wrapper__info {
+        align-items: center;
+        text-align: center
+    }
+}
+
+#extracurricular .about-wrapper__info-text {
+    display: flex;
+    font-size: 2rem;
+    margin-left: 20%;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left
+
+}
+
+#extracurricular .center {
+    /* display: flex;
+    justify-content: center; */
+    padding-top: 1.5rem;
+    font-size: 1.5rem;
+    text-align: left;
+    margin-left: 20%;
+    }
