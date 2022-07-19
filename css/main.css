@@ -321,7 +321,7 @@ screen and (-ms-high-contrast: none) {
 
 
 
-
+/* EDUCATION */
 
 #education {
     background-color: #36d1dc;
@@ -386,6 +386,8 @@ screen and (-ms-high-contrast: none) {
 #education .about-wrapper__info {
     display: flex;
     height: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
     justify-content: center;
     flex-direction: column;
     text-align: left
@@ -398,6 +400,15 @@ screen and (-ms-high-contrast: none) {
     }
 }
 
+#education .education-wrapper__info-text {
+    font-size: 2rem;
+}
+
+@media (max-width: 37.5em) {
+    #education .education-wrapper__info-text {
+        font-size: 1.4rem;
+    }
+}
 
 
 
@@ -678,6 +689,9 @@ section .row span {
     }
 }
 
+
+/* ABOUT */
+
 #about {
     background-color: #36d1dc;
     background-image: linear-gradient(135deg, #800000FF 0%, #800000FF 100%);
@@ -699,6 +713,7 @@ section .row span {
 #about .about-wrapper {
     grid-template-columns: 1fr 1fr;
 }
+
 
 @media (max-width: 37.5em) {
     #about .about-wrapper {
@@ -749,6 +764,22 @@ section .row span {
         text-align: center
     }
 }
+
+@media (max-width: 37.5em) {
+    #about .about-wrapper__info {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        align-items: center;
+        text-align: justify
+    }
+}
+
+#about .about-wrapper__info-text {
+    text-align: justify;
+}
+
+
+
 
 #experience {
     background-color: #36d1dc;
@@ -822,8 +853,8 @@ section .row span {
 #contact {
     background-image: linear-gradient(135deg, #fff 0%, #fff 100%);
 
-    padding: 15rem 0 10rem 0;
-    margin-top: -15rem;
+    padding: 10rem 0 10rem 0;
+    margin-top:  -15rem;
     margin-bottom: -1px;
     color: #272341
 }
@@ -1032,6 +1063,7 @@ section .row span {
 
 @media (max-width: 37.5em) {
     #projects {
+        height: 200vh;
         padding-bottom: 1px
     }
 }
@@ -1060,6 +1092,15 @@ section .row span {
     }
 }
 
+#projects .project-wrapper__text-info {
+    text-align: justify;
+}
+
+
+
+
+
+
 #projects .project-wrapper__text {
     width: 100%;
     text-align: left
@@ -1073,7 +1114,10 @@ section .row span {
 
 @media (max-width: 37.5em) {
     #projects .project-wrapper__text {
-        margin-bottom: 2.5rem
+        padding-left: 5rem;
+        padding-right: 5rem;
+        margin-bottom: 2.5rem;
+        text-align: justify
     }
 }
 
@@ -1085,7 +1129,8 @@ section .row span {
 
 @media (max-width: 37.5em) {
     #projects .project-wrapper__text-title {
-        font-size: 2rem
+        font-size: 2rem;
+        text-align: center
     }
 }
 
@@ -1099,6 +1144,18 @@ section .row span {
     align-items: center;
     flex-wrap: wrap
 }
+
+@media (max-width: 37.5em) {
+    #projects .project-wrapper__text-btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;  
+    }
+}
+
+
+
+
 
 #projects .project-wrapper__image {
     width: 90%;
@@ -1133,6 +1190,11 @@ section .row span {
         transform: none
     }
 }
+
+
+
+
+
 
 
 
@@ -1176,8 +1238,10 @@ section .row span {
 #extracurricular .center {
     /* display: flex;
     justify-content: center; */
+    /* font-size: 20rem; */
     padding-top: 1.5rem;
     font-size: 1.5rem;
     text-align: left;
     margin-left: 20%;
     }
+
