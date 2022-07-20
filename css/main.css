@@ -37,14 +37,15 @@ a:hover {
 }
 
 .section-title {
-    margin-bottom: 6rem;
+    margin-bottom: 5rem;
     font-size: 4.5rem;
     text-transform: uppercase
 }
 
 @media (max-width: 37.5em) {
     .section-title {
-        font-size: 2.8rem
+        margin-bottom: 2.5rem;
+        font-size: 3rem
     }
 }
 
@@ -545,7 +546,7 @@ screen and (-ms-high-contrast: none) {
 
 .footer__text a:hover,
 .footer__text a:active {
-    color: #36d1dc
+    color: #FFB547FF
 }
 
 .footer hr {
@@ -710,6 +711,14 @@ section .row span {
     }
 }
 
+@media (max-width: 37.5em) {
+    #about {
+        height: 100vh;
+        clip-path: none;
+        align-items: center;
+    }
+}
+
 #about .about-wrapper {
     grid-template-columns: 1fr 1fr;
 }
@@ -737,6 +746,11 @@ section .row span {
     text-align: center;
 }
 
+@media (max-width: 37.5em) {
+    #about .about-wrapper__cta {
+    }
+}
+
 @media (max-width: 75em) {
     #about .about-wrapper__image {
         height: 100%
@@ -749,12 +763,20 @@ section .row span {
     }
 }
 
+@media (max-width: 37.5em) {
+    #about .about-wrapper__image {
+        padding-bottom: 1.2rem;
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+}
+
 #about .about-wrapper__info {
     display: flex;
     height: 100%;
     justify-content: center;
     flex-direction: column;
-    text-align: left
+    text-align: center
 
 }
 
@@ -767,10 +789,10 @@ section .row span {
 
 @media (max-width: 37.5em) {
     #about .about-wrapper__info {
-        padding-left: 5rem;
-        padding-right: 5rem;
+        padding-left: 6rem;
+        padding-right: 6rem;
         align-items: center;
-        text-align: justify
+        text-align: left
     }
 }
 
@@ -778,11 +800,22 @@ section .row span {
     text-align: justify;
 }
 
+@media (max-width: 37.5em) {
+    #about .about-wrapper__info-text {
+        text-align: left;
+        font-size: 1.5rem;
+    }
+
+}
 
 
+
+
+
+
+/* EXPERIENCE */
 
 #experience {
-    background-color: #36d1dc;
     background-image: linear-gradient(135deg, #fff 0%, #fff 100%);
     color: #272341;
     height: 150vh;
@@ -799,6 +832,14 @@ section .row span {
         clip-path: none
     }
 }
+
+@media (max-width: 37.5em) {
+    #experience {
+        height: 240vh
+    }
+}
+
+
 
 #experience .about-wrapper {
     grid-template-columns: 1fr 1fr
@@ -831,6 +872,8 @@ section .row span {
 
 @media (max-width: 48em) {
     #experience .about-wrapper__image {
+        padding-left: 5rem;
+        padding-right: 5rem;
         padding-bottom: 4rem
     }
 }
@@ -849,6 +892,36 @@ section .row span {
         text-align: center
     }
 }
+
+#experience .about-wrapper__info-text {
+    text-align: justify;
+}
+
+@media (max-width: 37.5em) {
+    #experience .about-wrapper__info-text {
+        font-size: 1.rem;
+        line-height: 3rem;
+        text-align: center;
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #contact {
     background-image: linear-gradient(135deg, #fff 0%, #fff 100%);
@@ -1047,6 +1120,9 @@ section .row span {
     }
 }
 
+
+/* PROJECTS */
+
 #projects {
     background-color: #800000FF;
     color: #fff;
@@ -1063,7 +1139,7 @@ section .row span {
 
 @media (max-width: 37.5em) {
     #projects {
-        height: 200vh;
+        height: 260vh;
         padding-bottom: 1px
     }
 }
@@ -1093,7 +1169,7 @@ section .row span {
 }
 
 #projects .project-wrapper__text-info {
-    text-align: justify;
+    text-align: left;
 }
 
 
@@ -1103,6 +1179,8 @@ section .row span {
 
 #projects .project-wrapper__text {
     width: 100%;
+    padding-left: 4rem;
+    padding-right: 4rem;
     text-align: left
 }
 
@@ -1129,13 +1207,24 @@ section .row span {
 
 @media (max-width: 37.5em) {
     #projects .project-wrapper__text-title {
+        padding-top: 3rem;
         font-size: 2rem;
         text-align: center
     }
 }
 
 #projects .project-wrapper__text-info {
-    margin-bottom: 1.5rem
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 37.5em) {
+    #projects .project-wrapper__text-info {
+        text-align: center;
+        /* line-height: 2.5rem; */
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
 #projects .project-wrapper__text-btns {
@@ -1224,10 +1313,18 @@ section .row span {
     }
 }
 
+@media (max-width: 37.5em) {
+    #extracurricular .about-wrapper__info {
+        align-items: center;
+        text-align: center
+    }
+}
+
+
 #extracurricular .about-wrapper__info-text {
+
     display: flex;
     font-size: 2rem;
-    margin-left: 20%;
     height: 100%;
     justify-content: center;
     flex-direction: column;
@@ -1235,13 +1332,127 @@ section .row span {
 
 }
 
-#extracurricular .center {
-    /* display: flex;
-    justify-content: center; */
-    /* font-size: 20rem; */
-    padding-top: 1.5rem;
-    font-size: 1.5rem;
-    text-align: left;
-    margin-left: 20%;
+
+
+@media (max-width: 37.5em) {
+    #extracurricular .about-wrapper__info-text {
+        padding-top: 2rem;
+        padding-left: 6.5rem;
+        padding-right: 6.5rem;
+        font-size: 1.5rem;
+        text-align: left;
+
     }
+}
+
+
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+
+
+
+    /* CSS */
+    .button-2 {
+      background-color: rgba(51, 51, 51, 0.05);
+      border-radius: 8px;
+      border-width: 0;
+      color: #333333;
+      cursor: pointer;
+      display: inline-block;
+      font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 1px 12px;
+      text-align: center;
+      transition: all 200ms;
+      vertical-align: baseline;
+      white-space: nowrap;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-3 {
+        background-color: rgba(195, 138, 138, 0.171);
+        border-radius: 8px;
+        border-width: 0;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 1px 12px;
+        text-align: center;
+        transition: all 200ms;
+        vertical-align: baseline;
+        white-space: nowrap;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+
+     #about .button-1 {
+        background-color: rgba(203, 83, 83, 0.797);
+        border-radius: 8px;
+        border-width: 0;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 1px 12px;
+        text-align: center;
+        transition: all 200ms;
+        vertical-align: baseline;
+        white-space: nowrap;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+     }
+
+     #projects .button-1 {
+        background-color: rgba(203, 83, 83, 0.797);
+        border-radius: 8px;
+        border-width: 0;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 1px 12px;
+        text-align: center;
+        transition: all 200ms;
+        vertical-align: baseline;
+        white-space: nowrap;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+     }
+
 
