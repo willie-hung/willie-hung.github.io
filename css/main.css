@@ -1380,12 +1380,12 @@ section .row span {
 
 #extracurricular .about-wrapper__info-title {
 
-    padding-top: 3rem;
+    /* padding-top: 1rem; */
     display: flex;
     font-size: 2.5rem;
     height: 100%;
     justify-content: center;
-    flex-direction: column;
+    /* flex-direction: column; */
     text-align: center;
     line-height: 6rem;
 
