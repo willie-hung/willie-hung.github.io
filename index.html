@@ -11,21 +11,19 @@
 
     <meta name="description" content="Willie Hung | Developer" />
 
-    <!-- Add a your png Logo to the assets folder and change the href attr accordingly  -->
-    <link rel="icon" type="image/png" href="./assets/4.png" />
+    <link rel="icon" type="image/png" href="./assets/uchicago.png" />
 
     <meta name="theme-color" content="#36d1dc" />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <!-- Fill content with the URL of this portfolio you'll host -->
+
+    <!-- when sharing the url to different platform -->
     <meta property="og:url" content="https://willie-the-lord.github.io" />
-    <!-- Fill content with the title of your portfolio(Recommended to use what you put in <title> tag) -->
+   
     <meta property="og:title" content="Willie Hung | Developer" />
-    <!-- Give a short description that'll show up when you/someone shares your portfolio on different platform -->
+  
     <meta property="og:description" content="My Personal Website" />
-    <!-- Add a thumbnail image in assets folder and fill the content attr with URL to that thumbnail 
-      so that a thumbnail image of your portfolio is shown while shared on other platform -->
+    
     <meta
       property="og:image"
       href ="./assets/dd.png"
@@ -33,20 +31,16 @@
 
     <!-- Twitter -->
     <!-- <meta property="twitter:card" content="summary_large_image" /> -->
-    <!-- Again fill content attr with the URL of this portfolio you'll host -->
-    <!-- <meta property="twitter:url" content="https://devfolio.js.org" /> -->
-    <!-- Recommended to use the same text used within <title> element -->
-    <!-- <meta property="twitter:title" content="[Your name here] | Developer" /> -->
-    <!-- short description that shows up while your portfolio is shared -->
+    <!-- <meta property="twitter:url" content="https://willie-the-lord.github.io" /> -->
+    <!-- <meta property="twitter:title" content="Willie Hung | Developer" /> -->
     <!-- <meta
       property="twitter:description"
-      content="Made using DevFolio Template"
+      content="My Personal Website"
     /> -->
-    <!-- Fill content with the URL to the thumbnail image that you'll put in the assets folder -->
-    <meta
+    <!-- <meta
       property="twitter:image"
-      content="https://anilseervi.vercel.app/assets/devfolio.png"
-    />
+      content=""
+    /> -->
 
     <!-- link tags -->
     <link rel="stylesheet" href="./css/main.css" />
@@ -60,8 +54,9 @@
       type="text/javascript"
       src="./javascript/scrollveal.js"
     ></script>
-  
   </head>
+
+
   <body>
     <!-- Hero Section -->
     <div id="hero">
@@ -72,14 +67,15 @@
           I'm a CS student @ UChicago.
         </h1>
         <p class="hero-cta">
+          <!-- will inherit both button class-->
           <a class="cta-btn cta-btn--hero" href="#about">Get in touch</a>
         </p>
       </section>
-<!--       <a href="#about" class="scroll-down-link" aria-label="scroll-down">
+      <!-- <a href="#about" class="scroll-down-link" aria-label="scroll-down">
         <div class="scroll-down"></div
       ></a> -->
     </div>
-    <!-- /END Hero Section -->
+    
 
     <!-- About Section -->
     <section id="about">
@@ -89,7 +85,7 @@
           <div class="about-wrapper__image">
             <img
               class="img-fluid"
-              src="./assets/123-2-removebg-preview.png"
+              src="./assets/personal_photo.png"
               alt="Profile Image"
             />
           </div>
@@ -97,8 +93,8 @@
             <p class="about-wrapper__info-text">
               My name is Sung-Jie (Willie) Hung. I was born and raised in Taiwan. 
               I'm currently pursing my Master in Computer Science at University of Chicago. 
-              My focus include <button class="button-1">Software Development</button>, <button class="button-1">Web Applications</button> and <button class="button-1">Data Analytics</button>. 
-              I'm skilled in <button class="button-1">Python</button>, <button class="button-1">C#</button>, <button class="button-1">C++</button>, and I'm always looking to learn more. 
+              My focus include <button class="cta-btn--about">Software Development</button>, <button class="cta-btn--about">Web Applications</button> and <button class="cta-btn--about">Data Analytics</button>. 
+              I'm skilled in <button class="cta-btn--about">Python</button>, <button class="cta-btn--about">C#</button>, <button class="cta-btn--about">C++</button>, and I'm always looking to learn more. 
               In my leisure time, I love running, surfing and all kinds of outdoor sports.
             </p>
             <span class="about-wrapper__cta">
@@ -111,80 +107,64 @@
     <!-- /END About Section -->
 
       <!-- Experience Section -->
-      <section id="experience">
-        <div class="container">
-          <h2 class="section-title">Experience</h2>
-          <div class="row about-wrapper">
-            <div class="about-wrapper__image">
-              <img
-                class="img-fluid"
-                src="./assets/3.jpg"
-                alt="Profile Image"
-              />
-            </div>
-            <div class="about-wrapper__info">
-              <p class="about-wrapper__info-text">
-                <b>Software Engineer Intern</b><br>
-                Oct 2021 - Feb 2022<br>
-                Skills: <button class="button-2">C#</button> <button class="button-2">AWS</button> <button class="button-2">.NET</button><button class="button-2">ShellScripting</button><br>
-                Built an auto AWS-Security-Token refresh software application 8 times faster than the original one and reduced memory usage by 71% via C#, .NET, and AWS SDK.
-              </p>
-              <!-- <p class="about-wrapper__info-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                obcaecati doloribus qui praesentium quae veniam esse mollitia
-                consequuntur nisi minima quasi et fugit quidem enim recusandae
-                delectus, iusto culpa rerum?
-              </p> -->
-              <!-- <span class="about-wrapper__cta">
-                <a href="#" class="cta-btn cta-btn--resume">View Resume</a>
-              </span> -->
-            </div>
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="row about-wrapper">
+          
+          <!-- Lumentum -->
+          <div class="about-wrapper__image">
+            <img
+              class="img-fluid"
+              src="./assets/lumentum.jpg"
+              alt="Profile Image"
+            />
+          </div>
+          <div class="about-wrapper__info">
+            <p class="about-wrapper__info-text">
+              <b>Software Engineer Intern</b><br>
+              Oct 2021 - Feb 2022<br>
+              Skills: <button class="cta-btn--experience">C#</button> <button class="cta-btn--experience">AWS</button> <button class="cta-btn--experience">.NET</button><button class="cta-btn--experience">ShellScripting</button><br>
+              Built an auto AWS-Security-Token refresh software application 8 times faster than the original one and reduced memory usage by 71% via C#, .NET, and AWS SDK.
+            </p>
+          </div>
 
-            <div class="about-wrapper__image">
-              <img
-                class="img-fluid"
-                src="./assets/2.jpg"
-                alt="Profile Image"
-              />
-            </div>
-            <div class="about-wrapper__info">
-              <p class="about-wrapper__info-text">
-                <b>Data Science Intern</b><br>
-                Jul 2021 - Sep 2021<br>
-                Skills: <button class="button-2">Python</button> <button class="button-2">R</button> <button class="button-2">Tableau</button><br>
-                Designed and implemented 2 A/B testing over a 3-month period and utilized AHP algorithm to quantify gaming headset datasets.
-              </p>
-
-              <!-- <span class="about-wrapper__cta">
-                <a href="#" class="cta-btn cta-btn--resume">View Resume</a>
-              </span> -->
-            </div>
-
-            <div class="about-wrapper__image">
-              <img
-                class="img-fluid"
-                src="./assets/1.jpg"
-                alt="Profile Image"
-              />
-            </div>
-            <div class="about-wrapper__info">
-              <p class="about-wrapper__info-text">
-                <b>Engineering co-op</b><br>
-                Jul 2020 - Aug 2020<br>
-                Skills: <button class="button-2">Minitab</button> <button class="button-2">FlexSim</button> <button class="button-2">Python</button><br>
-                Increased semiconductor products' manufacturing efficiency by 11% (Visionpad™ polishing pads & Kapton® polyimide films) via Minitab, FlexSim, Python.
-              </p>
-              <!-- <span class="about-wrapper__cta">
-                <a href="#" class="cta-btn cta-btn--resume">View Resume</a>
-              </span> -->
-            </div>
-            
-
-            
+          <!-- Logitech -->
+          <div class="about-wrapper__image">
+            <img
+              class="img-fluid"
+              src="./assets/logitech.jpg"
+              alt="Profile Image"
+            />
+          </div>
+          <div class="about-wrapper__info">
+            <p class="about-wrapper__info-text">
+              <b>Data Science Intern</b><br>
+              Jul 2021 - Sep 2021<br>
+              Skills: <button class="cta-btn--experience">Python</button> <button class="cta-btn--experience">R</button> <button class="cta-btn--experience">Tableau</button><br>
+              Designed and implemented 2 A/B testing over a 3-month period and utilized AHP algorithm to quantify gaming headset datasets.
+            </p>
+          </div>
+          
+          <!-- Dupont -->
+          <div class="about-wrapper__image">
+            <img
+              class="img-fluid"
+              src="./assets/dupont.jpg"
+              alt="Profile Image"
+            />
+          </div>
+          <div class="about-wrapper__info">
+            <p class="about-wrapper__info-text">
+              <b>Engineering co-op</b><br>
+              Jul 2020 - Aug 2020<br>
+              Skills: <button class="cta-btn--experience">Minitab</button> <button class="cta-btn--experience">FlexSim</button> <button class="cta-btn--experience">Python</button><br>
+              Increased semiconductor products' manufacturing efficiency by 11% (Visionpad™ polishing pads & Kapton® polyimide films) via Minitab, FlexSim, Python.
+            </p>
           </div>
         </div>
-      </section>
-      <!-- /END Experience Section -->
+      </div>
+    </section>
   
 
     <!--Projects Section-->
@@ -204,7 +184,7 @@
               <!-- <h3 class="project-wrapper__text-title">Auto AWS Security Token Refresh Application</h3> -->
               <p class="project-wrapper__text-info">
                 <b>AWS-Security-Token Refresh Application</b><br>
-                <button class="button-1">C#</button> <button class="button-1">.NET</button> <button class="button-1">AWS SDK</button><br>
+                <button class="cta-btn--projects">C#</button> <button class="cta-btn--projects">.NET</button> <button class="cta-btn--projects">AWS SDK</button><br>
                 A .NET project that can refresh your AWS security token 
                 and update your AWS credential file automatically on your local machine.
               </p>
@@ -230,7 +210,7 @@
               />
               <p class="project-wrapper__text-info">
                 <b>C++ Data Structures Implementation</b><br>
-                <button class="button-1">C++</button><br>
+                <button class="cta-btn--projects">C++</button><br>
                 Mulitiple data structures including arrays, stacks, queues, linked lists, trees, graphs and hashing implemented via C++. 
               </p>
               <div class="project-wrapper__text-btns">
@@ -255,7 +235,7 @@
               />
               <p class="project-wrapper__text-info">
                 <b>A Mobile-Friendly & All Device Compatible Website</b><br>
-                <button class="button-1">html</button> <button class="button-1">CSS</button> <button class="button-1">SCSS</button> <button class="button-1">javascript</button><br>
+                <button class="cta-btn--projects">html</button> <button class="cta-btn--projects">CSS</button> <button class="cta-btn--projects">SCSS</button> <button class="cta-btn--projects">javascript</button><br>
                 A light-weight, fast and clean website for developers, students and designers.
               </p>
               <div class="project-wrapper__text-btns">
@@ -378,7 +358,7 @@
         <div class="contact-wrapper">
           <!-- Feel free to email to me -->
           <!-- <p class="contact-wrapper__text">Feel free to email me!</p> -->
-          <a href="mailto:sungjiehung@uchicago.edu" class="cta-btn cta-btn--test">sungjiehung@uchicago.edu</a>
+          <a href="mailto:sungjiehung@uchicago.edu" class="cta-btn cta-btn--uchicagomail">sungjiehung@uchicago.edu</a>
         </div>
       </div>
     </section>
