@@ -4,7 +4,7 @@ A ```light-weight```, ```fast``` and ```all-device compatible``` portfolio for d
 ## Overview
 ![](https://i.imgur.com/882Fvty.png)
 
-## Prerequisites
+## Prerequisites 📝
 ### Tools
 * [Git](https://git-scm.com)
 * [VScode](https://code.visualstudio.com)
@@ -13,7 +13,7 @@ A ```light-weight```, ```fast``` and ```all-device compatible``` portfolio for d
 * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 * [HTML Preview](https://marketplace.visualstudio.com/items?itemName=tht13.html-preview-vscode)
 
-## How to use
+## How to use ❓
 Insert following commands in your CLI
 
 ```bash
@@ -27,10 +27,10 @@ $ cd Willie-The-Lord.github.io
 $ git remote remove origin
 ```
 
-## Get Started
+## Get Started 💡
 When you open up the directory, navigate to ```index.html``` and right click ```Open with Live Server```. This will open up your browser and now you can modify your portfolio in real-time.
 
-## Instructions
+## Instructions 🔧
 ### HTML part
 * Open up [index.html](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/index.html)
 * Customize the following sections
@@ -140,37 +140,37 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 ```html
 <!-- Projects Section -->
 <section id="projects">
-    <div class="container">
-      <div class="project-wrapper">
-        <h2 class="section-title dark-blue-text">Projects</h2>
-        <article class="row">
-          <div class="project-wrapper__text">
-            <img
-            class="img-fluid"
-            src="./assets/feature-aws.jpeg"
-            alt="Profile Image"
-            />
-            <p class="project-wrapper__text-info">
-              <b>AWS-Security-Token Refresh Application</b><br>
-              <button class="cta-btn--projects">C#</button> <button class="cta-btn--projects">.NET</button> <button class="cta-btn--projects">AWS SDK</button><br>
-              A .NET project that can refresh your AWS security token 
-              and update your AWS credential file automatically on your local machine.
-            </p>
-            <div class="project-wrapper__text-btns">
-              <a
-                href="https://github.com/Willie-The-Lord/AWS-Token-Refresh"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cta-btn cta-btn--resume"
-                >Source Code</a
-              >
-            </div>
+  <div class="container">
+    <div class="project-wrapper">
+      <h2 class="section-title dark-blue-text">Projects</h2>
+      <article class="row">
+        <div class="project-wrapper__text">
+          <img
+          class="img-fluid"
+          src="./assets/feature-aws.jpeg"
+          alt="Profile Image"
+          />
+          <p class="project-wrapper__text-info">
+            <b>AWS-Security-Token Refresh Application</b><br>
+            <button class="cta-btn--projects">C#</button> <button class="cta-btn--projects">.NET</button> <button class="cta-btn--projects">AWS SDK</button><br>
+            A .NET project that can refresh your AWS security token 
+            and update your AWS credential file automatically on your local machine.
+          </p>
+          <div class="project-wrapper__text-btns">
+            <a
+              href="https://github.com/Willie-The-Lord/AWS-Token-Refresh"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cta-btn cta-btn--resume"
+              >Source Code</a
+            >
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
     </div>
-  </section>
-	```
+  </div>
+</section>
+```
 	
 * Education Section
 ```html
@@ -258,7 +258,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 
 
 
-## Deployment
+## Deployment 📦
 * Navigate to your ```GitHub account``` and create a new repo. Set your new remote for this template repo.
 ```bash
 # Add your new remote origin
@@ -276,14 +276,14 @@ $ git push -u origin main
 * Refresh your repo page. It might take up to several minutes.
 * Hoooray! Your portfolio should be live at ```https://github_username.github.io/```
 
-## Author
+## Author 🧑🏻‍💻
 Sung-Jie (Willie) Hung -- <https://github.com/Willie-The-Lord>
 
 
-## License
+## License 📜
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/license) file for details.
 
-## Acknowledgments
+## Acknowledgments 🖤
 I was motivated and inspired by [Cobi Martínezi's](https://github.com/cobiwave) and [Anil Seervi's](https://github.com/AnilSeervi) PortFolio while learning ```Web Development Techniques```, including ```html```, ```css```, ```javascript```. Their creativity galvanized my enthusiasm towards web development and user interface design.
 
 <h2 align="center">Create Your Own Website Now!!!</h2>
