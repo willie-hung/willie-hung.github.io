@@ -216,7 +216,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
   </section>
 ```
 	
-* Contact Curricular Section
+* Contact Section
 ```html
 <!-- Contact Section -->
 <section id="contact">
