@@ -1,7 +1,8 @@
-# MiniPortFolio
-## About
-A ```light-weight```, ```fast``` and ```all-device compatible``` portfolio for developers, students and designers.
-## Overview
+<h1 align="center">My Computer Science Portfolio</h1>
+
+## About 📖
+A light-weight, fast and all-device compatible portfolio for developers, students and designers.
+## Overview 🎞
 ![](https://i.imgur.com/882Fvty.png)
 
 ## Prerequisites 📝
@@ -33,7 +34,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 ## Instructions 🔧
 ### HTML part
 * Open up [index.html](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/index.html)
-* Customize the following sections and replace your personal information in the bracket [Enter Here!]
+* Customize the following sections and replace your personal information in the bracket ```[Enter Here!]```
 * Head Section
 ```html
     <!-- Head Section -->
@@ -259,11 +260,11 @@ $ git remote add origin https://github.com/user.repo.git
 ```
 * When you finish all your changes, add all your files and commit all your changes with a commit message and push the code to your newly created repo.
 ```bash
-# add all the changes
+# Add all the changes
 $ git add .
-# commit changes
+# Commit changes
 $ git commit -m 'created my portfolio'
-# push the changes (you can also push to other branches you created)
+# Push the changes (you can also push to other branches you created)
 $ git push -u origin main 
 ```
 * Refresh your repo page. It might take up to several minutes.
@@ -277,6 +278,6 @@ Sung-Jie (Willie) Hung -- <https://github.com/Willie-The-Lord>
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/license) file for details.
 
 ## Acknowledgments 🎁
-I was motivated and inspired by [Cobi Martínezi's](https://github.com/cobiwave) and [Anil Seervi's](https://github.com/AnilSeervi) PortFolio while learning ```Web Development Techniques```, including ```html```, ```css```, ```javascript``` etc.Their creativity galvanized my enthusiasm towards web development and user interface design. I refactored some of the code and redesigned the interface. Hope you enjoy the content!
+I was motivated and inspired by [Cobi Martínezi's](https://github.com/cobiwave) and [Anil Seervi's](https://github.com/AnilSeervi) portFolio while learning ```Web Development Techniques```, including ```html```, ```css```, ```javascript``` etc. Their creativity galvanized my enthusiasm towards web development and user interface design. I refactored some of the code and redesigned the interface. Hope you all enjoy the content!
 
 <h2 align="center">Create Your Own Website Now!!!</h2>
