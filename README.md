@@ -1,9 +1,8 @@
 # MiniPortFolio
-## Inspired by [Cobi Martínezi's](https://github.com/cobiwave) and [Anil Seervi's](https://github.com/AnilSeervi) PortFolio
-##About
+## About
 A light-weight, fast and all-device compatible portfolio for developers, students and designers.
 ## Overview
-![](https://i.imgur.com/NLc55JN.png)
+![](https://i.imgur.com/882Fvty.png)
 
 #Prerequisites
 * [Git](https://git-scm.com)
@@ -12,14 +11,14 @@ A light-weight, fast and all-device compatible portfolio for developers, student
 * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 * [HTML Preview](https://marketplace.visualstudio.com/items?itemName=tht13.html-preview-vscode)
 
-##How to use
+## How to use
 Insert following commands to your CLI
 ```bash
 # Clone this repository
 $ git clone https://github.com/Willie-The-Lord/Willie-The-Lord.github.io.git
 
 # Go into the repository
-$ cd Willie-The-Lord.github.io # Feel free to change the directory's name
+$ cd Willie-The-Lord.github.io
 
 # Remove current origin repository
 $ git remote remove origin
@@ -59,28 +58,26 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 ```
 
 	```html
-	<!-- Hero Section -->
-    <div id="hero">
-      <section class="container">
-        <h1 class="hero-title">
-          Hi, my name is <span class="text-color-main name">Willie Hung</span>
-          <br />
-          I'm a CS student @ UChicago.
-        </h1>
-        <p class="hero-cta">
-          <!-- will inherit both button class-->
-          <a class="cta-btn cta-btn--hero" href="#about">Get in touch</a>
-        </p>
-      </section>
-      <!-- <a href="#about" class="scroll-down-link" aria-label="scroll-down">
-        <div class="scroll-down"></div
-      ></a> -->
-    </div>
+    <!-- Hero Section -->
+      <div id="hero">
+        <section class="container">
+          <h1 class="hero-title">
+            Hi, my name is <span class="text-color-main name">Willie Hung</span>
+            <br />
+            I'm a CS student @ UChicago.
+          </h1>
+          <p class="hero-cta">
+            <!-- will inherit both button class-->
+            <a class="cta-btn cta-btn--hero" href="#about">Get in touch</a>
+          </p>
+        </section>
+      </div>
 	```
 	
+
 	```html
-	<!-- About Section -->
-	<section id="about">
+    <!-- About Section -->
+    <section id="about">
       <div class="container center">
         <h2 class="section-title">About Me</h2>
         <div class="row about-wrapper">
@@ -107,13 +104,13 @@ When you open up the directory, navigate to ```index.html``` and right click ```
       </div>
     </section>
 	```
+
 	```html
 	<!-- Experience Section -->
 	<section id="experience">
       <div class="container">
         <h2 class="section-title">Experience</h2>
         <div class="row about-wrapper">
-          
           <div class="about-wrapper__image">
             <img
               class="img-fluid"
@@ -129,17 +126,18 @@ When you open up the directory, navigate to ```index.html``` and right click ```
               Built an auto AWS-Security-Token refresh software application 8 times faster than the original one and reduced memory usage by 71% via C#, .NET, and AWS SDK.
             </p>
           </div>
-		</div>
+		    </div>
       </div>
     </section>
 	```
+
+
 	```html
 	<!-- Projects Section -->
 	<section id="projects">
       <div class="container">
         <div class="project-wrapper">
           <h2 class="section-title dark-blue-text">Projects</h2>
-
           <article class="row">
             <div class="project-wrapper__text">
               <img
@@ -163,12 +161,13 @@ When you open up the directory, navigate to ```index.html``` and right click ```
                 >
               </div>
             </div>
-		  </article>
+		      </article>
         </div>
       </div>
     </section>
 	```
 	
+
 	```html
 	<!-- Education Section -->
     <section id="education">
@@ -189,11 +188,12 @@ When you open up the directory, navigate to ```index.html``` and right click ```
                 2022-2024
             </p>
           </div>
-		</div>
+		    </div>
       </div>
     </section>
 	```
 	
+
 	```html
 	<!-- Extra Curricular Section -->
     <section id="extracurricular">
@@ -201,45 +201,46 @@ When you open up the directory, navigate to ```index.html``` and right click ```
         <h2 class="section-title">Extra Curricular</h2>
           <div class="about-wrapper__info">
               <p class="about-wrapper__info-title"><b>National Tsing Hua University Men's Varsity Track & Field Team</b>
-                <p class="about-wrapper__info-title">Sep 2017 - Jan 2022</p> 
-                <p class="about-wrapper__info-title"><b>Model United Nation Membership</b></p>
-                <p class="about-wrapper__info-title">Apr 2015</p>
+              <p class="about-wrapper__info-title">Sep 2017 - Jan 2022</p> 
+              <p class="about-wrapper__info-title"><b>Model United Nation Membership</b></p>
+              <p class="about-wrapper__info-title">Apr 2015</p>
           </div>
       </div>
     </section>
 	```
 	
+
 	```html
 	<!-- Contact Section -->
 	<section id="contact">
-      <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-wrapper">
-          <a href="mailto:sungjiehung@uchicago.edu" class="cta-btn cta-btn--uchicagomail">sungjiehung@uchicago.edu</a>
-        </div>
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-wrapper">
+        <a href="mailto:sungjiehung@uchicago.edu" class="cta-btn cta-btn--uchicagomail">sungjiehung@uchicago.edu</a>
       </div>
-    </section>
+    </div>
+  </section>
 	```
 	
+
 	```html
 	<!-- Footer Section -->
-    <footer class="footer">
-      <div class="container">
-        <a href="#hero" class="back-to-top" aria-label="go back to top">
-          <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
+  <footer class="footer">
+    <div class="container">
+      <a href="#hero" class="back-to-top" aria-label="go back to top">
+        <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
+      </a>
+      <div class="social-links">
+        <a
+          href="https://www.linkedin.com/in/willie-hung/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="linkedin"
+        >
+          <i class="fa fa-linkedin"></i>
         </a>
-        <div class="social-links">
-    
-          <a
-            href="https://www.linkedin.com/in/willie-hung/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="linkedin"
-          >
-            <i class="fa fa-linkedin"></i>
-          </a>
-	  </div>
-    </footer>
+  </div>
+  </footer>
 	```
 
 
@@ -270,7 +271,7 @@ $ git push -u origin main # you can also push to other branches you created
 * Refresh your repo page. It might takes up to several minutes.
 * Hoooray! Your portfolio should be live at ```https://username.github.io/repoName/```
 
-## Authors
+## Author
 Sung-Jie (Willie) Hung - <https://github.com/Willie-The-Lord>
 
 
