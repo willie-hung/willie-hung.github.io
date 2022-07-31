@@ -1,11 +1,15 @@
 <h1 align="center">My Computer Science Portfolio</h1>
 
-## About 📖
+<h2 align="center">About 📖</h2>
+
 A light-weight, fast and all-device compatible portfolio for developers, students and designers.
-## Overview 🎞
+
+<h2 align="center">Overview 🎞</h2>
+
 ![](https://i.imgur.com/882Fvty.png)
 
-## Prerequisites 📝
+<h2 align="center">Prerequisites 📝</h2>
+
 ### Tools
 * [Git](https://git-scm.com)
 * [VScode](https://code.visualstudio.com)
@@ -14,7 +18,9 @@ A light-weight, fast and all-device compatible portfolio for developers, student
 * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 * [HTML Preview](https://marketplace.visualstudio.com/items?itemName=tht13.html-preview-vscode)
 
-## How to use ❓
+
+<h2 align="center">How to use ❓</h2>
+
 Insert following commands in your CLI
 
 ```bash
@@ -28,10 +34,12 @@ $ cd Willie-The-Lord.github.io
 $ git remote remove origin
 ```
 
-## Get Started 💡
+<h2 align="center">Get Started 💡</h2>
+
 When you open up the directory, navigate to ```index.html``` and right click ```Open with Live Server```. This will open up your browser and now you can modify your portfolio in real-time.
 
-## Instructions 🔧
+<h2 align="center">Instructions 🔧</h2>
+
 ### HTML part
 * Open up [index.html](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/index.html)
 * Customize the following sections and replace your personal information in the bracket ```[Enter Here!]```
@@ -251,8 +259,8 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 * For responsive web design skills, check out [Responsive Website Design](https://www.w3schools.com/html/html_responsive.asp)
 
 
+<h2 align="center">Deployment 📦</h2>
 
-## Deployment 📦
 * Navigate to your ```GitHub account``` and ```create a new repo```. Set your new remote for this template repo.
 ```bash
 # Add your new remote origin
@@ -270,14 +278,17 @@ $ git push -u origin main
 * Refresh your repo page. It might take up to several minutes.
 * Hoooray! Your portfolio should be live at ```https://github_username.github.io/```
 
-## Author 🧑🏻‍💻
+<h2 align="center">Author 🧑🏻‍💻</h2>
+
 Sung-Jie (Willie) Hung -- <https://github.com/Willie-The-Lord>
 
 
-## License 📜
+<h2 align="center">License 📜</h2>
+
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/license) file for details.
 
-## Acknowledgments 🎁
+<h2 align="center">Acknowledgments 🎁</h2>
+
 I was motivated and inspired by [Cobi Martínezi's](https://github.com/cobiwave) and [Anil Seervi's](https://github.com/AnilSeervi) portFolio while learning ```Web Development Techniques```, including ```html```, ```css```, ```javascript``` etc. Their creativity galvanized my enthusiasm towards web development and user interface design. I refactored some of the code and redesigned the interface. Hope you all enjoy the content!
 
 <h2 align="center">Create Your Own Website Now!!!</h2>
