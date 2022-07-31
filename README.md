@@ -33,32 +33,31 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 ## Instructions 🔧
 ### HTML part
 * Open up [index.html](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/index.html)
-* Customize the following sections
-
+* Customize the following sections and replace your personal information in the bracket [Enter Here!]
 * Head Section
 ```html
     <!-- Head Section -->
     <title>Willie Hung | Developer</title>
 
-    <meta name="keywords" content="Willie Hung, Python, C#, C++, AWS, R" />
+    <meta name="keywords" content="[Keywords for SEO]" />
 
-    <meta name="description" content="Willie Hung | Developer" />
+    <meta name="description" content="[Description]" />
 
-    <link rel="icon" type="image/png" href="./assets/uchicago.png" />
+    <link rel="icon" type="image/png" href="[Icon image]" />
 
-    <meta name="theme-color" content="#36d1dc" />
+    <meta name="theme-color" content="[Color code]" />
 
     <meta property="og:type" content="website" />
 
-    <meta property="og:url" content="https://willie-the-lord.github.io" />
+    <meta property="og:url" content="[GitHub page url]" />
    
-    <meta property="og:title" content="Willie Hung | Developer" />
+    <meta property="og:title" content="[Title when you share your link]" />
   
-    <meta property="og:description" content="My Personal Website" />
+    <meta property="og:description" content="[Description when you share your link]" />
     
     <meta
       property="og:image"
-      href ="./assets/personal_photo.png"
+      href ="[Image when you share your link]"
     />
 ```
 * Hero Section
@@ -67,12 +66,11 @@ When you open up the directory, navigate to ```index.html``` and right click ```
     <div id="hero">
       <section class="container">
         <h1 class="hero-title">
-          Hi, my name is <span class="text-color-main name">Willie Hung</span>
+          Hi, my name is <span class="text-color-main name">[Your name here]</span>
           <br />
-          I'm a CS student @ UChicago.
+          [Short Description]
         </h1>
         <p class="hero-cta">
-          <!-- will inherit both button class-->
           <a class="cta-btn cta-btn--hero" href="#about">Get in touch</a>
         </p>
       </section>
@@ -95,14 +93,10 @@ When you open up the directory, navigate to ```index.html``` and right click ```
         </div>
         <div class="about-wrapper__info">
           <p class="about-wrapper__info-text">
-            My name is Sung-Jie (Willie) Hung. I was born and raised in Taiwan. 
-            I'm currently pursing my Master in Computer Science at University of Chicago. 
-            My focus include <button class="cta-btn--about">Software Development</button>, <button class="cta-btn--about">Web Applications</button> and <button class="cta-btn--about">Data Analytics</button>. 
-            I'm skilled in <button class="cta-btn--about">Python</button>, <button class="cta-btn--about">C#</button>, <button class="cta-btn--about">C++</button>, and I'm always looking to learn more. 
-            In my leisure time, I love running, surfing and all kinds of outdoor sports.
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
           </p>
           <span class="about-wrapper__cta">
-            <a href="https://drive.google.com/file/d/1Gpu-pT4xgaShri0_GaF6hFvQZ5gmDtVe/view?usp=sharing" target=”_blank” class="cta-btn cta-btn--resume">View Resume</a>
+            <a href="[Your resume link]" target=”_blank” class="cta-btn cta-btn--resume">View Resume</a>
           </span>
         </div>
       </div>
@@ -110,6 +104,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
   </section>
 ```
 
+* Experience Section
 ```html
 <!-- Experience Section -->
 <section id="experience">
@@ -119,16 +114,16 @@ When you open up the directory, navigate to ```index.html``` and right click ```
         <div class="about-wrapper__image">
           <img
             class="img-fluid"
-            src="./assets/lumentum.jpg"
+            src="[Company name image]"
             alt="Profile Image"
           />
         </div>
         <div class="about-wrapper__info">
           <p class="about-wrapper__info-text">
-            <b>Software Engineer Intern</b><br>
-            Oct 2021 - Feb 2022<br>
+            <b>[Enter your title here]</b><br>
+            [Enter your date here]<br>
             Skills: <button class="cta-btn--experience">C#</button> <button class="cta-btn--experience">AWS</button> <button class="cta-btn--experience">.NET</button><button class="cta-btn--experience">ShellScripting</button><br>
-            Built an auto AWS-Security-Token refresh software application 8 times faster than the original one and reduced memory usage by 71% via C#, .NET, and AWS SDK.
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
           </p>
         </div>
       </div>
@@ -151,10 +146,9 @@ When you open up the directory, navigate to ```index.html``` and right click ```
           alt="Profile Image"
           />
           <p class="project-wrapper__text-info">
-            <b>AWS-Security-Token Refresh Application</b><br>
+            <b>[Enter your project name here]</b><br>
             <button class="cta-btn--projects">C#</button> <button class="cta-btn--projects">.NET</button> <button class="cta-btn--projects">AWS SDK</button><br>
-            A .NET project that can refresh your AWS security token 
-            and update your AWS credential file automatically on your local machine.
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
           </p>
           <div class="project-wrapper__text-btns">
             <a
@@ -189,8 +183,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
         <div class="about-wrapper__info">
           <p class="education-wrapper__info-text">
             Master of Science, Computer Science<br> 
-            The University of Chicago<br>
-              2022-2024
+            The University of Chicago<br>2022-2024
           </p>
         </div>
       </div>
@@ -221,7 +214,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
   <div class="container">
     <h2 class="section-title">Contact</h2>
     <div class="contact-wrapper">
-      <a href="mailto:sungjiehung@uchicago.edu" class="cta-btn cta-btn--uchicagomail">sungjiehung@uchicago.edu</a>
+      <a href="mailto:sungjiehung@uchicago.edu" class="cta-btn cta-btn--uchicagomail">[Enter your email here]</a>
     </div>
   </div>
 </section>
@@ -237,7 +230,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
     </a>
     <div class="social-links">
       <a
-        href="https://www.linkedin.com/in/willie-hung/"
+        href="[Enter your linkedin link here]"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="linkedin"
@@ -252,21 +245,21 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 
 ### CSS part
 * Open up [main.css](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/css/main.css)
-* Customize the arguments in ```main.css```
+* Customize the parameters in ```main.css```
 * For general CSS skills and syntaxs, check out  [Learn CSS](https://web.dev/learn/css/)
 * For responsive web design skills, check out [Responsive Website Design](https://www.w3schools.com/html/html_responsive.asp)
 
 
 
 ## Deployment 📦
-* Navigate to your ```GitHub account``` and create a new repo. Set your new remote for this template repo.
+* Navigate to your ```GitHub account``` and ```create a new repo```. Set your new remote for this template repo.
 ```bash
 # Add your new remote origin
 $ git remote add origin https://github.com/user.repo.git
 ```
 * When you finish all your changes, add all your files and commit all your changes with a commit message and push the code to your newly created repo.
 ```bash
-# add changes
+# add all the changes
 $ git add .
 # commit changes
 $ git commit -m 'created my portfolio'
@@ -283,7 +276,7 @@ Sung-Jie (Willie) Hung -- <https://github.com/Willie-The-Lord>
 ## License 📜
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/license) file for details.
 
-## Acknowledgments 🖤
-I was motivated and inspired by [Cobi Martínezi's](https://github.com/cobiwave) and [Anil Seervi's](https://github.com/AnilSeervi) PortFolio while learning ```Web Development Techniques```, including ```html```, ```css```, ```javascript```. Their creativity galvanized my enthusiasm towards web development and user interface design.
+## Acknowledgments 🎁
+I was motivated and inspired by [Cobi Martínezi's](https://github.com/cobiwave) and [Anil Seervi's](https://github.com/AnilSeervi) PortFolio while learning ```Web Development Techniques```, including ```html```, ```css```, ```javascript``` etc.Their creativity galvanized my enthusiasm towards web development and user interface design. I refactored some of the code and redesigned the interface. Hope you enjoy the content!
 
 <h2 align="center">Create Your Own Website Now!!!</h2>
