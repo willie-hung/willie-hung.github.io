@@ -1,18 +1,21 @@
 # MiniPortFolio
 ## About
-A light-weight, fast and all-device compatible portfolio for developers, students and designers.
+A ```light-weight```, ```fast``` and ```all-device compatible``` portfolio for developers, students and designers.
 ## Overview
 ![](https://i.imgur.com/882Fvty.png)
 
-#Prerequisites
+## Prerequisites
+### Tools
 * [Git](https://git-scm.com)
 * [VScode](https://code.visualstudio.com)
+### VScode extensions
 * [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass)
 * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 * [HTML Preview](https://marketplace.visualstudio.com/items?itemName=tht13.html-preview-vscode)
 
 ## How to use
-Insert following commands to your CLI
+Insert following commands in your CLI
+
 ```bash
 # Clone this repository
 $ git clone https://github.com/Willie-The-Lord/Willie-The-Lord.github.io.git
@@ -31,6 +34,8 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 ### HTML part
 * Open up [index.html](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/index.html)
 * Customize the following sections
+
+* Head Section
 ```html
     <!-- Head Section -->
     <title>Willie Hung | Developer</title>
@@ -56,192 +61,192 @@ When you open up the directory, navigate to ```index.html``` and right click ```
       href ="./assets/personal_photo.png"
     />
 ```
-
-	```html
-    <!-- Hero Section -->
-      <div id="hero">
-        <section class="container">
-          <h1 class="hero-title">
-            Hi, my name is <span class="text-color-main name">Willie Hung</span>
-            <br />
-            I'm a CS student @ UChicago.
-          </h1>
-          <p class="hero-cta">
-            <!-- will inherit both button class-->
-            <a class="cta-btn cta-btn--hero" href="#about">Get in touch</a>
+* Hero Section
+```html
+  <!-- Hero Section -->
+    <div id="hero">
+      <section class="container">
+        <h1 class="hero-title">
+          Hi, my name is <span class="text-color-main name">Willie Hung</span>
+          <br />
+          I'm a CS student @ UChicago.
+        </h1>
+        <p class="hero-cta">
+          <!-- will inherit both button class-->
+          <a class="cta-btn cta-btn--hero" href="#about">Get in touch</a>
+        </p>
+      </section>
+    </div>
+```
+	
+* About Section
+```html
+  <!-- About Section -->
+  <section id="about">
+    <div class="container center">
+      <h2 class="section-title">About Me</h2>
+      <div class="row about-wrapper">
+        <div class="about-wrapper__image">
+          <img
+            class="img-fluid"
+            src="./assets/personal_photo.png"
+            alt="Profile Image"
+          />
+        </div>
+        <div class="about-wrapper__info">
+          <p class="about-wrapper__info-text">
+            My name is Sung-Jie (Willie) Hung. I was born and raised in Taiwan. 
+            I'm currently pursing my Master in Computer Science at University of Chicago. 
+            My focus include <button class="cta-btn--about">Software Development</button>, <button class="cta-btn--about">Web Applications</button> and <button class="cta-btn--about">Data Analytics</button>. 
+            I'm skilled in <button class="cta-btn--about">Python</button>, <button class="cta-btn--about">C#</button>, <button class="cta-btn--about">C++</button>, and I'm always looking to learn more. 
+            In my leisure time, I love running, surfing and all kinds of outdoor sports.
           </p>
-        </section>
-      </div>
-	```
-	
-
-	```html
-    <!-- About Section -->
-    <section id="about">
-      <div class="container center">
-        <h2 class="section-title">About Me</h2>
-        <div class="row about-wrapper">
-          <div class="about-wrapper__image">
-            <img
-              class="img-fluid"
-              src="./assets/personal_photo.png"
-              alt="Profile Image"
-            />
-          </div>
-          <div class="about-wrapper__info">
-            <p class="about-wrapper__info-text">
-              My name is Sung-Jie (Willie) Hung. I was born and raised in Taiwan. 
-              I'm currently pursing my Master in Computer Science at University of Chicago. 
-              My focus include <button class="cta-btn--about">Software Development</button>, <button class="cta-btn--about">Web Applications</button> and <button class="cta-btn--about">Data Analytics</button>. 
-              I'm skilled in <button class="cta-btn--about">Python</button>, <button class="cta-btn--about">C#</button>, <button class="cta-btn--about">C++</button>, and I'm always looking to learn more. 
-              In my leisure time, I love running, surfing and all kinds of outdoor sports.
-            </p>
-            <span class="about-wrapper__cta">
-              <a href="https://drive.google.com/file/d/1Gpu-pT4xgaShri0_GaF6hFvQZ5gmDtVe/view?usp=sharing" target=”_blank” class="cta-btn cta-btn--resume">View Resume</a>
-            </span>
-          </div>
+          <span class="about-wrapper__cta">
+            <a href="https://drive.google.com/file/d/1Gpu-pT4xgaShri0_GaF6hFvQZ5gmDtVe/view?usp=sharing" target=”_blank” class="cta-btn cta-btn--resume">View Resume</a>
+          </span>
         </div>
       </div>
-    </section>
-	```
+    </div>
+  </section>
+```
 
-	```html
-	<!-- Experience Section -->
-	<section id="experience">
-      <div class="container">
-        <h2 class="section-title">Experience</h2>
-        <div class="row about-wrapper">
-          <div class="about-wrapper__image">
-            <img
-              class="img-fluid"
-              src="./assets/lumentum.jpg"
-              alt="Profile Image"
-            />
-          </div>
-          <div class="about-wrapper__info">
-            <p class="about-wrapper__info-text">
-              <b>Software Engineer Intern</b><br>
-              Oct 2021 - Feb 2022<br>
-              Skills: <button class="cta-btn--experience">C#</button> <button class="cta-btn--experience">AWS</button> <button class="cta-btn--experience">.NET</button><button class="cta-btn--experience">ShellScripting</button><br>
-              Built an auto AWS-Security-Token refresh software application 8 times faster than the original one and reduced memory usage by 71% via C#, .NET, and AWS SDK.
-            </p>
-          </div>
-		    </div>
-      </div>
-    </section>
-	```
-
-
-	```html
-	<!-- Projects Section -->
-	<section id="projects">
-      <div class="container">
-        <div class="project-wrapper">
-          <h2 class="section-title dark-blue-text">Projects</h2>
-          <article class="row">
-            <div class="project-wrapper__text">
-              <img
-              class="img-fluid"
-              src="./assets/feature-aws.jpeg"
-              alt="Profile Image"
-              />
-              <p class="project-wrapper__text-info">
-                <b>AWS-Security-Token Refresh Application</b><br>
-                <button class="cta-btn--projects">C#</button> <button class="cta-btn--projects">.NET</button> <button class="cta-btn--projects">AWS SDK</button><br>
-                A .NET project that can refresh your AWS security token 
-                and update your AWS credential file automatically on your local machine.
-              </p>
-              <div class="project-wrapper__text-btns">
-                <a
-                  href="https://github.com/Willie-The-Lord/AWS-Token-Refresh"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="cta-btn cta-btn--resume"
-                  >Source Code</a
-                >
-              </div>
-            </div>
-		      </article>
-        </div>
-      </div>
-    </section>
-	```
-	
-
-	```html
-	<!-- Education Section -->
-    <section id="education">
-      <div class="container">
-        <h2 class="section-title">Education</h2>
-        <div class="row about-wrapper">
-          <div class="about-wrapper__image">
-            <img
-              class="img-fluid"
-              src="./assets/7.jpeg"
-              alt="Profile Image"
-            />
-          </div>
-          <div class="about-wrapper__info">
-            <p class="education-wrapper__info-text">
-              Master of Science, Computer Science<br> 
-              The University of Chicago<br>
-                2022-2024
-            </p>
-          </div>
-		    </div>
-      </div>
-    </section>
-	```
-	
-
-	```html
-	<!-- Extra Curricular Section -->
-    <section id="extracurricular">
-      <div class="container">
-        <h2 class="section-title">Extra Curricular</h2>
-          <div class="about-wrapper__info">
-              <p class="about-wrapper__info-title"><b>National Tsing Hua University Men's Varsity Track & Field Team</b>
-              <p class="about-wrapper__info-title">Sep 2017 - Jan 2022</p> 
-              <p class="about-wrapper__info-title"><b>Model United Nation Membership</b></p>
-              <p class="about-wrapper__info-title">Apr 2015</p>
-          </div>
-      </div>
-    </section>
-	```
-	
-
-	```html
-	<!-- Contact Section -->
-	<section id="contact">
+```html
+<!-- Experience Section -->
+<section id="experience">
     <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <div class="contact-wrapper">
-        <a href="mailto:sungjiehung@uchicago.edu" class="cta-btn cta-btn--uchicagomail">sungjiehung@uchicago.edu</a>
+      <h2 class="section-title">Experience</h2>
+      <div class="row about-wrapper">
+        <div class="about-wrapper__image">
+          <img
+            class="img-fluid"
+            src="./assets/lumentum.jpg"
+            alt="Profile Image"
+          />
+        </div>
+        <div class="about-wrapper__info">
+          <p class="about-wrapper__info-text">
+            <b>Software Engineer Intern</b><br>
+            Oct 2021 - Feb 2022<br>
+            Skills: <button class="cta-btn--experience">C#</button> <button class="cta-btn--experience">AWS</button> <button class="cta-btn--experience">.NET</button><button class="cta-btn--experience">ShellScripting</button><br>
+            Built an auto AWS-Security-Token refresh software application 8 times faster than the original one and reduced memory usage by 71% via C#, .NET, and AWS SDK.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+```
+
+* Projects Section
+```html
+<!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+      <div class="project-wrapper">
+        <h2 class="section-title dark-blue-text">Projects</h2>
+        <article class="row">
+          <div class="project-wrapper__text">
+            <img
+            class="img-fluid"
+            src="./assets/feature-aws.jpeg"
+            alt="Profile Image"
+            />
+            <p class="project-wrapper__text-info">
+              <b>AWS-Security-Token Refresh Application</b><br>
+              <button class="cta-btn--projects">C#</button> <button class="cta-btn--projects">.NET</button> <button class="cta-btn--projects">AWS SDK</button><br>
+              A .NET project that can refresh your AWS security token 
+              and update your AWS credential file automatically on your local machine.
+            </p>
+            <div class="project-wrapper__text-btns">
+              <a
+                href="https://github.com/Willie-The-Lord/AWS-Token-Refresh"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cta-btn cta-btn--resume"
+                >Source Code</a
+              >
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 	```
 	
-
-	```html
-	<!-- Footer Section -->
-  <footer class="footer">
+* Education Section
+```html
+<!-- Education Section -->
+  <section id="education">
     <div class="container">
-      <a href="#hero" class="back-to-top" aria-label="go back to top">
-        <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
-      </a>
-      <div class="social-links">
-        <a
-          href="https://www.linkedin.com/in/willie-hung/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="linkedin"
-        >
-          <i class="fa fa-linkedin"></i>
-        </a>
+      <h2 class="section-title">Education</h2>
+      <div class="row about-wrapper">
+        <div class="about-wrapper__image">
+          <img
+            class="img-fluid"
+            src="./assets/7.jpeg"
+            alt="Profile Image"
+          />
+        </div>
+        <div class="about-wrapper__info">
+          <p class="education-wrapper__info-text">
+            Master of Science, Computer Science<br> 
+            The University of Chicago<br>
+              2022-2024
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+```
+	
+* Extracurricular Section
+```html
+<!-- Extra Curricular Section -->
+  <section id="extracurricular">
+    <div class="container">
+      <h2 class="section-title">Extra Curricular</h2>
+        <div class="about-wrapper__info">
+            <p class="about-wrapper__info-title"><b>National Tsing Hua University Men's Varsity Track & Field Team</b>
+            <p class="about-wrapper__info-title">Sep 2017 - Jan 2022</p> 
+            <p class="about-wrapper__info-title"><b>Model United Nation Membership</b></p>
+            <p class="about-wrapper__info-title">Apr 2015</p>
+        </div>
+    </div>
+  </section>
+```
+	
+* Contact Curricular Section
+```html
+<!-- Contact Section -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-wrapper">
+      <a href="mailto:sungjiehung@uchicago.edu" class="cta-btn cta-btn--uchicagomail">sungjiehung@uchicago.edu</a>
+    </div>
   </div>
-  </footer>
-	```
+</section>
+```
+	
+* Footer Section
+```html
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="container">
+    <a href="#hero" class="back-to-top" aria-label="go back to top">
+      <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
+    </a>
+    <div class="social-links">
+      <a
+        href="https://www.linkedin.com/in/willie-hung/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="linkedin"
+      >
+        <i class="fa fa-linkedin"></i>
+      </a>
+</div>
+</footer>
+```
 
 
 
@@ -254,7 +259,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 
 
 ## Deployment
-* Navigate to your GitHub account and create a new repo. Set the your new remote for this template repo.
+* Navigate to your ```GitHub account``` and create a new repo. Set your new remote for this template repo.
 ```bash
 # Add your new remote origin
 $ git remote add origin https://github.com/user.repo.git
@@ -265,14 +270,14 @@ $ git remote add origin https://github.com/user.repo.git
 $ git add .
 # commit changes
 $ git commit -m 'created my portfolio'
-# push the changes
-$ git push -u origin main # you can also push to other branches you created
+# push the changes (you can also push to other branches you created)
+$ git push -u origin main 
 ```
-* Refresh your repo page. It might takes up to several minutes.
-* Hoooray! Your portfolio should be live at ```https://username.github.io/repoName/```
+* Refresh your repo page. It might take up to several minutes.
+* Hoooray! Your portfolio should be live at ```https://github_username.github.io/```
 
 ## Author
-Sung-Jie (Willie) Hung - <https://github.com/Willie-The-Lord>
+Sung-Jie (Willie) Hung -- <https://github.com/Willie-The-Lord>
 
 
 ## License
@@ -281,4 +286,4 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ## Acknowledgments
 I was motivated and inspired by [Cobi Martínezi's](https://github.com/cobiwave) and [Anil Seervi's](https://github.com/AnilSeervi) PortFolio while learning ```Web Development Techniques```, including ```html```, ```css```, ```javascript```. Their creativity galvanized my enthusiasm towards web development and user interface design.
 
-<h2 align="center">Create Your Own Website Right Now!!!</h2>
+<h2 align="center">Create Your Own Website Now!!!</h2>
