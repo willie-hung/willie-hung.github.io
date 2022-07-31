@@ -123,7 +123,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
         <div class="about-wrapper__image">
           <img
             class="img-fluid"
-            src="[Company name image]"
+            src="[Company logo image]"
             alt="Profile Image"
           />
         </div>
@@ -151,7 +151,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
         <div class="project-wrapper__text">
           <img
           class="img-fluid"
-          src="./assets/feature-aws.jpeg"
+          src="[Project Image]"
           alt="Profile Image"
           />
           <p class="project-wrapper__text-info">
@@ -161,7 +161,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
           </p>
           <div class="project-wrapper__text-btns">
             <a
-              href="https://github.com/Willie-The-Lord/AWS-Token-Refresh"
+              href="[GitHub source code link]"
               target="_blank"
               rel="noopener noreferrer"
               class="cta-btn cta-btn--resume"
@@ -185,7 +185,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
         <div class="about-wrapper__image">
           <img
             class="img-fluid"
-            src="./assets/7.jpeg"
+            src="[School logo image]"
             alt="Profile Image"
           />
         </div>
@@ -207,10 +207,10 @@ When you open up the directory, navigate to ```index.html``` and right click ```
     <div class="container">
       <h2 class="section-title">Extra Curricular</h2>
         <div class="about-wrapper__info">
-            <p class="about-wrapper__info-title"><b>National Tsing Hua University Men's Varsity Track & Field Team</b>
-            <p class="about-wrapper__info-title">Sep 2017 - Jan 2022</p> 
-            <p class="about-wrapper__info-title"><b>Model United Nation Membership</b></p>
-            <p class="about-wrapper__info-title">Apr 2015</p>
+            <p class="about-wrapper__info-title"><b>[Your extracurricular experience]</b>
+            <p class="about-wrapper__info-title">[Date]</p> 
+            <p class="about-wrapper__info-title"><b>[Your extracurricular experience]</b></p>
+            <p class="about-wrapper__info-title">[Date]</p>
         </div>
     </div>
   </section>
@@ -223,7 +223,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
   <div class="container">
     <h2 class="section-title">Contact</h2>
     <div class="contact-wrapper">
-      <a href="mailto:sungjiehung@uchicago.edu" class="cta-btn cta-btn--uchicagomail">[Enter your email here]</a>
+      <a href="mailto:[email]" class="cta-btn cta-btn--uchicagomail">[Enter your email here]</a>
     </div>
   </div>
 </section>
