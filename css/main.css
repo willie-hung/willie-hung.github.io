@@ -797,7 +797,7 @@ screen and (-ms-high-contrast: none) {
 /* 1120px */
 @media (max-width: 70em) {
     #experience {
-        height: 250vh;
+        height: 200vh;
         clip-path: none
     }
 }
@@ -805,7 +805,7 @@ screen and (-ms-high-contrast: none) {
 /* 600px */
 @media (max-width: 37.5em) {
     #experience {
-        height: 350vh
+        height: 290vh
     }
 }
 
