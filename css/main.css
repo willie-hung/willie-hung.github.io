@@ -809,6 +809,13 @@ screen and (-ms-high-contrast: none) {
     }
 }
 
+@media (max-width: 30em) {
+    #experience {
+        height: 320vh
+    }
+}
+
+
 #experience .about-wrapper {
     grid-template-columns: 1fr 1fr
 }
@@ -921,6 +928,12 @@ screen and (-ms-high-contrast: none) {
     #projects {
         height: 270vh;
         padding-bottom: 1px
+    }
+}
+
+@media (max-width: 30em) {
+    #projects {
+        height: 310vh
     }
 }
 
