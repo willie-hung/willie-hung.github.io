@@ -897,7 +897,7 @@ screen and (-ms-high-contrast: none) {
     background-color: #800000FF;
     color: #fff;
     padding-top: 15rem;
-    height: 120vh;
+    height: 150vh;
 }
 
 @media (max-width: 85em) {
