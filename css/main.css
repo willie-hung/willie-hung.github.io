@@ -926,16 +926,16 @@ screen and (-ms-high-contrast: none) {
 
 @media (max-width: 37.5em) {
     #projects {
-        height: 340vh;
+        height: 350vh;
         padding-bottom: 1px
     }
 }
 
-@media (max-width: 30em) {
+/* @media (max-width: 30em) {
     #projects {
         height: 340vh
     }
-}
+} */
 
 #projects .project-wrapper {
     display: grid;
