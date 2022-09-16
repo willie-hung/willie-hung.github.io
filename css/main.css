@@ -646,7 +646,6 @@ screen and (-ms-high-contrast: none) {
 
 /* ABOUT */
 #about {
-    background-color: #36d1dc;
     background-image: linear-gradient(135deg, #800000FF 0%, #800000FF 100%);
     color: #fff;
     height: 100vh;
@@ -897,14 +896,14 @@ screen and (-ms-high-contrast: none) {
     background-color: #800000FF;
     color: #fff;
     padding-top: 15rem;
-    height: 150vh;
+    height: 180vh;
 }
 
 @media (max-width: 85em) {
     #projects {
         margin-top: 0;
         padding-top: 5rem;
-        height: 190vh
+        height: 350vh
     }
 }
 
@@ -931,11 +930,11 @@ screen and (-ms-high-contrast: none) {
     }
 }
 
-/* @media (max-width: 30em) {
+@media (max-width: 30em) {
     #projects {
-        height: 340vh
+        height: 350vh
     }
-} */
+}
 
 #projects .project-wrapper {
     display: grid;
