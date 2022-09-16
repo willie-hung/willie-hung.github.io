@@ -897,7 +897,7 @@ screen and (-ms-high-contrast: none) {
     background-color: #800000FF;
     color: #fff;
     padding-top: 15rem;
-    height: 150vh;
+    height: 170vh;
 }
 
 @media (max-width: 85em) {
@@ -926,14 +926,14 @@ screen and (-ms-high-contrast: none) {
 
 @media (max-width: 37.5em) {
     #projects {
-        height: 300vh;
+        height: 320vh;
         padding-bottom: 1px
     }
 }
 
 @media (max-width: 30em) {
     #projects {
-        height: 310vh
+        height: 340vh
     }
 }
 
