@@ -926,7 +926,7 @@ screen and (-ms-high-contrast: none) {
 
 @media (max-width: 37.5em) {
     #projects {
-        height: 270vh;
+        height: 300vh;
         padding-bottom: 1px
     }
 }
