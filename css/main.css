@@ -436,7 +436,7 @@ screen and (-ms-high-contrast: none) {
  }
 
 .cta-btn--uchicagomail {
-    border-image: linear-gradient(135deg, rgb(0, 128, 21) 0%, #800000FF 100%);
+    /* border-image: linear-gradient(135deg, rgb(0, 128, 21) 0%, #800000FF 100%); */
     border-radius: 0;
     color: rgb(0, 0, 0);
     border: 2px solid rgb(255, 255, 255);
@@ -1194,7 +1194,7 @@ screen and (-ms-high-contrast: none) {
 
 /* EXTRACURRICULAR */
 #extracurricular {
-    background-color: #36d1dc;
+    /* background-color: #36d1dc; */
     background-image: linear-gradient(135deg, #800000FF 0%, #800000FF 100%);
     color: #FFF;
     height: 70vh;
