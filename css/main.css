@@ -107,7 +107,7 @@ a:hover {
     position: absolute;
     top: 20%;
     left: 50%;
-    border: 2px solid #5b86e5;
+    /* border: 2px solid #5b86e5; */
     transform: translate(-50%, -100%) rotate(45deg);
     border-top: none;
     border-left: none;
