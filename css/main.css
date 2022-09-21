@@ -1385,3 +1385,14 @@ screen and (-ms-high-contrast: none) {
         font-size: 2rem
     }
 }
+
+
+/* EXTRA CURRICULAR LINK */
+.link {
+    color: #fff
+
+}
+
+.link:hover {
+    color: #FFB547FF
+}
