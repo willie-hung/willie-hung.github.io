@@ -51,14 +51,14 @@ a:hover {
 
 /* SECTION TITLE */
 .section-title {
-    margin-bottom: 5rem;
+    margin-bottom: 6rem;
     font-size: 4.5rem;
     text-transform: uppercase
 }
 
 @media (max-width: 37.5em) {
     .section-title {
-        margin-bottom: 2.5rem;
+        margin-bottom: 5rem;
         font-size: 3rem
     }
 }
@@ -932,14 +932,8 @@ screen and (-ms-high-contrast: none) {
 
 @media (max-width: 37.5em) {
     #projects {
-        height: 350vh;
+        height: 380vh;
         padding-bottom: 1px
-    }
-}
-
-@media (max-width: 30em) {
-    #projects {
-        height: 350vh
     }
 }
 
