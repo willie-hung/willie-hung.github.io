@@ -39,6 +39,15 @@ a:hover {
     color: #272341 #800000FF
 }
 
+/* EXTRA CURRICULAR LINK */
+.link {
+    color: #fff
+
+}
+
+.link:hover {
+    color: #FFB547FF
+}
 
 /* SECTION TITLE */
 .section-title {
@@ -81,8 +90,6 @@ a:hover {
         box-shadow: none
     }
 }
-
-
 
 .scroll-down-link {
     position: absolute;
@@ -664,7 +671,7 @@ screen and (-ms-high-contrast: none) {
 
 @media (max-width: 37.5em) {
     #about {
-        height: 140vh;
+        height: 130vh;
         clip-path: none;
         align-items: center;
     }
@@ -1387,12 +1394,3 @@ screen and (-ms-high-contrast: none) {
 }
 
 
-/* EXTRA CURRICULAR LINK */
-.link {
-    color: #fff
-
-}
-
-.link:hover {
-    color: #FFB547FF
-}
