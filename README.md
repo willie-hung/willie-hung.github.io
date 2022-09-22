@@ -1,14 +1,14 @@
 <h1 align="center">My Computer Science Portfolio</h1>
 
-## About 📖
+## About 
 
 A light-weight, fast and all-device compatible portfolio for developers, students and designers.
 
-## Overview 🎞
+## Overview 
 
 ![](https://i.imgur.com/882Fvty.png)
 
-## Prerequisites 📝
+## Prerequisites 
 
 ### Tools
 * [Git](https://git-scm.com)
@@ -19,7 +19,7 @@ A light-weight, fast and all-device compatible portfolio for developers, student
 * [HTML Preview](https://marketplace.visualstudio.com/items?itemName=tht13.html-preview-vscode)
 
 
-## How to use ❓
+## How to use 
 
 Insert following commands in your CLI
 
@@ -34,11 +34,11 @@ $ cd Willie-The-Lord.github.io
 $ git remote remove origin
 ```
 
-## Get Started 💡
+## Get Started 
 
 When you open up the directory, navigate to ```index.html``` and right click ```Open with Live Server```. This will open up your browser and now you can modify your portfolio in real-time.
 
-## Instructions 🔧
+## Instructions 
 
 ### HTML part
 * Open up [index.html](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/index.html)
@@ -259,7 +259,7 @@ When you open up the directory, navigate to ```index.html``` and right click ```
 * For responsive web design skills, check out [Responsive Website Design](https://www.w3schools.com/html/html_responsive.asp)
 
 
-## Deployment 📦
+## Deployment 
 
 * Navigate to your ```GitHub account``` and ```create a new repo```. Set your new remote for this template repo.
 ```bash
@@ -278,16 +278,16 @@ $ git push -u origin main
 * Refresh your repo page. It might take up to several minutes.
 * Hoooray! Your portfolio should be live at ```https://github_username.github.io/```
 
-## Author 🧑🏻‍💻
+## Author 
 
 Sung-Jie (Willie) Hung -- <https://github.com/Willie-The-Lord>
 
 
-## License 📜
+## License 
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Willie-The-Lord/Willie-The-Lord.github.io/blob/main/license) file for details.
 
-## Acknowledgments 🎁
+## Acknowledgments 
 
 I was motivated and inspired by [Cobi Martínezi's](https://github.com/cobiwave) and [Anil Seervi's](https://github.com/AnilSeervi) portFolio while learning ```Web Development Techniques```, including ```html```, ```css```, ```javascript``` etc. Their creativity galvanized my enthusiasm towards web development and user interface design. I refactored some of the code and redesigned the interface. Hope you all enjoy the content!
 
