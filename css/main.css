@@ -910,23 +910,23 @@ screen and (-ms-high-contrast: none) {
     #projects {
         margin-top: 0;
         padding-top: 5rem;
-        height: 350vh
+        height: 200vh
     }
 }
 
-@media (max-width: 75em) {
+/* @media (max-width: 75em) {
     #projects {
         margin-top: 0;
         padding-top: 5rem;
-        height: 350vh
+        height: 270vh
     }
-}
+} */
 
 @media (max-width: 70em) {
     #projects {
         margin-top: 0;
         padding-top: 5rem;
-        height: 350vh
+        height: 280vh
     }
 }
 
