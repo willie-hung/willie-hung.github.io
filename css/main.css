@@ -66,7 +66,7 @@ a:hover {
 
 
 .text-color-main {
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
     color: #800000FF;
     -webkit-text-fill-color: #FFF
 }
@@ -84,8 +84,8 @@ a:hover {
 
 @media (max-width: 37.5em) {
     .text-color-main {
-        margin: 0;
-        background-image: none;
+        /* margin: 0; */
+        /* background-image: none; */
         -webkit-text-fill-color: #800000FF;
         box-shadow: none
     }
@@ -932,7 +932,7 @@ screen and (-ms-high-contrast: none) {
 
 @media (max-width: 37.5em) {
     #projects {
-        height: 380vh;
+        height: 400vh;
         padding-bottom: 1px
     }
 }
