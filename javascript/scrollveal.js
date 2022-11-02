@@ -1,3 +1,10 @@
+const documentHeight = () => {
+  const doc = document.documentElement
+  doc.style.setProperty('--doc-height', `${window.innerHeight}px`)
+ }
+ window.addEventListener(‘resize’, documentHeight)
+ documentHeight()
+
 const defaultProps = {
   easing: "cubic-bezier(0.5, 0, 0, 1)",
   distance: "30px",

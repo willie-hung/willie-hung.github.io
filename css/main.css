@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
+
+:root {
+    --doc-height: 100%;
+   }
+
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -903,14 +911,14 @@ screen and (-ms-high-contrast: none) {
     background-color: #800000FF;
     color: #fff;
     padding-top: 15rem;
-    height: 180vh;
+    height: 230vh;
 }
 
 @media (max-width: 85em) {
     #projects {
         margin-top: 0;
         padding-top: 5rem;
-        height: 200vh
+        height: 230vh
     }
 }
 
@@ -926,13 +934,13 @@ screen and (-ms-high-contrast: none) {
     #projects {
         margin-top: 0;
         padding-top: 5rem;
-        height: 280vh
+        height: 500vh
     }
 }
 
 @media (max-width: 37.5em) {
     #projects {
-        height: 495vh;
+        height: 550vh;
         padding-bottom: 1px
     }
 }
@@ -1218,7 +1226,8 @@ screen and (-ms-high-contrast: none) {
 @media (max-width: 37.5em) {
     #extracurricular .about-wrapper {
         padding-bottom: 5rem;
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
+        /* height: 150vh */
     }
 }
 
