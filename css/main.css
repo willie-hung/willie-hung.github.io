@@ -553,6 +553,19 @@ screen and (-ms-high-contrast: none) {
     color: #FFB547FF
 }
 
+.social-links a:hover .fa-wordpress {
+    color: #FFB547FF
+}
+
+/* .social-links a:hover .fa-medium {
+    color: #FFB547FF
+}
+
+.social-links a:hover .fa-figma {
+    color: #FFB547FF
+} */
+
+
 /* .social-links a:hover .fa-codepen {
     color: #212121
 } */
