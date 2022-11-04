@@ -519,7 +519,7 @@ screen and (-ms-high-contrast: none) {
     flex-direction: column;
     justify-content: center;
     color: #fff;
-    width: 5rem;
+    width: 3rem; /*change margin*/
     height: 5rem;
     margin: 1.6rem 1.6rem;
     transition: all ease 0.2s
@@ -528,6 +528,14 @@ screen and (-ms-high-contrast: none) {
 .social-links a i {
     transition: all ease-in-out 0.2s
 }
+
+
+
+.social-links a iconify-icon {
+    transition: all ease-in-out 0.2s;
+}
+
+
 
 .social-links a:hover {
     transform: scale(1.1) translateY(-2px)
@@ -540,6 +548,15 @@ screen and (-ms-high-contrast: none) {
 /* .social-links a:hover .fa-instagram {
     color: #c13584
 } */
+
+/* 
+.td {
+    display: block;
+    width: 100%;
+} */
+
+
+
 
 .social-links a:hover .fa-linkedin {
     color: #FFB547FF
@@ -557,13 +574,11 @@ screen and (-ms-high-contrast: none) {
     color: #FFB547FF
 }
 
-/* .social-links a:hover .fa-medium {
+
+.social-links a:hover .iconify-inline {
     color: #FFB547FF
 }
 
-.social-links a:hover .fa-figma {
-    color: #FFB547FF
-} */
 
 
 /* .social-links a:hover .fa-codepen {
@@ -931,7 +946,7 @@ screen and (-ms-high-contrast: none) {
     #projects {
         margin-top: 0;
         padding-top: 5rem;
-        height: 230vh
+        height: 300vh
     }
 }
 
