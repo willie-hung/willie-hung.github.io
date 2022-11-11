@@ -813,7 +813,7 @@ screen and (-ms-high-contrast: none) {
 #experience {
     background-image: linear-gradient(135deg, #fff 0%, #fff 100%);
     color: #272341;
-    height: 190vh;
+    height: 220vh;
     /* clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); */
     text-align: center;
     display: flex;
@@ -847,13 +847,13 @@ screen and (-ms-high-contrast: none) {
 /* 600px */
 @media (max-width: 37.5em) {
     #experience {
-        height: 290vh
+        height: 350vh
     }
 }
 
 @media (max-width: 30em) {
     #experience {
-        height: 320vh
+        height: 350vh
     }
 }
 
