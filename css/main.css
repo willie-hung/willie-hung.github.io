@@ -557,7 +557,6 @@ screen and (-ms-high-contrast: none) {
 
 
 
-
 .social-links a:hover .fa-linkedin {
     color: #FFB547FF
 }
@@ -933,6 +932,14 @@ screen and (-ms-high-contrast: none) {
         padding-right: 4rem;
     }
 }
+
+
+
+
+
+
+
+
 
 /* PROJECTS */
 #projects {
