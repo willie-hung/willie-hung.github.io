@@ -852,7 +852,7 @@ screen and (-ms-high-contrast: none) {
 
 @media (max-width: 30em) {
     #experience {
-        height: 350vh
+        height: 400vh
     }
 }
 
@@ -946,7 +946,7 @@ screen and (-ms-high-contrast: none) {
     background-color: #800000FF;
     color: #fff;
     padding-top: 15rem;
-    height: 230vh;
+    height: 300vh;
 }
 
 @media (max-width: 85em) {
@@ -975,7 +975,7 @@ screen and (-ms-high-contrast: none) {
 
 @media (max-width: 37.5em) {
     #projects {
-        height: 550vh;
+        height: 800vh;
         padding-bottom: 1px
     }
 }
