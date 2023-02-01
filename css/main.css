@@ -946,14 +946,14 @@ screen and (-ms-high-contrast: none) {
     background-color: #800000FF;
     color: #fff;
     padding-top: 15rem;
-    height: 300vh;
+    height: 350vh;
 }
 
 @media (max-width: 85em) {
     #projects {
         margin-top: 0;
         padding-top: 5rem;
-        height: 300vh
+        height: 350vh
     }
 }
 
@@ -975,7 +975,7 @@ screen and (-ms-high-contrast: none) {
 
 @media (max-width: 37.5em) {
     #projects {
-        height: 800vh;
+        height: 1000vh;
         padding-bottom: 1px
     }
 }
