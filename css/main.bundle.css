@@ -546,10 +546,12 @@ a:hover {
 
 a.hero-youtube:hover {
     text-decoration: underline;
+    color: #FF0000;
 }
 
 a.hero-medium:hover {
     text-decoration: underline;
+    color: #000000;
 }
 
 a.github:hover {
