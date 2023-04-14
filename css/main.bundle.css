@@ -2811,6 +2811,16 @@ div.icon-text {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
+.tags-project {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
 .tags .tag {
   margin-bottom: 0.5rem;
 }
