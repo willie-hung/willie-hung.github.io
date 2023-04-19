@@ -2209,6 +2209,17 @@ fieldset[disabled] .button {
   justify-content: center;
   width: 1.5rem;
 }
+
+.icon-youtube {
+  color: #FF0000;
+  margin-right: 5px;
+}
+
+.icon-chrome {
+  color: #4c8bf5;
+  margin-right: 5px;
+}
+
 .icon.is-small {
   height: 1rem;
   width: 1rem;
