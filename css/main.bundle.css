@@ -9942,3 +9942,8 @@ a.has-text-danger-dark:hover {
 .carousel-cell {
   width: 100%;
 }
+
+.youtube-video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
