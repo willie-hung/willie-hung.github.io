@@ -544,14 +544,19 @@ a:hover {
   color: #3f3f3f;
 }
 
+a.hero-uchicago:hover {
+  text-decoration: underline;
+  color: #800000;
+}
+
 a.hero-youtube:hover {
-    text-decoration: underline;
-    color: #FF0000;
+  text-decoration: underline;
+  color: #ff0000;
 }
 
 a.hero-medium:hover {
-    text-decoration: underline;
-    color: #000000;
+  text-decoration: underline;
+  color: #000000;
 }
 
 a.github:hover {
@@ -559,23 +564,23 @@ a.github:hover {
 }
 
 a.youtube:hover {
-    color: #FF0000;
+  color: #ff0000;
 }
 
 a.medium:hover {
-    color: #000000;
+  color: #000000;
 }
 
 a.gmail:hover {
-    color: #4285F4;
+  color: #4285f4;
 }
 
 a.linkedin:hover {
-    color: #0077b5;
+  color: #0077b5;
 }
 
 a.easter-egg:hover {
-    color: #FF0000;
+  color: #ff0000;
 }
 
 code {
@@ -2211,7 +2216,7 @@ fieldset[disabled] .button {
 }
 
 .icon-youtube {
-  color: #FF0000;
+  color: #ff0000;
   margin-right: 5px;
 }
 
@@ -7752,7 +7757,6 @@ label.panel-block:hover {
   border-radius: 0.5rem;
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
     0 0 0 1px rgba(10, 10, 10, 0.02);
-  
 }
 .tile.is-parent {
   padding: 0.75rem;
@@ -9946,4 +9950,8 @@ a.has-text-danger-dark:hover {
 .youtube-video {
   aspect-ratio: 16 / 9;
   width: 100%;
+}
+
+ul {
+  text-align: left;
 }
