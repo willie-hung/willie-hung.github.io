@@ -563,6 +563,10 @@ a.github:hover {
   color: #000000;
 }
 
+a.gitlab:hover {
+  color: #fc6d26;
+}
+
 a.youtube:hover {
   color: #ff0000;
 }
@@ -2217,6 +2221,11 @@ fieldset[disabled] .button {
 
 .icon-youtube {
   color: #ff0000;
+  margin-right: 5px;
+}
+
+.icon-gitlab {
+  color: #fc6d26;
   margin-right: 5px;
 }
 
