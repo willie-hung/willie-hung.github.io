@@ -564,6 +564,11 @@ a.hero-duolingo:hover {
   color: #f1bf00;
 }
 
+a.hero-outdoor:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
 a.github:hover {
   color: #000000;
 }
@@ -9968,4 +9973,11 @@ a.has-text-danger-dark:hover {
 
 ul {
   text-align: left;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+  /* vertical-align: center; */
+  /* justify-content: center; */
 }
