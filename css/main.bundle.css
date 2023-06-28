@@ -597,6 +597,11 @@ a.easter-egg:hover {
   color: #ff0000;
 }
 
+a.orca:hover {
+  text-decoration: underline;
+  color: #062aaa;
+}
+
 code {
   color: #da1039;
   font-size: 0.875em;
