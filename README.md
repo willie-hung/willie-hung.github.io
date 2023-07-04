@@ -6,3 +6,4 @@
 
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML): Standard markup language for web pages.
 - [bulma](https://github.com/jgthms/bulma): Modern CSS framework based on Flexbox.
+- [Font Awesome](https://fontawesome.com/): Font Awesome is the Internet's icon library and toolkit, used by millions of designers, developers, and content creators.
