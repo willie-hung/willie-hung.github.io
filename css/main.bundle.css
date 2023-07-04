@@ -602,6 +602,21 @@ a.orca:hover {
   color: #062aaa;
 }
 
+a.lumentum:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+a.logitech:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+a.dupont:hover {
+  text-decoration: underline;
+  color: #e61031;
+}
+
 code {
   color: #da1039;
   font-size: 0.875em;
@@ -3072,6 +3087,35 @@ a.tag:hover {
   font-weight: 600;
   line-height: 1.125;
 }
+
+.dupont {
+  color: #363636;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
+.dupont:hover {
+  color: #e61031;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
+.orca {
+  color: #363636;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
+.orca:hover {
+  color: #062aaa;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
 .title strong {
   color: inherit;
   font-weight: inherit;
