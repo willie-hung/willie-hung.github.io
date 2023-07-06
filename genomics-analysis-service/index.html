@@ -34,7 +34,7 @@
         <hr />
 
         <div class="content">
-          <h2>Overview</h2>
+          <h2>🎯 Overview</h2>
           <p>
             A fully operational software-as-a-service(SaaS) for genomics
             analysis.
@@ -115,21 +115,190 @@
           </div>
 
           <h4>Diagram</h4>
-        </div>
 
-        <div
-          class="columns is-flex is-flex-direction-row is-justify-content-center box"
-        >
-          <div class="column is-two-thirds">
-            <figure class="image">
-              <image src="./img/overview.png" />
-            </figure>
+          <div class="box">
+            <div
+              class="is-flex is-justify-content-center is-align-items-center"
+            >
+              <figure class="image column is-two-thirds">
+                <image src="./img/overview-3.jpg" />
+              </figure>
+            </div>
           </div>
         </div>
-        <div class="content"><h2>Webhook vs. Data polling</h2></div>
-        <div class="content"><h2>Why archive data?</h2></div>
+
+        <div class="content pt-4">
+          <h2>🔨 Building Process</h2>
+          <h4>1️⃣ Building the Annotator API</h4>
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              Build an API for accessing a cloud-hosted computing service (AWS).
+            </p>
+
+            <h5>What is annotation?</h5>
+            <p>
+              Annotation is a process by which a sequenced genome sample is
+              analyzed to identify the locations of genes and all of the coding
+              regions in a genome, and determine what those genes do.
+            </p>
+
+            <h5>The science behind dna annotation</h5>
+            <p>
+              <a
+                href="https://www.ncbi.nlm.nih.gov/books/NBK20253/"
+                target="_blank"
+                ><span class="tag is-link is-light">Link</span></a
+              >
+            </p>
+
+            <h5>Preperation</h5>
+            <p>
+              I utilize
+              <a href="https://anntools.sourceforge.net/" target="_blank"
+                >AnnTools</a
+              >
+              and
+              <a
+                href="https://github.com/DipanshuSehjal/anntools"
+                target="_blank"
+                >this modified version</a
+              >, one of the many available open source annotations tools, to
+              perform the analysis.
+            </p>
+
+            <h5>Flask framework</h5>
+            <p>
+              An application server that can accept HTTP requests and server
+              responses. I use the
+              <a
+                href="https://flask.palletsprojects.com/en/2.3.x/"
+                target="_blank"
+                >Flask Python web microframework</a
+              >
+              to implement the annotator API.
+            </p>
+
+            <h5>REST API</h5>
+            <p>Implement a service with an API that allows users to run annotation jobs and check on their status.</p>
+            <ul>
+              <li>
+                <p>
+                  <span class="tag is-primary is-light">GET</span>
+                </p>
+                <ul>
+                  <li>
+                    <strong>Endpoint:</strong>
+                    http://{DOMAIN}/annotations/{job_id}
+                  </li>
+                  <li>
+                    <strong>Response data:</strong>
+                  </li>
+                  <ul>
+                    <li>
+                      code (HTTP response code, integer) and status (“success”
+                      or “error”)
+                    </li>
+                    <li>
+                      job_id (UUID, string)
+                    </li>
+                    <li>
+                      job_status (string)
+                    </li>
+                        log (contents of log file for completed job, string)
+                    </li>  
+                  </ul>
+                </ul>
+                <hr>
+                <ul>
+                  <li>
+                    <strong>Endpoint:</strong>
+                    http://{DOMAIN}/annotations
+                  </li>
+                  <li>
+                    <strong>Response data:</strong>
+                  </li>
+                  <ul>
+                    <li>
+                      code (HTTP response code, integer) and status (“success” or “error”)
+                    </li>
+                    <li>
+                      jobs (list of jobs)
+                    </li>
+                    <ul>
+                      <li>
+                        job_id (UUID, string)
+                      </li>
+                      <li>
+                        job_details (URL to get job status via endpoint above)
+                      </li>
+                    </ul>
+                  </ul>
+                </ul>
+              </li>
+
+              <li><span class="tag is-warning is-light">POST</span></li>
+              <ul>
+                <li>
+                  <strong>Endpoint:</strong>
+                  http://{DOMAIN}/annotations
+                </li>
+                <li>
+                  <strong>Request body:</strong>
+                  input_file (string)
+                </li>
+                <li>
+                  <strong>Response data:</strong>
+                </li>
+                <ul>
+                  <li>
+                    code (HTTP response code, integer) and status (“success” or “error”)
+                  </li>
+                  <li>
+                    job_id (UUID, string)
+                  </li>
+                  <li>
+                    input_file (string)
+                  </li>
+                </ul>       
+              </ul>
+            </ul>
+
+            <h5>Test the API</h5>
+            <p>
+              Utilize
+              <a href="https://www.postman.com/" target="_blank">Postman</a> to
+              submit request data and view responses.
+            </p>
+          </div>
+          <h4>2️⃣ Uploading Data to Object Storage</h4>
+          <h4>3️⃣ Application Decoupling - Front/Back-End Separation</h4>
+          <h4>4️⃣ Persisting Data in a Key-Value Store</h4>
+          <h4>5️⃣ Application Decoupling Using Message Queues</h4>
+          <h4>6️⃣ User Notifications</h4>
+          <h4>7️⃣ Data Archival</h4>
+          <h4>8️⃣ Subscription Upgrade (Stripe Integration)</h4>
+          <h4>9️⃣ Data Restoration</h4>
+          <h4>🔟 Scaling the Web Server</h4>
+        </div>
+
+        <div class="content pt-4">
+          <h2>🆚 Different Approach</h2>
+          <h4>Webhook vs. Data Polling</h4>
+        </div>
+
+        <div class="content pt-4">
+          <h2>💻 Final Feature</h2>
+          <h4>✅ Scaling</h4>
+        </div>
       </div>
     </section>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>Written by <strong>Sung-Jie Hung</strong></p>
+        <p>Last update: <strong>Jul 6, 2023</strong></p>
+      </div>
+    </footer>
 
     <script
       src="https://kit.fontawesome.com/7119540adb.js"

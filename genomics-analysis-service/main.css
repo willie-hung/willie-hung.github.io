@@ -10,3 +10,13 @@
 .h4 {
   color: #3f3f3f;
 }
+
+a {
+  color: #3f3f3f;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3f3f3f;
+}
