@@ -328,7 +328,7 @@
               an instance role that will allow applications running on the
               instance to access other AWS resources on your behalf.
             </p>
-            <h5>Add new endpoints</h5>
+            <h5>Add new endpoints (I will not specify all the endpoints)</h5>
 
             <ul>
               <li><span class="tag is-warning is-light">POST</span></li>
@@ -418,7 +418,7 @@
               Add persistence that enables distributed services to operate with
               greater durability.
             </p>
-            <h5 id="step3-diagram">Diagram</h5>
+            <h5 id="step4-diagram">Diagram</h5>
             <div
               class="is-flex is-justify-content-center is-align-items-center"
             >
@@ -463,17 +463,411 @@
             </ul>
           </div>
           <h4>5️⃣ Application Decoupling Using Message Queues</h4>
-          <div class="box"></div>
-          <h4>6️⃣ User Notifications</h4>
-          <div class="box"></div>
-          <h4>7️⃣ Data Archival</h4>
-          <div class="box"></div>
-          <h4>8️⃣ Subscription Upgrade (Stripe Integration)</h4>
-          <div class="box"></div>
-          <h4>9️⃣ Data Restoration</h4>
-          <div class="box"></div>
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              Use inter-process communication services to allow services to
+              operate asynchronously (thereby increasing system availability)
+              and scale independently.
+            </p>
+            <h5 id="step5-diagram">Diagram</h5>
+            <div
+              class="is-flex is-justify-content-center is-align-items-center"
+            >
+              <figure class="image column is-two-thirds">
+                <image src="./img/step5.jpg" />
+              </figure>
+            </div>
+            <h5>Approach</h5>
+            <p>
+              In previous step, we added a key-value store as the persistence
+              layer for the service. This allowed the web server and the
+              annotation server to operate independently of each other. Now we
+              will add components that further decouple the services and allow
+              them each to scale independently of the other.
+            </p>
+            <h6>Message Queue: AWS SQS</h6>
+            <p>
+              A message queue that will act as a “buffer” between the web app
+              and the annotator. New annotation requests will be posted to the
+              message queue and the annotator will retrieve them independently.
+              Thus, requests can be successfully accepted by the GAS, even if
+              the annotator service is not available—an important requirement
+              for increasing the availability of a distributed system.
+            </p>
+            <h6>Notification Topic: AWS SNS</h6>
+            <p>
+              A notification topic that accepts messages (i.e. annotation
+              requests) from the web app. When a notification is sent to the
+              topic, a message will be created in the message queue.
+            </p>
+            <h5>The application flow till now</h5>
+            <ul>
+              <li>
+                User selects an input file which is uploaded to S3 via a signed
+                POST request.
+              </li>
+              <li>S3 sends a request to the redirect URL in our web app.</li>
+              <li>
+                The web app posts a notification message containing the request
+                data to the SNS topic.
+              </li>
+              <li>
+                The SQS queue receives the notification and persists a message
+                containing the request.
+              </li>
+              <li>The annotator reads the message from the SQS queue.</li>
+              <li>
+                The annotator extracts the input file name from the message and
+                downloads it from S3.
+              </li>
+              <li>
+                The annotator updates the job’s status in the database and
+                spawns the annotation.
+              </li>
+              <li>The annotator copies the result and log files to S3.</li>
+              <li>
+                The annotator again updates the job’s status in the database.
+              </li>
+            </ul>
+
+            <h5>Important</h5>
+            <p>
+              For current approach, we utilize a Python script and long polling
+              to read the messages from queue. In the future, we will utilize
+              webhook to get the messages from queue.
+            </p>
+          </div>
+
+          <h4>
+            6️⃣ Integrate Third-party Services and Enable User Notifications
+          </h4>
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              Make the system more functionally complete, integrate with an
+              external cloud service for payments processing, and enable
+              automated scaling. Furthermore, apply asynchronous communication
+              to another part of the application by implementing a notifications
+              service in upcoming steps.
+            </p>
+            <h5>Key functions</h5>
+            <ul>
+              <li>
+                <strong
+                  >Log in (<a
+                    href="https://docs.globus.org/api/auth/"
+                    target="_blank"
+                    >via Globus Auth</a
+                  >) to use the service</strong
+                >: Some aspects of the service are available only to registered
+                users. Two classes of users will be supported: Free and Premium.
+                Premium users will have access to additional functionality,
+                beyond that available to Free users.
+              </li>
+              <li>
+                <strong>Submit an annotation job</strong>: Free users may only
+                submit jobs of up to a certain size. Premium users may submit
+                any size job. If a Free user submits an oversized job, the
+                system will refuse it and will prompt the user to convert to a
+                Premium user.
+              </li>
+              <li>
+                <strong>Upgrade from a Free to a Premium user</strong>: Premium
+                users will be required to provide a credit card for payment of
+                the service subscription. Thise service will integrate with
+                <a href="https://stripe.com/docs/api" target="_blank">Stripe</a>
+                for credit card payment processing.
+              </li>
+              <li>
+                <strong
+                  >Receive notifications when annotation jobs finish</strong
+                >
+                : When their annotation request is complete, this service will
+                send users an email that includes a link where they can view the
+                log file and download the results file.
+              </li>
+              <li>
+                <strong>Browse jobs and download annotation results</strong>:
+                This service will store annotation results for later retrieval.
+                Users may view a list of their jobs (completed and running), and
+                the log file for completed jobs.
+              </li>
+              <li>
+                <strong>Restrict data access for Free users</strong>: Free users
+                may download their results file for a limited time after their
+                job completes; thereafter the results file is archived, and only
+                available to them if they convert to a Premium user. Premium
+                users will always have all their data available for download.
+              </li>
+            </ul>
+          </div>
+
+          <h4>7️⃣ Enhancing the annotator: Webhooks</h4>
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              Implement a more robust approach for processing messages from a
+              queue.
+            </p>
+            <h5>Approach</h5>
+            <p>
+              Convert annotator.py to a Flask app with a route handler that acts
+              as a webhook. The annotator will no longer continuously poll for
+              job request messages; instead, it will do its work only when it
+              receives a notification from SNS that a job was added to the job
+              request queue. This requires adding the webhook as a subscriber to
+              your SNS job request topic. When a new job is submitted, SNS will
+              push the notification as a POST request to the webhook, triggering
+              the annotation.
+            </p>
+          </div>
+          <h4>8️⃣ Data Archival: AWS S3 Glacier</h4>
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              Understand the complexities of implementing scheduled/background
+              tasks in distributed systems.
+            </p>
+            <h5>Approach</h5>
+            <p>
+              The policy for this service is that Free users can only download
+              their results file for up to 5 minutes after completion of their
+              annotation job. After 5 minutes elapse, a free user’s results file
+              (not the log file) will be archived to a Glacier vault. This
+              allows the service to retain user data at relatively low cost, and
+              to restore it in the event that the user decides to upgrade to a
+              Premium user.
+            </p>
+            <h5>Integrating AWS Step Function and AWS Lambda</h5>
+            <ul>
+              <li>
+                I used step function to trigger a lambda function to wait for 5
+                minutes after the file is annotated
+              </li>
+              <li>
+                The step function workflow is defined in step_function.json:
+              </li>
+
+              <script src="https://gist.github.com/Willie-The-Lord/884115de5ae1d65ce4dd59ecaf9f60bc.js"></script>
+
+              <li>
+                After 5 minutes, the lambda function will publish a message to
+                SNS topic.
+              </li>
+              <li>
+                Then the /archive endpoint will accept the POST requests from my
+                SNS topic and then retrieve and process an archival message from
+                my message queue.
+              </li>
+              <li>
+                Then, the logic in archive_app.py will determine if the user is
+                a premium user or not.
+              </li>
+              <li>
+                If the user is a premium user, the file will not be archived.
+              </li>
+              <li>Otherwise, the file will be archived.</li>
+            </ul>
+            <h5>The rationale of this approach</h5>
+            <ul>
+              <li>
+                <strong>Using Lambda rather than EC2</strong>
+                <ul>
+                  <li>
+                    With Lambda, I only need to pay for the execution time of my
+                    function. In this case, the function is only triggered after
+                    the file is annotated, and it waits for 5 minutes before
+                    publishing a message to the SNS topic. Therefore, I only
+                    billed for the execution time of the Lambda function, which
+                    is typically a few milliseconds.
+                  </li>
+                  <li>
+                    If I use an EC2 instance or any other compute service to
+                    perform the wait state, I would need to pay for the entire
+                    duration of the wait time, which could be costly depending
+                    on the duration of the wait state. Additionally, I would
+                    need to manage and maintain the compute infrastructure,
+                    which requires additional resources and effort.
+                  </li>
+                  <li>
+                    Another benefit of using Lambda is scalability. AWS Lambda
+                    automatically scales my function to handle incoming
+                    requests, so I don't need to worry about provisioning and
+                    scaling infrastructure. This allows me to handle sudden
+                    spikes in traffic or increased workload without affecting
+                    the performance of my application.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Using step function to trigger lambda function</strong>
+                <ul>
+                  <li>
+                    The main purpose is based on the coordination of workflow:
+                    Using Step Functions to trigger a Lambda function allows me
+                    to create a coordinated workflow that involves multiple
+                    steps. In this case, I can use Step Functions to orchestrate
+                    the entire process of archiving the file, including the wait
+                    state, sending messages to SNS, and triggering the archive
+                    process. This ensures that each step is executed in the
+                    correct order, and the entire workflow is completed
+                    successfully.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Using SNS to notify the /archive endpoint</strong>
+                <ul>
+                  <li>
+                    The use of SNS topic to notify the /archive endpoint to run
+                    archive_free_user_data function provides a loosely coupled
+                    architecture, which is a key principle for scalability.
+                    Decoupling the process of archiving from the annotation
+                    process ensures that any changes or scaling issues with one
+                    process do not affect the other.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <h4>
+            9️⃣ Subscription Upgrade (Stripe Integration) & Data Restoration
+          </h4>
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              Explore the requirements of integrating with a third-party SaaS
+              system and understand the complexities of working with cloud
+              archival systems and experiment with serverless computing.
+            </p>
+            <h5>Approach</h5>
+            <h6>Stripe API</h6>
+            <p>
+              I integrate the
+              <a href="https://stripe.com/" target="_blank">Stripe service</a>
+              to manage all subscription and billing functions for this service.
+              One of the main reason is: Stripe has one of the best
+              <a hred="https://stripe.com/docs/api" target="_blank"
+                >API documentation</a
+              >
+              of any SaaS .
+            </p>
+            <h6>Thawing / Restoring Process</h6>
+            <ul>
+              <li>
+                <strong>Thaw Webhook:</strong> I configure a thaw webhook to
+                receive a request for restoring data from Glacier. This webhook
+                will initiate the job to retrieve the archive from Glacier.
+              </li>
+              <li>
+                <strong>Retrieval Job:</strong> Once the thaw webhook receives
+                the request, it triggers a process to initiate a retrieval job
+                from Glacier using the archive ID. This job retrieves the
+                archived data from Glacier.
+              </li>
+              <li>
+                <strong>SNS Notification:</strong> When the retrieval job is
+                successfully completed, Glacier sends a notification to an SNS
+                topic.
+              </li>
+              <li>
+                <strong>Lambda Function:</strong> Set up a Lambda function that
+                is triggered by the SNS topic when it receives the success
+                message.
+              </li>
+              <li>
+                <strong>Lambda Execution:</strong> In the Lambda function, parse
+                the message received from the SNS topic to extract relevant
+                information such as the archive ID, job ID, and S3 key file
+                path.
+              </li>
+              <li>
+                <strong>Retrieve Output Job:</strong> Use the job ID obtained
+                from the message to fetch the output of the retrieval job. This
+                output contains the restored data.
+              </li>
+              <li>
+                <strong></strong>Store Data in S3: Upload the restored data to
+                the designated S3 result bucket using the S3 key file path.
+              </li>
+              <li>
+                <strong>Delete Archive Job:</strong> Delete the retrieval job
+                from Glacier to clean up the resources and prevent unnecessary
+                storage costs.
+              </li>
+              <li>
+                <strong>DynamoDB Update:</strong> Remove the attribute named
+                "results_file_archive_id" from the corresponding DynamoDB entry
+                to reflect the completion of the restoration process.
+              </li>
+            </ul>
+          </div>
           <h4>🔟 Scaling the Web Server</h4>
-          <div class="box"></div>
+
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              Experiment with automated provisioning and elasticity in a cloud
+              computing environment.
+            </p>
+
+            <h5 id="step10-diagram">Diagram</h5>
+            <div
+              class="is-flex is-justify-content-center is-align-items-center"
+            >
+              <figure class="image column is-two-thirds">
+                <image src="./img/step10.jpg" />
+              </figure>
+            </div>
+            <h5>Services</h5>
+            <ul>
+              <li>
+                <strong>Elastic Load Balancer (ELB):</strong> This service
+                allows HTTP(S) requests to be distributed among multiple
+                instances in an Auto Scaling group. Checkout the
+                <a
+                  href="https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html"
+                  target="_blank"
+                  >AWS documentation</a
+                >.
+              </li>
+              <li>
+                <strong>EC2 Auto Scaling:</strong> This service allows us to
+                define standard configuration templates and use them to launch
+                multiple instances as needed, based on user-definable rules.
+                Checkout the
+                <a
+                  href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+                  target="_blank"
+                  >AWS documentation</a
+                >.
+              </li>
+            </ul>
+            <h5>Approach</h5>
+            <ul>
+              <li>
+                <strong
+                  >Create a load balancer and associated target group:</strong
+                >
+                An EC2 load balancer will receive all requests to your GAS app
+                and distribute them among multiple EC2 instances running the web
+                server.
+              </li>
+              <li>
+                <strong>Create a Launch Template:</strong> Launch template
+                provide a means to save your standard EC2 instance launch
+                procedure so that it can be used by the auto scaler when
+                launching new instances.
+              </li>
+              <li>
+                <strong>Create an Auto Scaling Group:</strong> Auto Scaling
+                groups encapsulate the rules that determine how our application
+                scales out (when demand increases) and in (when demand drops).
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div class="content pt-4">
