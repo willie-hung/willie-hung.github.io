@@ -114,7 +114,7 @@
             </div>
           </div>
 
-          <h4>Diagram</h4>
+          <h4 id="diagram">Diagram</h4>
 
           <div class="box">
             <div
@@ -125,6 +125,10 @@
               </figure>
             </div>
           </div>
+        </div>
+
+        <div class="content pt-4">
+          <h2>⚙️ Environment Setup</h2>
         </div>
 
         <div class="content pt-4">
@@ -152,7 +156,7 @@
               >
             </p>
 
-            <h5>Preperation</h5>
+            <h5>AnnTool</h5>
             <p>
               I utilize
               <a href="https://anntools.sourceforge.net/" target="_blank"
@@ -169,8 +173,8 @@
 
             <h5>Flask framework</h5>
             <p>
-              An application server that can accept HTTP requests and server
-              responses. I use the
+              I need an application server that can accept HTTP requests and
+              server responses. I use the
               <a
                 href="https://flask.palletsprojects.com/en/2.3.x/"
                 target="_blank"
@@ -180,7 +184,10 @@
             </p>
 
             <h5>REST API</h5>
-            <p>Implement a service with an API that allows users to run annotation jobs and check on their status.</p>
+            <p>
+              Implement a service with an API that allows users to run
+              annotation jobs and check on their status.
+            </p>
             <ul>
               <li>
                 <p>
@@ -188,8 +195,10 @@
                 </p>
                 <ul>
                   <li>
-                    <strong>Endpoint:</strong>
-                    http://{DOMAIN}/annotations/{job_id}
+                    <p>
+                      <strong>Endpoint:</strong>
+                      http://{DOMAIN}/annotations/{job_id}
+                    </p>
                   </li>
                   <li>
                     <strong>Response data:</strong>
@@ -199,36 +208,31 @@
                       code (HTTP response code, integer) and status (“success”
                       or “error”)
                     </li>
+                    <li>job_id (UUID, string)</li>
+                    <li>job_status (string)</li>
                     <li>
-                      job_id (UUID, string)
+                      log (contents of log file for completed job, string)
                     </li>
-                    <li>
-                      job_status (string)
-                    </li>
-                        log (contents of log file for completed job, string)
-                    </li>  
                   </ul>
                 </ul>
-                <hr>
+                <hr />
                 <ul>
                   <li>
-                    <strong>Endpoint:</strong>
-                    http://{DOMAIN}/annotations
+                    <p>
+                      <strong>Endpoint:</strong> http://{DOMAIN}/annotations
+                    </p>
                   </li>
                   <li>
                     <strong>Response data:</strong>
                   </li>
                   <ul>
                     <li>
-                      code (HTTP response code, integer) and status (“success” or “error”)
+                      code (HTTP response code, integer) and status (“success”
+                      or “error”)
                     </li>
-                    <li>
-                      jobs (list of jobs)
-                    </li>
+                    <li>jobs (list of jobs)</li>
                     <ul>
-                      <li>
-                        job_id (UUID, string)
-                      </li>
+                      <li>job_id (UUID, string)</li>
                       <li>
                         job_details (URL to get job status via endpoint above)
                       </li>
@@ -240,8 +244,7 @@
               <li><span class="tag is-warning is-light">POST</span></li>
               <ul>
                 <li>
-                  <strong>Endpoint:</strong>
-                  http://{DOMAIN}/annotations
+                  <p><strong>Endpoint:</strong> http://{DOMAIN}/annotations</p>
                 </li>
                 <li>
                   <strong>Request body:</strong>
@@ -252,17 +255,19 @@
                 </li>
                 <ul>
                   <li>
-                    code (HTTP response code, integer) and status (“success” or “error”)
+                    code (HTTP response code, integer) and status (“success” or
+                    “error”)
                   </li>
-                  <li>
-                    job_id (UUID, string)
-                  </li>
-                  <li>
-                    input_file (string)
-                  </li>
-                </ul>       
+                  <li>job_id (UUID, string)</li>
+                  <li>input_file (string)</li>
+                </ul>
               </ul>
             </ul>
+
+            <h5>Running Environment</h5>
+            <p>
+              Both AnnTool and the API server are running on AWS EC2 instances
+            </p>
 
             <h5>Test the API</h5>
             <p>
@@ -271,7 +276,97 @@
               submit request data and view responses.
             </p>
           </div>
-          <h4>2️⃣ Uploading Data to Object Storage</h4>
+
+          <h4>2️⃣ Uploading Data to Object Storage: Amazon S3</h4>
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              To become familiar with object storage and authenticated calls
+              (signed requests) to cloud API.
+            </p>
+            <h5>Approach</h5>
+            <p>
+              Utilize <a href="#diagram">2 Amazon S3 buckets</a> to store user
+              input files and annotated result files.
+            </p>
+            <h5>Working with large files</h5>
+            <p>
+              S3 provides a way for us to upload large files directly from a web
+              browser. It requires that we create a signed request and POST that
+              request to the URL of our S3 bucket. The S3 service then takes
+              over and uploads the file directly via the browser, bypassing our
+              app server.
+            </p>
+            <h5>Protect your credentials</h5>
+            <h6>Signed requests</h6>
+            <p>
+              For signed requests, AWS supports two types of signatures. When
+              you refer to documentation on working with signed requests make
+              sure it pertains to Version 4 signatures. To Learn more about
+              signed requests, see the
+              <a
+                href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-UsingHTTPPOST.html"
+                target="_blank"
+                >AWS documentation here</a
+              >.
+            </p>
+            <h6>Instance profile</h6>
+            <p>
+              Launch instances with a special type of permission attached, and
+              boto3 will automagically find and use your credentials on the
+              instance. This is a far superior (i.e. more secure) approach,
+              because keys are not physically stored on the instance and AWS
+              automatically refreshes (i.e. expires and renews) these temporary
+              keys as needed. In order to enable this, we will launch instances
+              and attach an
+              <a
+                href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#ec2-instance-profile"
+                target="_blank"
+                >instance profile</a
+              >
+              to the instance; this profile includes permissions in the form of
+              an instance role that will allow applications running on the
+              instance to access other AWS resources on your behalf.
+            </p>
+            <h5>Add new endpoints</h5>
+
+            <ul>
+              <li><span class="tag is-warning is-light">POST</span></li>
+              <ul>
+                <li>
+                  <p><strong>Endpoint:</strong> http://{DOMAIN}/annotate</p>
+                </li>
+                <li>
+                  <strong>Purpose:</strong>
+                  User will navigate to this endpoint, browse and select a file,
+                  and click the button to upload it to the S3 bucket.
+                </li>
+                <li>
+                  <strong>Important:</strong>
+                  Must contain an expiration timestamp. This is a critical part
+                  of a signed request: the request must be completed before the
+                  specified time otherwise it is rendered invalid. Furthermore,
+                  your policy document must, at minimum, contain conditions for
+                  the ACL, which is critical for security.
+                </li>
+              </ul>
+
+              <li><span class="tag is-primary is-light">GET</span></li>
+              <ul>
+                <li>
+                  <p>
+                    <strong>Endpoint:</strong> http://{DOMAIN}/annotate/files
+                  </p>
+                </li>
+                <li>
+                  <strong>Purpose:</strong>
+                  Gets a list of objects from your S3 input bucket and returns
+                  them in a JSON object:
+                </li>
+              </ul>
+            </ul>
+          </div>
+
           <h4>3️⃣ Application Decoupling - Front/Back-End Separation</h4>
           <h4>4️⃣ Persisting Data in a Key-Value Store</h4>
           <h4>5️⃣ Application Decoupling Using Message Queues</h4>
@@ -288,14 +383,41 @@
         </div>
 
         <div class="content pt-4">
-          <h2>💻 Final Feature</h2>
+          <h2>📝 Final Feature</h2>
           <h4>✅ Scaling</h4>
+        </div>
+
+        <div class="content pt-4">
+          <h2>💻 Source Code</h2>
+          <div class="is-flex">
+            <div class="is-flex is-align-items-center mr-2">
+              <p>Require GitLab permission:</p>
+            </div>
+            <a href="mailto:sungjiehung@gmail.com" target="_blank"
+              ><button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg"
+                  />
+                </span>
+                <span>GitLab</span>
+              </button></a
+            >
+          </div>
         </div>
       </div>
     </section>
     <footer class="footer">
       <div class="content has-text-centered">
-        <p>Written by <strong>Sung-Jie Hung</strong></p>
+        <p>
+          Developed and written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
         <p>Last update: <strong>Jul 6, 2023</strong></p>
       </div>
     </footer>
