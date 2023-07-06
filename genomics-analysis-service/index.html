@@ -121,7 +121,7 @@
               class="is-flex is-justify-content-center is-align-items-center"
             >
               <figure class="image column is-two-thirds">
-                <image src="./img/overview-3.jpg" />
+                <image src="./img/overview.jpg" />
               </figure>
             </div>
           </div>
@@ -368,13 +368,112 @@
           </div>
 
           <h4>3️⃣ Application Decoupling - Front/Back-End Separation</h4>
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              Building out the distributed infrastructure for this DNA
+              annotation service.
+            </p>
+            <h5 id="step3-diagram">Diagram</h5>
+            <div
+              class="is-flex is-justify-content-center is-align-items-center"
+            >
+              <figure class="image column is-two-thirds">
+                <image src="./img/step3.jpg" />
+              </figure>
+            </div>
+            <h5>Approach</h5>
+            <p>
+              Utilize
+              <a href="#step3-diagram">two EC2 instances</a>: one running the
+              web application server and the other running the annotation
+              server.
+            </p>
+            <ul>
+              <li>
+                Separate the code that serves the user interface from the code
+                that implements the API and runs AnnTools.
+              </li>
+              <li>
+                Modify annotator.py so that it downloads the input file from S3
+                and saves it to the AnnTools instance (into a file structure
+                that ensures uniqueness for multiple jobs running
+                simultaneously).
+              </li>
+              <li>
+                Modify run.py scripts so that, after completion, it copies the
+                annotated results file and the associated log from the local
+                volume on your annotator instance to the S3 results bucket.
+                After copying, the local files on the AnnTools instance must be
+                deleted (otherwise the EBS volume attached to your instance
+                would eventually run out of space).
+              </li>
+            </ul>
+          </div>
+
           <h4>4️⃣ Persisting Data in a Key-Value Store</h4>
+          <div class="box">
+            <h5>Objectives</h5>
+            <p>
+              Add persistence that enables distributed services to operate with
+              greater durability.
+            </p>
+            <h5 id="step3-diagram">Diagram</h5>
+            <div
+              class="is-flex is-justify-content-center is-align-items-center"
+            >
+              <figure class="image column is-two-thirds">
+                <image src="./img/step4.jpg" />
+              </figure>
+            </div>
+            <h5>Approach</h5>
+            <p>
+              We are adding a key-value store (KVS) to persist annotation job
+              information and allow both services to access/update a job as its
+              status changes. We will use DynamoDB for this purpose. We’re using
+              a KVS because we assert that annotation data will be irregular and
+              hence better suited to a schema-less database
+            </p>
+            <h5>The application flow till now</h5>
+            <ul>
+              <li>
+                User selects an input file which is uploaded to S3 via a signed
+                POST request.
+              </li>
+              <li>
+                S3 sends a request to the redirect URL which must now (going
+                back again!) be handled by our web app, and not by the
+                annotator.
+              </li>
+              <li>
+                The web app creates an item in the database; sets status to
+                “PENDING”.
+              </li>
+              <li>The web app POSTs a request to the annotator.</li>
+              <li>The annotator downloads the input file from S3.</li>
+              <li>
+                The annotator spawns the annotation and updates the job’s status
+                to “RUNNING”.
+              </li>
+              <li>The annotator copies the result and log files to S3.</li>
+              <li>
+                The annotator again updates the job’s status in the database to
+                “COMPLETED”.
+              </li>
+            </ul>
+          </div>
           <h4>5️⃣ Application Decoupling Using Message Queues</h4>
+          <div class="box"></div>
           <h4>6️⃣ User Notifications</h4>
+          <div class="box"></div>
           <h4>7️⃣ Data Archival</h4>
+          <div class="box"></div>
           <h4>8️⃣ Subscription Upgrade (Stripe Integration)</h4>
+          <div class="box"></div>
           <h4>9️⃣ Data Restoration</h4>
+          <div class="box"></div>
           <h4>🔟 Scaling the Web Server</h4>
+          <div class="box"></div>
         </div>
 
         <div class="content pt-4">
@@ -410,7 +509,7 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
-          Developed and written by
+          Blog post written by
           <strong
             ><a href="https://sungjiehung.com/" target="_blank"
               >Sung-Jie Hung</a
