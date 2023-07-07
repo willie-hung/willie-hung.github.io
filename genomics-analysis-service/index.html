@@ -129,6 +129,29 @@
 
         <div class="content pt-4">
           <h2>⚙️ Environment Setup</h2>
+          <div class="box is-justify-content-center">
+            <ul>
+              <li>
+                <a
+                  href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html"
+                  target="_blank"
+                  >AWS Command Line Interface</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html"
+                  target="_blank"
+                  >AWS SDK for Python (boto3)</a
+                >
+              </li>
+              <li>
+                <a href="https://aws.amazon.com/" target="_blank">
+                  AWS Cloud Computing Services</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div class="content pt-4">
@@ -137,17 +160,19 @@
           <div class="box">
             <h5>Objectives</h5>
             <p>
-              Build an API for accessing a cloud-hosted computing service (AWS).
+              Build an API for accessing cloud-hosted computing service (AWS).
             </p>
 
             <h5>What is annotation?</h5>
             <p>
-              Annotation is a process by which a sequenced genome sample is
-              analyzed to identify the locations of genes and all of the coding
-              regions in a genome, and determine what those genes do.
+              Annotation is a crucial procedure that involves the analysis of a
+              sequenced genome sample to pinpoint the precise locations of genes
+              and coding regions within the genome. Its primary objective is to
+              unravel the functions and characteristics of these genes,
+              providing invaluable insights into their roles and activities.
             </p>
 
-            <h5>The science behind dna annotation</h5>
+            <h5>The science behind genome annotation</h5>
             <p>
               <a
                 href="https://www.ncbi.nlm.nih.gov/books/NBK20253/"
@@ -173,8 +198,8 @@
 
             <h5>Flask framework</h5>
             <p>
-              I need an application server that can accept HTTP requests and
-              server responses. I use the
+              An application server that can accept HTTP requests and server
+              responses. I use the
               <a
                 href="https://flask.palletsprojects.com/en/2.3.x/"
                 target="_blank"
@@ -183,7 +208,7 @@
               to implement the annotator API.
             </p>
 
-            <h5>REST API</h5>
+            <h5>REST APIs (Sample endpoints)</h5>
             <p>
               Implement a service with an API that allows users to run
               annotation jobs and check on their status.
@@ -266,7 +291,12 @@
 
             <h5>Running Environment</h5>
             <p>
-              Both AnnTool and the API server are running on AWS EC2 instances
+              Both AnnTool and the API server are running on
+              <a
+                href="https://aws.amazon.com/ec2/getting-started/"
+                target="_blank"
+                >AWS EC2 instances</a
+              >.
             </p>
 
             <h5>Test the API</h5>
@@ -282,7 +312,7 @@
             <h5>Objectives</h5>
             <p>
               To become familiar with object storage and authenticated calls
-              (signed requests) to cloud API.
+              (signed requests) to the cloud API.
             </p>
             <h5>Approach</h5>
             <p>
@@ -291,11 +321,11 @@
             </p>
             <h5>Working with large files</h5>
             <p>
-              S3 provides a way for us to upload large files directly from a web
-              browser. It requires that we create a signed request and POST that
-              request to the URL of our S3 bucket. The S3 service then takes
-              over and uploads the file directly via the browser, bypassing our
-              app server.
+              S3 provides a way for developers to upload large files directly
+              from a web browser. It requires that we create a signed request
+              and POST that request to the URL of our S3 bucket. The S3 service
+              then takes over and uploads the file directly via the browser,
+              bypassing our app server.
             </p>
             <h5>Protect your credentials</h5>
             <h6>Signed requests</h6>
@@ -314,11 +344,10 @@
             <p>
               Launch instances with a special type of permission attached, and
               boto3 will automagically find and use your credentials on the
-              instance. This is a far superior (i.e. more secure) approach,
-              because keys are not physically stored on the instance and AWS
-              automatically refreshes (i.e. expires and renews) these temporary
-              keys as needed. In order to enable this, we will launch instances
-              and attach an
+              instance. This is a more secure approach, because keys are not
+              physically stored on the instance and AWS automatically refreshes
+              (i.e. expires and renews) these temporary keys as needed. In order
+              to enable this, I launch instances and attach an
               <a
                 href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#ec2-instance-profile"
                 target="_blank"
@@ -328,7 +357,10 @@
               an instance role that will allow applications running on the
               instance to access other AWS resources on your behalf.
             </p>
-            <h5>Add new endpoints (I will not specify all the endpoints)</h5>
+            <h5>
+              Add new endpoints (I will not specify all the endpoints in future
+              steps)
+            </h5>
 
             <ul>
               <li><span class="tag is-warning is-light">POST</span></li>
@@ -346,7 +378,7 @@
                   Must contain an expiration timestamp. This is a critical part
                   of a signed request: the request must be completed before the
                   specified time otherwise it is rendered invalid. Furthermore,
-                  your policy document must, at minimum, contain conditions for
+                  the policy document must, at minimum, contain conditions for
                   the ACL, which is critical for security.
                 </li>
               </ul>
@@ -371,7 +403,7 @@
           <div class="box">
             <h5>Objectives</h5>
             <p>
-              Building out the distributed infrastructure for this DNA
+              Building out the distributed infrastructure for this genome
               annotation service.
             </p>
             <h5 id="step3-diagram">Diagram</h5>
@@ -395,18 +427,35 @@
                 that implements the API and runs AnnTools.
               </li>
               <li>
-                Modify annotator.py so that it downloads the input file from S3
-                and saves it to the AnnTools instance (into a file structure
-                that ensures uniqueness for multiple jobs running
-                simultaneously).
+                <u>annotator.py</u>: it downloads the input file from S3 and
+                saves it to the AnnTools instance (into a file structure that
+                ensures uniqueness for multiple jobs running simultaneously).
               </li>
               <li>
-                Modify run.py scripts so that, after completion, it copies the
-                annotated results file and the associated log from the local
-                volume on your annotator instance to the S3 results bucket.
-                After copying, the local files on the AnnTools instance must be
-                deleted (otherwise the EBS volume attached to your instance
-                would eventually run out of space).
+                <u>run.py</u>: after completion, it copies the annotated results
+                file and the associated log from the local volume on your
+                annotator instance to the S3 results bucket. After copying, the
+                local files on the AnnTools instance must be deleted (otherwise
+                the EBS volume attached to your instance would eventually run
+                out of space).
+              </li>
+            </ul>
+            <h5>The application flow till now</h5>
+            <ul>
+              <li>The user requests an annotation by uploading a VCF file.</li>
+              <li>
+                After the input file is uploaded to S3, the response is
+                redirected to the annotator instance (and the flow continues
+                there instead of on our web server).
+              </li>
+              <li>
+                The annotator then downloads the input file from the input S3
+                bucket, spawns the annotation job and returns the job_id and
+                file name to the user.
+              </li>
+              <li>
+                Once the annotation is complete, the results file and the log
+                file are moved to the S3 results bucket.
               </li>
             </ul>
           </div>
@@ -430,9 +479,13 @@
             <p>
               We are adding a key-value store (KVS) to persist annotation job
               information and allow both services to access/update a job as its
-              status changes. We will use DynamoDB for this purpose. We’re using
-              a KVS because we assert that annotation data will be irregular and
-              hence better suited to a schema-less database
+              status changes. We will use
+              <a href="https://aws.amazon.com/dynamodb/" target="_blank"
+                >DynamoDB</a
+              >
+              for this purpose. We’re using a KVS because we assert that
+              annotation data will be irregular and hence better suited to a
+              schema-less database.
             </p>
             <h5>The application flow till now</h5>
             <ul>
@@ -441,9 +494,8 @@
                 POST request.
               </li>
               <li>
-                S3 sends a request to the redirect URL which must now (going
-                back again!) be handled by our web app, and not by the
-                annotator.
+                S3 sends a request to the redirect URL which must now be handled
+                by our web app, and not by the annotator.
               </li>
               <li>
                 The web app creates an item in the database; sets status to
@@ -480,22 +532,28 @@
             </div>
             <h5>Approach</h5>
             <p>
-              In previous step, we added a key-value store as the persistence
-              layer for the service. This allowed the web server and the
-              annotation server to operate independently of each other. Now we
-              will add components that further decouple the services and allow
-              them each to scale independently of the other.
+              In previous step 4️⃣ , we added a key-value store as the
+              persistence layer for the service. This allowed the web server and
+              the annotation server to operate independently of each other. Now
+              we will add components that further decouple the services and
+              allow them each to scale independently of the other.
             </p>
-            <h6>Message Queue: AWS SQS</h6>
+            <h6>
+              Message Queue:
+              <a href="https://aws.amazon.com/sqs/" target="_blank">AWS SQS</a>
+            </h6>
             <p>
               A message queue that will act as a “buffer” between the web app
               and the annotator. New annotation requests will be posted to the
               message queue and the annotator will retrieve them independently.
-              Thus, requests can be successfully accepted by the GAS, even if
-              the annotator service is not available—an important requirement
+              Thus, requests can be successfully accepted by this service, even
+              if the annotator service is not available—an important requirement
               for increasing the availability of a distributed system.
             </p>
-            <h6>Notification Topic: AWS SNS</h6>
+            <h6>
+              Notification Topic:
+              <a href="https://aws.amazon.com/sns/" target="_blank">AWS SNS</a>
+            </h6>
             <p>
               A notification topic that accepts messages (i.e. annotation
               requests) from the web app. When a notification is sent to the
@@ -533,25 +591,31 @@
 
             <h5>Important</h5>
             <p>
-              For current approach, we utilize a Python script and long polling
+              For current approach, we utilize a Python script and
+              <a
+                href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html"
+                target="_blank"
+                >long polling</a
+              >
               to read the messages from queue. In the future, we will utilize
-              webhook to get the messages from queue.
+              <a href="#step7">webhooks</a> to get the messages from queue.
             </p>
           </div>
 
-          <h4>
-            6️⃣ Integrate Third-party Services and Enable User Notifications
-          </h4>
+          <h4>6️⃣ Integrate Third-party Services and other system components</h4>
           <div class="box">
             <h5>Objectives</h5>
             <p>
               Make the system more functionally complete, integrate with an
-              external cloud service for payments processing, and enable
-              automated scaling. Furthermore, apply asynchronous communication
-              to another part of the application by implementing a notifications
-              service in upcoming steps.
+              external cloud service for payments processing (<a
+                href="https://stripe.com/"
+                target="_blank"
+                >Stripe</a
+              >), and enable automated scaling. Furthermore, apply asynchronous
+              communication to another part of the application by implementing a
+              notifications service in upcoming steps.
             </p>
-            <h5>Key functions</h5>
+            <h5>Add Key functions</h5>
             <ul>
               <li>
                 <strong
@@ -559,11 +623,11 @@
                     href="https://docs.globus.org/api/auth/"
                     target="_blank"
                     >via Globus Auth</a
-                  >) to use the service</strong
+                  >) to use this service</strong
                 >: Some aspects of the service are available only to registered
-                users. Two classes of users will be supported: Free and Premium.
-                Premium users will have access to additional functionality,
-                beyond that available to Free users.
+                users. Two classes of users will be supported: <u>Free</u> and
+                <u>Premium</u>. Premium users will have access to additional
+                functionality, beyond that available to Free users.
               </li>
               <li>
                 <strong>Submit an annotation job</strong>: Free users may only
@@ -601,28 +665,154 @@
                 users will always have all their data available for download.
               </li>
             </ul>
+            <h5>Add and migrate system components</h5>
+            <ul>
+              <li>
+                <strong
+                  ><a href="https://docs.globus.org/api/auth/" target="_blank"
+                    >Globus Auth</a
+                  ></strong
+                >: Globus Auth is an identity and access management service that
+                allows users to access our application using an existing
+                identity from thousands of identity providers, including
+                UChicago.
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://uwsgi-docs.readthedocs.io/en/latest/"
+                    target="_blank"
+                    >uWSGI</a
+                  ></strong
+                >: Substitute the default Flask WSGI server with the uWSGI
+                server which is a well-tested, multithreaded WSGI server
+                suitable for production use. Furthermore, our application will
+                now listen on port 4433 instead of 5000.
+              </li>
+              <li>
+                <strong
+                  ><a href="https://en.wikipedia.org/wiki/HTTPS" target="_blank"
+                    >HTTPS</a
+                  ></strong
+                >: The web server will now respond only to HTTPS requests.
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://aws.amazon.com/s3/storage-classes/glacier/"
+                    target="_blank"
+                    >AWS S3 Glacier</a
+                  ></strong
+                >: A low cost, highly-durable object store for archiving the
+                data of Free users.
+              </li>
+              <li>
+                <strong
+                  ><a href="https://www.postgresql.org/" target="_blank"
+                    >PostgreSQL</a
+                  ></strong
+                >: A relational database for user account information.
+              </li>
+              <li>
+                <strong
+                  ><a href="https://getbootstrap.com/" target="_blank"
+                    >Bootstrap</a
+                  ></strong
+                >: Styled web pages for the web app.
+              </li>
+            </ul>
           </div>
 
-          <h4>7️⃣ Enhancing the annotator: Webhooks</h4>
+          <h4 id="step7">
+            7️⃣ Upgrading UX/UI, Implementing Webhooks & User Notifications
+          </h4>
           <div class="box">
             <h5>Objectives</h5>
             <p>
-              Implement a more robust approach for processing messages from a
-              queue.
+              Enhance UX/UI, implement a more robust approach for processing
+              messages from a queue and apply asynchronous communication to the
+              application by implementing a notifications service.
             </p>
+
+            <h5>Demo Page</h5>
+            <div class="is-flex is-flex-direction-row is-align-items-baseline">
+              <figure class="image is-half">
+                <image src="./img/gas.png" />
+              </figure>
+              <figure class="image is-half">
+                <image src="./img/gas-1.png" />
+              </figure>
+            </div>
+
             <h5>Approach</h5>
+            <h6>User Interface</h6>
+            <ul>
+              <li>
+                Add a route handler that displays a list of all the jobs
+                submitted by a user.
+              </li>
+              <li>
+                Add a route handler that displays the details of a requested
+                job. The page should be rendered in response to a request.
+              </li>
+              <li>
+                Provide links for users to download the results file and view
+                the log file for a job.
+              </li>
+            </ul>
+            <h6>Implement webhooks</h6>
+            <ul>
+              <li><strong>Why?</strong></li>
+              <p>
+                Requiring the annotator to continuously poll the job requests
+                queue is not good (scalable) application design. A better way is
+                to use a webhook: an HTTP endpoint that is called by the
+                producer when an event of interest to the consumer occurs (in
+                our case, when a new job is available). Fortunately, SNS allows
+                us to send a notification to an HTTP endpoint (in addition to
+                SQS queues and other subscribers).
+                <a
+                  href="https://docs.aws.amazon.com/sns/latest/dg/sns-subscribe-https-s-endpoints-to-topic.html"
+                  target="_blank"
+                  >Checkout the AWS documentation</a
+                >.
+              </p>
+              <li><strong>How?</strong></li>
+              <p>
+                Convert annotator.py to a Flask app with a route handler that
+                acts as a webhook. The annotator will no longer continuously
+                poll for job request messages; instead, it will do its work only
+                when it receives a notification from SNS that a job was added to
+                the job request queue. This requires adding the webhook as a
+                subscriber to your SNS job request topic. When a new job is
+                submitted, SNS will push the notification as a POST request to
+                the webhook, triggering the annotation.
+                <a href="#webhook-vs-polling"
+                  >Checkout the difference between data polling and a webhook</a
+                >.
+              </p>
+            </ul>
+
+            <h6>User Notifications</h6>
             <p>
-              Convert annotator.py to a Flask app with a route handler that acts
-              as a webhook. The annotator will no longer continuously poll for
-              job request messages; instead, it will do its work only when it
-              receives a notification from SNS that a job was added to the job
-              request queue. This requires adding the webhook as a subscriber to
-              your SNS job request topic. When a new job is submitted, SNS will
-              push the notification as a POST request to the webhook, triggering
-              the annotation.
+              Publishing a notification to an SNS topic (with a subscribed SQS
+              queue, as we have for job requests) and running a separate Python
+              script that sends emails to users. This way, the annotator can
+              continue to process jobs while notifications for completed jobs
+              are sent out-of-band. In order to send email, we will use the
+              <a href="https://aws.amazon.com/ses/" target="_blank"
+                >AWS SES service</a
+              >.
             </p>
           </div>
-          <h4>8️⃣ Data Archival: AWS S3 Glacier</h4>
+          <h4>
+            8️⃣ Data Archival:
+            <a
+              href="https://aws.amazon.com/s3/storage-classes/glacier/"
+              target="_blank"
+              >AWS S3 Glacier</a
+            >
+          </h4>
           <div class="box">
             <h5>Objectives</h5>
             <p>
@@ -639,14 +829,24 @@
               to restore it in the event that the user decides to upgrade to a
               Premium user.
             </p>
-            <h5>Integrating AWS Step Function and AWS Lambda</h5>
+            <h5>
+              Integrating
+              <a href="https://aws.amazon.com/step-functions/" target="_blank"
+                >AWS Step Functions</a
+              >
+              and
+              <a href="https://aws.amazon.com/lambda/" target="_blank"
+                >AWS Lambda</a
+              >
+            </h5>
             <ul>
               <li>
                 I used step function to trigger a lambda function to wait for 5
-                minutes after the file is annotated
+                minutes after the file is annotated.
               </li>
               <li>
-                The step function workflow is defined in step_function.json:
+                The step function workflow is defined in
+                <i>step_function.json</i>:
               </li>
 
               <script src="https://gist.github.com/Willie-The-Lord/884115de5ae1d65ce4dd59ecaf9f60bc.js"></script>
@@ -669,7 +869,7 @@
               </li>
               <li>Otherwise, the file will be archived.</li>
             </ul>
-            <h5>The rationale of this approach</h5>
+            <h5>My rationale of this approach</h5>
             <ul>
               <li>
                 <strong>Using Lambda rather than EC2</strong>
@@ -752,9 +952,9 @@
               <a hred="https://stripe.com/docs/api" target="_blank"
                 >API documentation</a
               >
-              of any SaaS .
+              of any SaaS.
             </p>
-            <h6>Thawing / Restoring Process</h6>
+            <h6>Thawing / Restoring Work Flow</h6>
             <ul>
               <li>
                 <strong>Thaw Webhook:</strong> I configure a thaw webhook to
@@ -804,7 +1004,7 @@
               </li>
             </ul>
           </div>
-          <h4>🔟 Scaling the Web Server</h4>
+          <h4>🔟 Scaling the Web Server: ELB & Auto Scaling</h4>
 
           <div class="box">
             <h5>Objectives</h5>
@@ -851,7 +1051,7 @@
                 <strong
                   >Create a load balancer and associated target group:</strong
                 >
-                An EC2 load balancer will receive all requests to your GAS app
+                An EC2 load balancer will receive all requests to this service
                 and distribute them among multiple EC2 instances running the web
                 server.
               </li>
@@ -872,12 +1072,29 @@
 
         <div class="content pt-4">
           <h2>🆚 Different Approach</h2>
-          <h4>Webhook vs. Data Polling</h4>
+          <h4 id="webhook-vs-polling">Webhook vs. Data Polling</h4>
+          <div class="box"></div>
+          <h4>t3.nano vs. c5.2xlarge vs. r5.2xlarge</h4>
+          <div class="box"></div>
         </div>
 
         <div class="content pt-4">
-          <h2>📝 Final Feature</h2>
-          <h4>✅ Scaling</h4>
+          <h2>📝 Key Feature</h2>
+          <div class="box">
+            <p>
+              ✅ Delivered <strong>complete and detailed</strong> annotation
+              results through an easy-to-use panel.
+            </p>
+            <p>
+              ✅ Optimized scaling and load balancing for
+              <strong>high-throughput</strong>
+              genomics annotation tasks.
+            </p>
+            <p>
+              ✅ Offered <strong>subscription tiers</strong> with varying
+              features and performance.
+            </p>
+          </div>
         </div>
 
         <div class="content pt-4">
@@ -886,7 +1103,9 @@
             <div class="is-flex is-align-items-center mr-2">
               <p>Require GitLab permission:</p>
             </div>
-            <a href="mailto:sungjiehung@gmail.com" target="_blank"
+            <a
+              href="mailto:sungjiehung@gmail.com?subject=【Genomics Analysis Service】Source Code Request&body=🌟Only for potential employers and recruiters"
+              target="_blank"
               ><button class="button">
                 <span class="icon">
                   <img
@@ -898,12 +1117,31 @@
             >
           </div>
         </div>
+
+        <div class="content pt-4">
+          <h2>⚠️ Disclaimer</h2>
+
+          <div class="box">
+            <p>
+              This is a UChicago MPCS<a
+                href="https://mpcs-courses.cs.uchicago.edu/2022-23/spring/courses/mpcs-51083-1"
+                target="_blank"
+              >
+                Cloud Computing Capstone Project</a
+              >. © 2023
+              <a href="http://home.uchicago.edu/vas/" target="_blank"
+                >Vas Vasiliadis</a
+              >, All rights reserved.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
+
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
-          Blog post written by
+          Written by
           <strong
             ><a href="https://sungjiehung.com/" target="_blank"
               >Sung-Jie Hung</a
@@ -911,7 +1149,7 @@
           >
           ❤️
         </p>
-        <p>Last update: <strong>Jul 6, 2023</strong></p>
+        <p>Last update: <strong>Jul 7, 2023</strong></p>
       </div>
     </footer>
 
