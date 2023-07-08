@@ -44,9 +44,9 @@
         <div class="content">
           <h4>Tech Stack</h4>
           <div
-            class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-align-items-baseline"
+            class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-align-items-baseline pb-2"
           >
-            <div>
+            <div class="buttons">
               <button class="button">
                 <span class="icon">
                   <img
@@ -222,7 +222,7 @@
                   <li>
                     <p>
                       <strong>Endpoint:</strong>
-                      http://{DOMAIN}/annotations/{job_id}
+                      http://{DOMAIN}/annotations/ {job_id}
                     </p>
                   </li>
                   <li>
@@ -1073,9 +1073,57 @@
         <div class="content pt-4">
           <h2>🆚 Different Approach</h2>
           <h4 id="webhook-vs-polling">Webhook vs. Data Polling</h4>
-          <div class="box"></div>
-          <h4>t3.nano vs. c5.2xlarge vs. r5.2xlarge</h4>
-          <div class="box"></div>
+          <div class="box">
+            <div
+              class="is-flex is-justify-content-center is-align-items-center"
+            >
+              <figure class="image column is-two-thirds">
+                <image src="./img/webhook.png" />
+              </figure>
+            </div>
+            <ul>
+              <li>
+                <strong>Polling:</strong> After sending the payment request to
+                the Payment Service Provider(PSP), the payment service keeps
+                asking the PSP about the payment status. After several rounds,
+                the PSP finally returns with the status.
+                <ul>
+                  <li>
+                    <u>Drawbacks:</u>
+                    <ul>
+                      <li>
+                        Constant polling of the status requires resources from
+                        the payment service.
+                      </li>
+                      <li>
+                        The External service communicates directly with the
+                        payment service, creating security vulnerabilities.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Webhooks:</strong> We can register a webhook with the
+                external service. It means: call me back at a certain URL when
+                you have updates on the request. When the PSP has completed the
+                processing, it will invoke the HTTP request to update the
+                payment status. In this way, the programming paradigm is
+                changed, and the payment service doesn’t need to waste resources
+                to poll the payment status anymore.
+              </li>
+            </ul>
+            <div class="is-flex is-justify-content-center">
+              <p>
+                Source:
+                <a
+                  href="https://blog.bytebytego.com/p/ep65-what-is-a-webhook"
+                  target="_blank"
+                  >ByteByteGo Newsletter</a
+                >
+              </p>
+            </div>
+          </div>
         </div>
 
         <div class="content pt-4">
@@ -1149,7 +1197,7 @@
           >
           ❤️
         </p>
-        <p>Last update: <strong>Jul 7, 2023</strong></p>
+        <p>Last update: <strong>Jul 8, 2023</strong></p>
       </div>
     </footer>
 
