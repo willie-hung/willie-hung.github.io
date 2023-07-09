@@ -1,0 +1,92 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.image-title {
+  text-align: center;
+  font-family: "Luckiest Guy";
+  color: #3f3f3f;
+  font-size: 30px;
+  /* margin-top: 10px; */
+}
+
+.image-subtitle {
+  text-align: center;
+  font-family: "Montserrat";
+  color: #3f3f3f;
+  font-size: 15px;
+}
+
+.custom-image {
+  width: 100px;
+  height: 100px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.social-links a {
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+  font-size: 23px;
+  padding: 10px 20px;
+  color: #3f3f3f;
+}
+
+a.apple :hover {
+  background: linear-gradient(
+    to right,
+    #ee2a7b,
+    #6228d7
+  ); /* Replace with your desired gradient colors */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+a.instagram :hover {
+  background: linear-gradient(
+    to right,
+    #ee2a7b,
+    #6228d7
+  ); /* Replace with your desired gradient colors */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+a.twitter :hover {
+  background: linear-gradient(
+    to right,
+    #ee2a7b,
+    #6228d7
+  ); /* Replace with your desired gradient colors */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media only screen and (max-width: 600px) {
+  .social-links {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .social-links a {
+    margin-bottom: 10px;
+  }
+}
