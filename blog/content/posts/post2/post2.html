@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | What is virtual DOM?</title>
+    <link rel="icon" href="../../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">What is virtual DOM?</h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>
+            Learn how React's virtual DOM improve the efficiency and performance
+            of rendering user interfaces in web applications.
+          </p>
+        </div>
+
+        <p class="is-size-3">How virtual DOM works?</p>
+        <div class="box content">
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image width="20px" src="./figure1.webp" />
+            </figure>
+          </div>
+          <p>
+            React's virtual DOM (Document Object Model) is a lightweight
+            representation of the actual HTML DOM. It is an abstraction provided
+            by React to improve the performance and efficiency of rendering user
+            interfaces.
+          </p>
+          <ul>
+            <li>
+              <strong>Initial rendering: </strong> When you create a React
+              component, React builds a virtual DOM tree that mirrors the
+              structure of the actual HTML DOM. This virtual DOM is a plain
+              JavaScript object that contains information about each component
+              and its properties.
+            </li>
+            <li>
+              <strong>Updates: </strong> When there are changes in the
+              component's state or props, React re-renders the virtual DOM. It
+              then compares the new virtual DOM with the previous one to
+              determine the minimal set of changes required to update the actual
+              HTML DOM.
+            </li>
+            <li>
+              <strong>Diffing and reconciliation: </strong> React performs a
+              process called "diffing" to identify the differences between the
+              new and previous virtual DOM. It efficiently finds out which parts
+              of the virtual DOM have changed and updates only those parts in
+              the real DOM. This process is known as "reconciliation."
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Implementation</p>
+        <div class="box content">
+          <p>
+            Sets up a React root using <strong>ReactDOM.createRoot()</strong>,
+            associates it with a DOM element with the ID of "root", and renders
+            the <strong>App</strong> component inside a
+            <strong>React.StrictMode</strong>.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/efcb49ff617e09789c153aaeab78b3c7.js"></script>
+          <ul>
+            <li>
+              <strong>ReactDOM.createRoot(): </strong>This function is used to
+              create a new React root and associate it with a specific DOM
+              element in the HTML document.
+            </li>
+            <li>
+              <strong>getElementById('root'): </strong>This metohd retrieves the
+              DOM element with the ID of "root" from the HTML document.
+            </li>
+            <li>
+              <strong>root: </strong>This object represents the root of the
+              React component tree that will be rendered into the specified DOM
+              element.
+            </li>
+            <li>
+              <strong>root.render(): </strong>method is then called to initiate
+              the rendering process.
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul>
+            <li>
+              <a
+                href="https://react.dev/learn/add-react-to-an-existing-project"
+                target="_blank"
+                >React Documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.oreilly.com/library/view/learning-react-native/9781491929049/ch02.html"
+                target="_blank"
+                >Oreilly <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 10, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

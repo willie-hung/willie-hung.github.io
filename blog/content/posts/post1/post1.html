@@ -51,13 +51,13 @@
           </div>
           <ul>
             <li>
-              <strong>The client</strong> is the user's browser that requests your application
-              code from the server and translates the server's response into a
-              user interface.
+              <strong>The client</strong> is the user's browser that requests
+              your application code from the server and translates the server's
+              response into a user interface.
             </li>
             <li>
-              <strong>The server</strong> is the data center computers that stores your
-              application code, processes client requests, performs
+              <strong>The server</strong> is the data center computers that
+              stores your application code, processes client requests, performs
               computations, and sends suitable responses.
             </li>
           </ul>
@@ -66,10 +66,11 @@
         <p class="is-size-3">Server Components</p>
         <div class="box content">
           <p>
-            <strong>Server components</strong> offer developers enhanced capabilities to optimize
-            the utilization of server infrastructure. By utilizing server
-            components, developers can efficiently relocate data fetching
-            operations to the server, in closer proximity to the database.
+            <strong>Server components</strong> offer developers enhanced
+            capabilities to optimize the utilization of server infrastructure.
+            By utilizing server components, developers can efficiently relocate
+            data fetching operations to the server, in closer proximity to the
+            database.
           </p>
           <ul>
             <li>Fetch data</li>
@@ -108,10 +109,10 @@
         <p class="is-size-3">Client Components</p>
         <div class="box content">
           <p>
-            <strong>Client Components</strong> enable you to add client-side interactivity to
-            your application. In Next.js, they are pre-rendered on the server
-            and hydrated on the client. The "use client" directive is a
-            convention to declare a boundary between a Server and Client
+            <strong>Client Components</strong> enable you to add client-side
+            interactivity to your application. In Next.js, they are pre-rendered
+            on the server and hydrated on the client. The "use client" directive
+            is a convention to declare a boundary between a Server and Client
             Component module graph.
           </p>
           <script src="https://gist.github.com/Willie-The-Lord/67b26bb8c5161d790c6ad686aa783c54.js"></script>
@@ -136,15 +137,16 @@
         <div class="box content">
           <p class="is-size-5">Moving Client Components to the Leaves</p>
           <p>
-            To improve the performance of your application, <strong>moving
-              Client Components to the leaves of your component tree where
-              possible</strong>. For example, you may have a Layout that has static
-            elements (e.g. logo, links, etc) and an interactive search bar that
-            uses state. Instead of making the whole layout a Client Component,
-            move the interactive logic to a Client Component (e.g. SearchBar
-            ) and keep your layout as a Server Component. This
-            means you don't have to send all the component Javascript of the
-            layout to the client.
+            To improve the performance of your application,
+            <strong
+              >moving Client Components to the leaves of your component tree
+              where possible</strong
+            >. For example, you may have a Layout that has static elements (e.g.
+            logo, links, etc) and an interactive search bar that uses state.
+            Instead of making the whole layout a Client Component, move the
+            interactive logic to a Client Component (e.g. SearchBar ) and keep
+            your layout as a Server Component. This means you don't have to send
+            all the component Javascript of the layout to the client.
           </p>
           <script src="https://gist.github.com/Willie-The-Lord/80fd10821ed9c3072460342f5987f3c6.js"></script>
           <p class="is-size-5">
@@ -157,12 +159,24 @@
             Recommended Pattern: Passing Server Components to Client Components
             as Props
           </p>
-          <p>A common pattern is to use the React children prop to create the "slot". We can refactor <ExampleClientComponent> to accept a generic children prop and move the import and explicit nesting of <ExampleClientComponent> up to a parent component.</p>
+          <p>
+            A common pattern is to use the React children prop to create the
+            "slot". We can refactor ExampleClientComponent to accept a generic
+            children prop and move the import and explicit nesting of
+            ExampleClientComponent up to a parent component.
+          </p>
           <script src="https://gist.github.com/Willie-The-Lord/3ac1b37d9d258520b890a4044b6982b5.js"></script>
         </div>
 
         <p class="is-size-3">Source</p>
-        <div class="box content"><a href="https://nextjs.org/docs/getting-started/react-essentials#server-components" target="_blank">Next.js Documentation <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+        <div class="box content">
+          <a
+            href="https://nextjs.org/docs/getting-started/react-essentials#server-components"
+            target="_blank"
+            >Next.js Documentation
+            <i class="fa-solid fa-arrow-up-right-from-square"></i
+          ></a>
+        </div>
       </div>
     </section>
 
