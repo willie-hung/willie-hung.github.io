@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Server/Client Components in Next.js</title>
+    <link rel="icon" href="../../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Server/Client Components in Next.js
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>
+            Learn the difference between server and client components in
+            Next.js.
+          </p>
+        </div>
+
+        <p class="is-size-3">Rendering Environments</p>
+        <div class="box content">
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image width="20px" src="./figure1.jpg" />
+            </figure>
+          </div>
+          <ul>
+            <li>
+              <strong>The client</strong> is the user's browser that requests your application
+              code from the server and translates the server's response into a
+              user interface.
+            </li>
+            <li>
+              <strong>The server</strong> is the data center computers that stores your
+              application code, processes client requests, performs
+              computations, and sends suitable responses.
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Server Components</p>
+        <div class="box content">
+          <p>
+            <strong>Server components</strong> offer developers enhanced capabilities to optimize
+            the utilization of server infrastructure. By utilizing server
+            components, developers can efficiently relocate data fetching
+            operations to the server, in closer proximity to the database.
+          </p>
+          <ul>
+            <li>Fetch data</li>
+            <li>Access backend resources (directly)</li>
+            <li>
+              Keep sensitive information on the server (access tokens, API keys,
+              etc)
+            </li>
+            <li>
+              Keep large dependencies on the server / Reduce client-side
+              JavaScript
+            </li>
+          </ul>
+          <p class="is-size-5">
+            Keeping Server-Only Code out of Client Components (Poisoning)
+          </p>
+          <p>
+            While making the variable public would make the function work on the
+            client, it would leak sensitive information. So, this function was
+            written with the intention that it would only ever be executed on
+            the server.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/f5cff8d1a3ec55f9a9f857a3dc0266aa.js"></script>
+          <p>
+            Install
+            <a href="https://www.npmjs.com/package/server-only" target="_blank"
+              >"server-only"</a
+            >
+            package, then any Client Component that imports getData() will
+            receive a build-time error explaining that this module can only be
+            used on the server.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/dc21feba5eb476065c1743f6fd452aa9.js"></script>
+        </div>
+
+        <p class="is-size-3">Client Components</p>
+        <div class="box content">
+          <p>
+            <strong>Client Components</strong> enable you to add client-side interactivity to
+            your application. In Next.js, they are pre-rendered on the server
+            and hydrated on the client. The "use client" directive is a
+            convention to declare a boundary between a Server and Client
+            Component module graph.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/67b26bb8c5161d790c6ad686aa783c54.js"></script>
+          <ul>
+            <li>
+              Add interactivity and event listeners (onClick(), onChange(), etc)
+            </li>
+            <li>
+              Use State and Lifecycle Effects (useState(), useReducer(),
+              useEffect(), etc)
+            </li>
+            <li>Use browser-only APIs</li>
+            <li>
+              Use custom hooks that depend on state, effects, or browser-only
+              APIs
+            </li>
+            <li>Use React Class components</li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Best Practice</p>
+        <div class="box content">
+          <p class="is-size-5">Moving Client Components to the Leaves</p>
+          <p>
+            To improve the performance of your application, <strong>moving
+              Client Components to the leaves of your component tree where
+              possible</strong>. For example, you may have a Layout that has static
+            elements (e.g. logo, links, etc) and an interactive search bar that
+            uses state. Instead of making the whole layout a Client Component,
+            move the interactive logic to a Client Component (e.g. SearchBar
+            ) and keep your layout as a Server Component. This
+            means you don't have to send all the component Javascript of the
+            layout to the client.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/80fd10821ed9c3072460342f5987f3c6.js"></script>
+          <p class="is-size-5">
+            Unsupported Pattern: Importing Server Components into Client
+            Components
+          </p>
+          <p>You cannot import a Server Component into a Client Component.</p>
+          <script src="https://gist.github.com/Willie-The-Lord/378f70cd225784951adb96efffcbab9f.js"></script>
+          <p class="is-size-5">
+            Recommended Pattern: Passing Server Components to Client Components
+            as Props
+          </p>
+          <p>A common pattern is to use the React children prop to create the "slot". We can refactor <ExampleClientComponent> to accept a generic children prop and move the import and explicit nesting of <ExampleClientComponent> up to a parent component.</p>
+          <script src="https://gist.github.com/Willie-The-Lord/3ac1b37d9d258520b890a4044b6982b5.js"></script>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content"><a href="https://nextjs.org/docs/getting-started/react-essentials#server-components" target="_blank">Next.js Documentation <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 10, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
