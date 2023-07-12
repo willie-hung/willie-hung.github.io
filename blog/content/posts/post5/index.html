@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Data Fetching in Next.js (App Router)</title>
+    <link rel="icon" href="../../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Data Fetching in Next.js (App Router)
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>Learn how data fetching works in Next.js (App Router)</p>
+        </div>
+
+        <div class="is-size-3">How does it work?</div>
+        <div class="box content">
+          <p>
+            Data fetching in Next.js is built on top of the
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+              target="_blank"
+              >fetch() Web API</a
+            >
+            and
+            <a
+              href="https://www.freecodecamp.org/news/react-server-components-for-beginners/#:~:text=React%20Server%20Components%20have%20been,interactivity%20of%20client%2Dside%20JavaScript."
+              target="_blank"
+              >React Server Components</a
+            >.
+          </p>
+        </div>
+
+        <div class="is-size-3">Advantages of using server components</div>
+        <div class="box content">
+          <p>
+            When the components are located on the server, the process of
+            fetching data is significantly faster compared to when the
+            components are on the client side.
+            <strong
+              >Since now your components are rendered on the server, your
+              components have access to the server infrastructure.</strong
+            >
+            This means that you can query the database from your components as
+            well.
+          </p>
+        </div>
+
+        <p class="is-size-3">Fetching an API</p>
+
+        <div class="box content">
+          <p class="is-size-5">Use async/await</p>
+          <p>You can use async and await to fetch data in Server Components.</p>
+          <script src="https://gist.github.com/Willie-The-Lord/207b31818b558377065a7dbbcbb749b1.js"></script>
+          <p class="is-size-5">Browser Output</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figure1.png" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>
+            With the components now situated on the server,
+            <strong>the latency is significantly reduced</strong> since data is
+            no longer fetched all the way from the client. Instead, data is
+            fetched directly from the server, resulting in lower latency and
+            faster retrieval times.
+          </p>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching"
+                target="_blank"
+                >Next.js Data Fetching Documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.freecodecamp.org/news/react-server-components-for-beginners/#:~:text=React%20Server%20Components%20have%20been,interactivity%20of%20client%2Dside%20JavaScript."
+                target="_blank"
+                >How to Use React Server Components
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 12, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
