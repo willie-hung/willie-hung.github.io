@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Query Firestore using TypeScript</title>
+    <link rel="icon" href="../../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Query Firestore using TypeScript
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>
+            Learn how to query Firestore data using a simple TypeScript script.
+          </p>
+        </div>
+
+        <p class="is-size-3">Firestore Data Model</p>
+        <div class="box level content">
+          <p>XXX</p>
+        </div>
+
+        <p class="is-size-3">
+          Create a firebase project and register your web app
+        </p>
+        <div class="box">
+          <p>
+            First, follow the
+            <a href="https://firebase.google.com/docs/web/setup" target="_blank"
+              >firebase documentation</a
+            >
+            to setup your firebase project/register your app. After setting up,
+            you should find your firebase configuration in your project setting,
+            something like this:
+          </p>
+          <p></p>
+          <script src="https://gist.github.com/Willie-The-Lord/7a9281867f78660863c75ea6c33f3c0f.js"></script>
+        </div>
+
+        <p class="is-size-3">Initialize the firestore in a TypeScript file</p>
+        <div class="box content">
+          <p class="is-size-5">Connect to Firestore</p>
+          <p>
+            Imports the necessary functions from the Firebase SDK to initialize
+            and access Firestore. Then swap out your firebase config. Next,
+            initialize the Firebase app using the provided configuration object
+            and assigns it to the variable app. After that, use the getFirestore
+            function to create a Firestore instance and assigns it to the
+            variable db. Finally, export the db variable, allowing other parts
+            of the code to import and use the Firestore instance for database
+            operations.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/20bf9b273492512b1d8643c1f182d81c.js"></script>
+
+          <p class="is-size-5">Add data field to Firestore</p>
+          <ul>
+            <li>
+              Define an asynchronous function called addData that takes in
+              parameters for name, age, and college.
+            </li>
+            <li>
+              Inside addData, create a reference to a Firestore collection named
+              "test" using the collection function and the db instance.
+            </li>
+            <li>
+              Try to retrieve all the documents in the "test" collection using
+              the getDocs function and awaits the result.
+            </li>
+            <li>
+              If successful, iterate over each document and retrieves the
+              document ID.
+            </li>
+            <li>
+              Create a document reference using the doc function and the objects
+              reference and document ID.
+            </li>
+            <li>
+              Inside the inner try block, update the document with the new
+              fields using the updateDoc function and the document reference.
+            </li>
+            <li>
+              If the update is successful, log a success message to the console.
+            </li>
+          </ul>
+
+          <script src="https://gist.github.com/Willie-The-Lord/e07116206838143ede25e6b5e27355d7.js"></script>
+          <p>
+            When you run the code and make changes to the documents in the
+            Firestore collection, those changes will be reflected immediately in
+            the Firebase console. You can observe the updated data in real-time
+            as you interact with the Firestore database.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figure1.png" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>YYY</p>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://firebase.google.com/docs/web/setup"
+                target="_blank"
+                >Firebase Setup Documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://firebase.google.com/docs/firestore/data-model"
+                target="_blank"
+                >Cloud Firestore Data Model Documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 13, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
