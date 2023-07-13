@@ -41,9 +41,34 @@
           </p>
         </div>
 
-        <p class="is-size-3">Firestore Data Model</p>
-        <div class="box level content">
-          <p>XXX</p>
+        <p class="is-size-3">Intro to Firestore Data Model</p>
+        <div class="box content">
+          <div
+            class="is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <figure class="image column is-one-third">
+              <image src="./figure1.png" />
+            </figure>
+          </div>
+          <ul>
+            <li>
+              Each <strong>document</strong> contains a set of key-value pairs.
+              Cloud Firestore is optimized for storing large collections of
+              small documents.
+            </li>
+            <li>
+              All documents must be stored in <strong>collections</strong>.
+              Documents can contain subcollections and nested objects, both of
+              which can include primitive fields like strings or complex objects
+              like lists.
+            </li>
+            <li>
+              Collections and documents are created
+              <strong>implicitly</strong> in Cloud Firestore. Simply assign data
+              to a document within a collection. If either the collection or
+              document does not exist, Cloud Firestore creates it.
+            </li>
+          </ul>
         </div>
 
         <p class="is-size-3">
@@ -55,37 +80,47 @@
             <a href="https://firebase.google.com/docs/web/setup" target="_blank"
               >firebase documentation</a
             >
-            to setup your firebase project/register your app. After setting up,
-            you should find your firebase configuration in your project setting,
-            something like this:
+            to setup your firebase project. After setting up, you could register
+            your web app and add Firebase SDK to your application. You should
+            see something like this:
           </p>
-          <p></p>
-          <script src="https://gist.github.com/Willie-The-Lord/7a9281867f78660863c75ea6c33f3c0f.js"></script>
+          <div
+            class="is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <figure class="image column is-two-thirds">
+              <image src="./figure3.jpg" />
+            </figure>
+          </div>
+          <p>Copy the config information and continue to the next step.</p>
+
+          <script src="https://gist.github.com/Willie-The-Lord/03f7acd6849dad20edb0e95d90d12158.js"></script>
         </div>
 
         <p class="is-size-3">Initialize the firestore in a TypeScript file</p>
         <div class="box content">
           <p class="is-size-5">Connect to Firestore</p>
           <p>
-            Imports the necessary functions from the Firebase SDK to initialize
+            Import the necessary functions from the Firebase SDK to initialize
             and access Firestore. Then swap out your firebase config. Next,
             initialize the Firebase app using the provided configuration object
-            and assigns it to the variable app. After that, use the getFirestore
-            function to create a Firestore instance and assigns it to the
-            variable db. Finally, export the db variable, allowing other parts
-            of the code to import and use the Firestore instance for database
-            operations.
+            and assigns it to the variable <strong>app</strong>. After that, use
+            the getFirestore function to create a Firestore instance and assigns
+            it to the variable <strong>db</strong>. Finally, export the db
+            variable, allowing other parts of the code to import and use the
+            Firestore instance for database operations.
           </p>
           <script src="https://gist.github.com/Willie-The-Lord/20bf9b273492512b1d8643c1f182d81c.js"></script>
 
-          <p class="is-size-5">Add data field to Firestore</p>
+          <p class="is-size-5">Add/Update data field to Firestore</p>
           <ul>
             <li>
-              Define an asynchronous function called addData that takes in
-              parameters for name, age, and college.
+              Define an <strong>asynchronous</strong> function called addData
+              that takes in parameters for <strong>name</strong>,
+              <strong>age</strong>, and <strong>college.</strong>
             </li>
             <li>
-              Inside addData, create a reference to a Firestore collection named
+              Inside addData, create
+              <strong>a reference to a Firestore collection</strong> named
               "test" using the collection function and the db instance.
             </li>
             <li>
@@ -118,14 +153,69 @@
           </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
             <figure class="image column is-two-thirds">
-              <image src="./figure1.png" />
+              <image src="./figure2.png" />
             </figure>
           </div>
+          <p class="is-size-5">Query Firestore Data: Search</p>
+          <script src="https://gist.github.com/Willie-The-Lord/c4fd9ae0a1dec38e9660145209b2d1d9.js"></script>
+          <p>Let's walk through the code:</p>
+          <ul>
+            <li>
+              Define an asynchronous function named queryFirestore that takes a
+              name parameter.
+            </li>
+            <li>
+              Create a reference to the "test" collection in the Firestore
+              database using the collection function.
+            </li>
+            <li>
+              Create a query object using the query function,
+              <strong
+                >filtering the documents where the "name" field is equal to the
+                provided name.</strong
+              >
+            </li>
+            <li>
+              Try to execute the query and await the result using the getDocs
+              function.
+            </li>
+            <li>
+              If the query result is not empty, retrieve the first document's
+              data and log it to the console as a success message.
+            </li>
+          </ul>
         </div>
 
         <p class="is-size-3">Conclusion</p>
         <div class="box content">
-          <p>YYY</p>
+          <p class="is-size-5">Some advantages of using Firestore</p>
+          <ul>
+            <li>
+              <strong>Real-time data synchronization:</strong> Firestore
+              provides real-time data synchronization, allowing multiple clients
+              to receive instant updates whenever the data changes. This makes
+              it ideal for building collaborative and real-time applications
+              like chat apps, collaborative document editing, and real-time
+              dashboards.
+            </li>
+            <li>
+              <strong>Flexible data modeling:</strong> Firestore's
+              document-oriented data model allows you to structure and organize
+              data in a flexible manner. You can use collections and documents
+              to represent your data hierarchy, and fields within documents to
+              store data attributes. This flexibility makes it easier to adapt
+              and evolve your data model as your application requirements change
+              over time.
+            </li>
+            <li>
+              <strong>Simple querying and indexing:</strong> Firestore offers
+              powerful querying capabilities that allow you to retrieve data
+              based on various criteria. You can query data using equality
+              filters, range filters, sorting, and even complex compound
+              queries. Firestore automatically indexes your data, making queries
+              efficient and performant.
+            </li>
+          </ul>
         </div>
 
         <p class="is-size-3">Source</p>
