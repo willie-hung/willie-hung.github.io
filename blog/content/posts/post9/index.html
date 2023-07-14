@@ -3,9 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Blog | Fetching and Updating data with TanStack Query (React Query)
-    </title>
+    <title>Blog | Fetching data with TanStack Query (React Query)</title>
     <link rel="icon" href="../../../../img/favicon.ico" type="image/x-icon" />
 
     <link
@@ -30,7 +28,7 @@
             class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
           >
             <h1 class="title has-text-centered">
-              Fetching and Updating data with TanStack Query (React Query)
+              Fetching data with TanStack Query (React Query)
             </h1>
           </div>
         </div>
@@ -38,7 +36,10 @@
         <hr />
         <p class="is-size-3">Objectives</p>
         <div class="box level content">
-          <p>YYY</p>
+          <p>
+            Learn the advantages of using React Query over useEffect for data
+            fetching.
+          </p>
         </div>
 
         <p class="is-size-3">Tech Stack</p>
@@ -93,7 +94,7 @@
 
           <p>
             After setting up the project, you can see your web application
-            hosting on your localhost.
+            hosting on your localhost. Something like this:
           </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
             <figure class="image column is-two-thirds">
@@ -105,12 +106,12 @@
         <p class="is-size-3">Vite Project Walkthrough</p>
         <div class="box content">
           <p>
-            In the project, you can find a <strong>main.tsx</strong> under the
-            <strong>src</strong> folder, this file serves as the starting point
-            for your React application. It is responsible for importing and
-            rendering the root React component of your application. Later on I
-            will swap the <strong>App component</strong> (App.tsx) with the
-            <strong>TodoList component</strong>.
+            In the vite project, you can find a <strong>main.tsx</strong> under
+            the <strong>src</strong> folder, this file serves as the starting
+            point for your React application. It is responsible for importing
+            and rendering the root React component of your application. Later on
+            I will swap the content of <strong>App component</strong> (App.tsx)
+            with the <strong>TodoList component</strong>.
           </p>
           <p class="is-size-5">File structure of a Vite Application</p>
           <script src="https://gist.github.com/Willie-The-Lord/eb53183ec58e25adcbd9657d7a0007af.js"></script>
@@ -123,19 +124,157 @@
           <p>
             JSX is an extension to JavaScript that allows you to write HTML-like
             code within your JavaScript or TypeScript files. It is commonly used
-            with libraries like React to define the structure and layout of
-            components. By using .tsx file extension, you can write TypeScript
-            code with JSX syntax, combining the type safety and benefits of
-            TypeScript with the expressive power of JSX.
+            with libraries like React to define
+            <strong>the structure and layout of components.</strong> By using
+            .tsx file extension, you can write TypeScript code with JSX syntax,
+            combining the type safety and benefits of TypeScript with the
+            expressive power of JSX.
           </p>
         </div>
 
         <p class="is-size-3">Original Approach: useEffect()</p>
         <div class="box content">
-          <p>YYY</p>
+          <p>
+            Typically, we use the <strong>useEffect hook</strong> and
+            <strong>axios library</strong> to fetch API data in a React
+            application (In this blog post, we want to fetch a list of todos
+            from API). Here's an example of how you can achieve this:
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/7347c219ce6403f1a05bb4afb8b294ac.js"></script>
+          <p>Let's walk through the code:</p>
+          <ul>
+            <li>
+              Define a functional component <strong>TodoList</strong> that
+              utilizes the <strong>useState</strong> hook to manage the fetched
+              data.
+            </li>
+            <li>
+              Inside the <strong>useEffect</strong> hook, we define an
+              asynchronous function fetchData that performs the API call using
+              axios.get.
+            </li>
+            <li>The response data is then set using setTodos.</li>
+          </ul>
+          <p>However</p>
+          <p>
+            This approach requires manually handle API data fetching and state
+            management, which is kind of <strong>tedious</strong> and
+            <strong>error-prone.</strong> We can do it a better way! Let's see
+            how we can use
+            <a href="https://tanstack.com/query/latest" target="_blank"
+              ><strong>TanStack Query</strong></a
+            >
+            to simplify the process.
+          </p>
         </div>
 
-        <p class="is-size-3">XXX</p>
+        <p class="is-size-3">TanStack Query Approach: useQuery()</p>
+        <div class="box content">
+          <p class="is-size-5">Installation</p>
+          <p>
+            First, install
+            <a href="https://www.npmjs.com/package/react-query" target="_blank"
+              >react-query</a
+            >
+            to the project
+          </p>
+          <pre>npm i react-query</pre>
+
+          <p class="is-size-5">Wrap the app</p>
+          <p>
+            After npm install, modify the code in main.tsx and wrap the app in
+            the client.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/9ad8f1a675586f51b5b9d2b29292f715.js"></script>
+
+          <p class="is-size-5">Fetch data with useQuery()</p>
+          <p>
+            Now we can replace the useEffect hook with the
+            <a
+              href="https://tanstack.com/query/v4/docs/react/reference/useQuery"
+              target="_blank"
+              >useQuery API</a
+            >
+            to fetch data. To do this, we need to import the useQuery hook from
+            react-query. Then, we can replace the useEffect hook with the
+            useQuery hook. Here's how it looks like:
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/7578ddc503b81b2aaf2cac320d3e1c29.js"></script>
+          <p>Let's see what we achieve here:</p>
+          <ul>
+            <li>
+              <strong>Simplified Data Fetching:</strong> useQuery simplifies the
+              process of fetching data from APIs by providing a declarative and
+              intuitive way to define queries. It abstracts away much of the
+              boilerplate code required for handling data fetching.
+            </li>
+            <li>
+              <strong>Error and Loading States:</strong> The useQuery hook
+              manages the loading and error states for you. It provides loading
+              indicators while data is being fetched and handles error handling
+              and retries transparently. This simplifies the UI logic, making it
+              easier to display loading spinners or error messages without
+              manual handling of state variables.
+            </li>
+            <li>
+              <strong>Abstraction of API Libraries:</strong> By using useQuery,
+              you can abstract away the implementation details of specific API
+              libraries. This allows you to switch between different API
+              libraries without making significant changes to your codebase,
+              promoting code modularity and maintainability.
+            </li>
+          </ul>
+
+          <p class="is-size-5">Best Practice: Decouple the code</p>
+          <p>
+            Seperate the previous code to two files:
+            <strong>./hooks/useTodos.ts</strong> and
+            <strong>TodoList.tsx</strong>. It is a good practice to seperate the
+            user interface and the logic.
+          </p>
+          <p>The logic</p>
+          <script src="https://gist.github.com/Willie-The-Lord/71c405d5820831b44e7f6919c6cc11aa.js"></script>
+          <p>The user interface</p>
+          <script src="https://gist.github.com/Willie-The-Lord/c13b0829e6f12db4ad6c25f2f04cdfdc.js"></script>
+          <p>
+            By decoupling the code, you can break it down into
+            <strong>smaller modules or components.</strong> Each module focuses
+            on a specific functionality or feature. This modular structure makes
+            the code easier to understand, maintain, and update. It also
+            facilitates code reusability, as individual modules can be reused in
+            different parts of the application.
+          </p>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p class="is-size-5">useEffect vs. useQuery</p>
+          <ul>
+            <li>
+              <strong>Simplicity: </strong>Using useEffect and axios directly
+              requires writing more code to handle data fetching, caching, and
+              state management.
+            </li>
+            <li>
+              <strong>Error Handling: </strong> React query handles error and
+              retrying requests out-of-the-box. It automatically retries failed
+              requests based on configurable rules and provides options for
+              custom error handling and exponential backoff strategies. With
+              useEffect and axios, you would need to manually handle error cases
+              and implement retry logic.
+            </li>
+            <li>
+              <strong>Integration with UI:</strong> React Query provides a
+              powerful integration with UI libraries like React, making it
+              easier to handle loading and error states, as well as displaying
+              optimistic updates. It offers features like
+              <strong>isLoading, isError, and isFetching</strong> that can be
+              used to conditionally render UI components based on the data
+              fetching status.
+            </li>
+          </ul>
+        </div>
+
         <div class="box content">
           <ul style="padding-bottom: 20px">
             <li>
@@ -148,9 +287,10 @@
             </li>
             <li>
               <a
-                href="https://www.oreilly.com/library/view/learning-react-native/9781491929049/ch02.html"
+                href="https://react.dev/reference/react/useEffect"
                 target="_blank"
-                >YYY <i class="fa-solid fa-arrow-up-right-from-square"></i
+                >React Documentation - useEffect
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </li>
           </ul>
@@ -169,7 +309,7 @@
           >
           ❤️
         </p>
-        <p>Last update: <strong>XXX, 2023</strong></p>
+        <p>Last update: <strong>Jul 14, 2023</strong></p>
       </div>
     </footer>
 
