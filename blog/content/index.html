@@ -9,6 +9,21 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
+    <style>
+      @media screen and (max-width: 768px) {
+        .custom-image-size {
+          width: 48px;
+          height: 48px;
+        }
+      }
+
+      @media screen and (min-width: 769px) {
+        .custom-image-size {
+          width: 64px;
+          height: 64px;
+        }
+      }
+    </style>
   </head>
   <body>
     <section class="section">
@@ -55,18 +70,40 @@
         </div> -->
 
         <div class="box">
-          <a href="./posts/post10.html" style="color: #3f3f3f"
+          <a href="./posts/post11.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg"
-                />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img src="./assets/systemdesign.png" />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
+                  [System Design] Scaling a Web Application
+                </p>
+                <span class="tag is-primary is-light">Jul 15, 2023</span>
+              </div>
+
+              <div class="ml-auto">
+                <i class="fa-solid fa-angle-right"></i>
+              </div></div
+          ></a>
+        </div>
+
+        <div class="box">
+          <a href="./posts/post10.html" style="color: #3f3f3f"
+            ><div class="is-flex is-flex-direction-row is-align-items-center">
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg"
+                  />
+                </figure>
+              </div>
+
+              <div class="is-flex-grow-1">
+                <p class="is-size-4 is-size-6-mobile media-content">
                   Query API using GraphQL, Apollo and TypeScript
                 </p>
                 <span class="tag is-primary is-light">Jul 14, 2023</span>
@@ -81,14 +118,14 @@
         <div class="box">
           <a href="./posts/post9.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img src="./assets/reactquery.png" alt="Placeholder image" />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img src="./assets/reactquery.png" alt="Placeholder image" />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
                   Fetching data with TanStack Query (React Query)
                 </p>
                 <span class="tag is-primary is-light">Jul 14, 2023</span>
@@ -103,14 +140,14 @@
         <div class="box">
           <a href="./posts/post8.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img src="./assets/bulma.svg" alt="Placeholder image" />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img src="./assets/bulma.svg" alt="Placeholder image" />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
                   Why I Love Bulma CSS
                 </p>
                 <span class="tag is-primary is-light">Jul 13, 2023</span>
@@ -125,14 +162,14 @@
         <div class="box">
           <a href="./posts/post7.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img src="./assets/firestore.jpg" alt="Placeholder image" />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img src="./assets/firestore.jpg" alt="Placeholder image" />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
                   Query Firestore using TypeScript
                 </p>
                 <span class="tag is-primary is-light">Jul 13, 2023</span>
@@ -147,14 +184,16 @@
         <div class="box">
           <a href="./posts/post6.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img src="./assets/typescript.jpg" alt="Placeholder image" />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                  />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
                   Implement Promise in TypeScript
                 </p>
                 <span class="tag is-primary is-light">Jul 12, 2023</span>
@@ -169,14 +208,16 @@
         <div class="box">
           <a href="./posts/post5.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img src="./assets/nextjs.png" alt="Placeholder image" />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                  />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
                   Data Fetching in Next.js (App Router)
                 </p>
                 <span class="tag is-primary is-light">Jul 12, 2023</span>
@@ -191,14 +232,14 @@
         <div class="box">
           <a href="./posts/post4.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img src="./assets/prisma.jpg" alt="Placeholder image" />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img src="./assets/prisma.jpg" />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
                   Working with PostgreSQL using TypeScript ORM: Prisma
                 </p>
                 <span class="tag is-primary is-light">Jul 11, 2023</span>
@@ -213,14 +254,16 @@
         <div class="box">
           <a href="./posts/post3.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img src="./assets/typescript.jpg" alt="Placeholder image" />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                  />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
                   Asynchronous fetching in TypeScript
                 </p>
                 <span class="tag is-primary is-light">Jul 10, 2023</span>
@@ -235,14 +278,16 @@
         <div class="box">
           <a href="./posts/post2.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img src="./assets/react.png" alt="Placeholder image" />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                  />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
                   What is React virtual DOM?
                 </p>
                 <span class="tag is-primary is-light">Jul 10, 2023</span>
@@ -257,14 +302,16 @@
         <div class="box">
           <a href="./posts/post1.html" style="color: #3f3f3f"
             ><div class="is-flex is-flex-direction-row is-align-items-center">
-              <figure class="image is-64x64 mr-4">
-                <img src="./assets/nextjs.png" alt="Placeholder image" />
-              </figure>
+              <div class="is-flex-grow-0">
+                <figure class="image custom-image-size mr-4">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                  />
+                </figure>
+              </div>
 
               <div class="is-flex-grow-1">
-                <p
-                  class="is-size-4 is-size-6-mobile media-content is-align-items-center is-justify-content-center"
-                >
+                <p class="is-size-4 is-size-6-mobile media-content">
                   Server/Client components in Next.js
                 </p>
                 <span class="tag is-primary is-light">Jul 10, 2023</span>
