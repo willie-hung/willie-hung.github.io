@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Blog | Pagination, Infinite Scroll and Mutations using React Query
+      Blog | Pagination, Infinite Query and Mutations using React Query
     </title>
     <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
 
@@ -30,7 +30,7 @@
             class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
           >
             <h1 class="title has-text-centered">
-              Pagination, Infinite Scroll and Mutations using React Query
+              Pagination, Infinite Query and Mutations using React Query
             </h1>
           </div>
         </div>
@@ -46,11 +46,48 @@
         </div>
 
         <p class="is-size-3">Pagination</p>
-        <div class="box content">
-          <p>YYY</p>
-          <script src="https://gist.github.com/Willie-The-Lord/7ba5e9925103389057702536e6daa8f4.js"></script>
 
+        <div class="box content">
+          <p>
+            Pagination is a common technique used in user interfaces,
+            particularly in web applications, to divide large amounts of content
+            into smaller, more manageable chunks called pages. Instead of
+            presenting all the content at once, pagination allows users to
+            navigate through the content in a systematic and organized manner.
+          </p>
+          <p class="is-size-5">Pagination and Query Logic</p>
+          <ul>
+            <li>
+              <strong>queryKey:</strong> The queryKey is used to identify the
+              query and is typically an array of values that uniquely represent
+              the query.
+            </li>
+            <li>
+              <strong>queryFn:</strong> This is a function that defines how the
+              data is fetched.
+            </li>
+            <li>
+              <strong>keepPreviousData:</strong> This option ensures that the
+              previous data remains available while the new data is being
+              fetched. It prevents the UI from flickering or becoming empty
+              during the loading process.
+            </li>
+          </ul>
+          <p>
+            Check out
+            <a
+              href="https://tanstack.com/query/v4/docs/react/reference/useQuery"
+              target="_blank"
+              >TanStack Query Documentation</a
+            >
+            for more detail.
+          </p>
           <script src="https://gist.github.com/Willie-The-Lord/9a6ac5b28975594546761cffa1f8df9e.js"></script>
+          <p class="is-size-5">User Interface of the the post list</p>
+          <script src="https://gist.github.com/Willie-The-Lord/7ba5e9925103389057702536e6daa8f4.js"></script>
+          <p class="is-size-5">
+            The browser should display something like this:
+          </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
             <figure class="image column is-two-thirds">
               <image src="./figures/post12/figure1.png" />
@@ -58,11 +95,28 @@
           </div>
         </div>
 
-        <p class="is-size-3">Infinite Scroll</p>
+        <p class="is-size-3">Infinite Query</p>
         <div class="box content">
-          <script src="https://gist.github.com/Willie-The-Lord/909d51434ad3910ce3b284bee7e1f0ee.js"></script>
+          <p>
+            Rendering lists that can
+            <strong>additively "load more" data</strong> onto an existing set of
+            data or "infinite scroll" is also a very common UI pattern. TanStack
+            Query supports a useful version of useQuery called useInfiniteQuery
+            for querying these types of lists. Checkout
+            <a
+              href="https://tanstack.com/query/v4/docs/react/guides/infinite-queries"
+              target="_blank"
+              >this page</a
+            >
+            for more detail.
+          </p>
+          <p class="is-size-5">Infinite Query Logic</p>
           <script src="https://gist.github.com/Willie-The-Lord/1522c03efbeed7067e0f8c21c9230012.js"></script>
-
+          <p class="is-size-5">User Interface of the post list</p>
+          <script src="https://gist.github.com/Willie-The-Lord/909d51434ad3910ce3b284bee7e1f0ee.js"></script>
+          <p class="is-size-5">
+            The browser should display something like this:
+          </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
             <figure class="image column is-two-thirds">
               <image src="./figures/post12/figure2.png" />
@@ -72,30 +126,78 @@
 
         <p class="is-size-3">Mutating Data</p>
         <div class="box content">
-          <p>YYY</p>
-        </div>
+          <p>Here we use TodoList instead of PostList.</p>
+          <p>Let's walk through some key components:</p>
+          <ul>
+            <li>Inside the TodoForm component, initialize a queryClient.</li>
+            <li>
+              Use the <strong>useMutation hook</strong> to create a mutation
+              function called addTodo, which will handle adding a new todo item.
+            </li>
+            <li>
+              Configure the addTodo mutation with a mutationFn that sends a POST
+              request to "https://jsonplaceholder.typicode.com/todos" with the
+              provided todo data and returns the response data.
+            </li>
+            <li>
+              Specify an <strong>onSuccess callback</strong> for the addTodo
+              mutation, which updates the query data for the "todos" key and
+              clears the input field.
+            </li>
+            <li>
+              Create a reference using the <strong>useRef hook</strong>, which
+              will be used to access the input element.
+            </li>
+          </ul>
 
-        <p class="is-size-3">XXX</p>
-        <div class="box content">
+          <script src="https://gist.github.com/Willie-The-Lord/a7f83d67491af96fd61925a3add812ec.js"></script>
+          <p>Add test data to the list.</p>
           <div class="is-flex is-justify-content-center is-align-items-center">
-            <figure class="image column is-one-third">
-              <image src="./figure" />
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post12/figure3.png" />
             </figure>
           </div>
-          <p>YYY</p>
+          <p>Display an error message when an error occurs.</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post12/figure4.png" />
+            </figure>
+          </div>
         </div>
 
         <p class="is-size-3">Conclusion</p>
         <div class="box level content">
-          <p>YYY</p>
+          <p>
+            React Query simplifies pagination, infinite querying, and mutations,
+            which are common scenarios when working with user interfaces and
+            retrieving data from an API.
+          </p>
         </div>
 
         <p class="is-size-3">Source</p>
         <div class="box content">
           <ul style="padding-bottom: 20px">
             <li>
-              <a href="XXX" target="_blank"
-                >YYY <i class="fa-solid fa-arrow-up-right-from-square"></i
+              <a
+                href="https://tanstack.com/query/v4/docs/react/reference/useQuery"
+                target="_blank"
+                >useQuery <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://tanstack.com/query/v4/docs/react/guides/infinite-queries"
+                target="_blank"
+                >useInfiniteQuery
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://tanstack.com/query/v4/docs/react/reference/useMutation"
+                target="_blank"
+                >useMutation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </li>
           </ul>
@@ -114,7 +216,7 @@
           >
           ❤️
         </p>
-        <p>Last update: <strong>XXX, 2023</strong></p>
+        <p>Last update: <strong>Jul 16, 2023</strong></p>
       </div>
     </footer>
 
