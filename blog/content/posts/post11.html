@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog | System Design] Scaling a Web Application</title>
+    <title>Blog | [System Design] Scaling a Web Application</title>
     <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
 
     <link
@@ -28,43 +28,201 @@
             class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
           >
             <h1 class="title has-text-centered">
-              System Design] Scaling a Web Application
+              [System Design] Scaling a Web Application
             </h1>
           </div>
         </div>
 
         <hr />
-        <p class="is-size-3">Objectives</p>
+        <p class="is-size-3">Background</p>
         <div class="box level content">
-          <p>YYY</p>
+          <p>
+            System Design Notes from
+            <a
+              href="https://books.apple.com/us/book/system-design-interview-an-insiders-guide/id1529004921"
+              target="_blank"
+              >System Design Interview By Alex Xu</a
+            >
+          </p>
         </div>
 
-        <p class="is-size-3">Conclusion</p>
-        <div class="box level content">
-          <p>YYY</p>
+        <p class="is-size-3">Single Server Setup</p>
+        <div class="box content">
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post11/figure1.png" />
+            </figure>
+          </div>
+          <ul>
+            <li>
+              Users access the website by entering the domain name in their web
+              browser.
+            </li>
+            <li>
+              The Domain Name System (DNS) translates the domain name into the
+              corresponding IP address.
+            </li>
+            <li>
+              Once the IP address is obtained, HTTP requests are sent to the web
+              server.
+            </li>
+            <li>
+              The web server responds by returning HTML pages or JSON responses
+              for rendering.
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Load Balancer</p>
+        <div class="box content">
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post11/figure2.jpg" />
+            </figure>
+          </div>
+          <ul>
+            <li>
+              Users connect to the public IP of the load balancer, which acts as
+              a gateway to the web servers. Direct access to the web servers by
+              clients is no longer possible.
+            </li>
+            <li>
+              To enhance security, communication between the servers utilizes
+              private IPs. Private IPs are only reachable within the same
+              network and are not accessible over the internet.
+            </li>
+            <li>
+              In the event that server 1 becomes offline, all traffic is
+              automatically routed to server 2. This ensures the website remains
+              accessible and prevents downtime.
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Database Replication</p>
+        <div class="box content">
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post11/figure3.jpg" />
+            </figure>
+          </div>
+          <ul>
+            <li>
+              A master database typically handles write operations exclusively.
+              It is responsible for receiving and processing commands such as
+              insertions, deletions, and updates.
+            </li>
+            <li>
+              On the other hand, a slave database receives copies of the data
+              from the master database and is designed to support read
+              operations. It does not allow direct data modification commands.
+            </li>
+            <li>
+              To perform any data-modifying actions, such as inserts, deletes,
+              or updates, it is necessary to send those commands to the master
+              database. The slave database is primarily used for retrieving data
+              and performing read operations.
+            </li>
+          </ul>
+          <p class="is-size-5">Advantages</p>
+          <ul>
+            <li>
+              <strong>Enhanced Performance:</strong> The master-slave model
+              optimizes performance by centralizing all write and update
+              operations in the master nodes, while distributing read operations
+              across slave nodes. This approach enables concurrent processing of
+              a higher volume of queries, resulting in improved performance.
+            </li>
+            <li>
+              <strong>Enhanced Reliability:</strong> In the event of a natural
+              disaster, such as a typhoon or an earthquake, the master-slave
+              model ensures data preservation. With data replicated across
+              multiple locations, you can rest assured that your data remains
+              safe, minimizing the risk of data loss.
+            </li>
+            <li>
+              <strong>Increased Availability:</strong> Through data replication
+              across different locations, your website maintains high
+              availability even if a particular database server goes offline.
+              This redundancy allows you to access data stored in alternative
+              database servers, ensuring uninterrupted operation of your
+              website.
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Cache</p>
+        <div class="box content">
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post11/figure4.jpg" />
+            </figure>
+          </div>
+          <ul>
+            <li>
+              A cache is a temporary storage area that stores the results of
+              resource-intensive or commonly accessed data in memory, allowing
+              subsequent requests to be served faster.
+            </li>
+            <li>
+              When a request is received, a web server initially checks if the
+              cache contains the desired response. If it does, the server
+              directly sends the cached data to the client. If the response is
+              not available in the cache, the server queries the database, saves
+              the response in the cache, and then sends it back to the client.
+            </li>
+          </ul>
+          <p class="is-size-5">Considerations</p>
+          <ul>
+            <li>
+              Use caching when data is frequently read but infrequently
+              modified. Cached data is stored in volatile memory, so it's not
+              ideal for persisting important data.
+            </li>
+            <li>
+              Implement an expiration policy to remove expired data from the
+              cache, balancing the expiration date to avoid excessive reloading
+              or stale data.
+            </li>
+            <li>
+              Ensuring consistency between the data store and cache can be
+              challenging, especially when scaling across multiple regions.
+            </li>
+            <li>
+              Mitigate failures by employing multiple cache servers across
+              different data centers to avoid a single point of failure.
+              Overprovision memory to accommodate increased usage.
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Content delivery network (CDN)</p>
+        <div class="box content">
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post11/figure5.jpg" />
+            </figure>
+          </div>
+          <p class="is-size-5">What is CDN?</p>
+          <p>
+            A CDN (Content Delivery Network) is a network of distributed servers
+            used to deliver static content such as images, videos, CSS, and
+            JavaScript files.
+          </p>
+          <p class="is-size-5">How CDN works?</p>
+          <p>
+            At a high level, when a user visits a website, the closest CDN
+            server to the user delivers the static content. The farther the user
+            is from the CDN server, the slower the website loads.
+          </p>
         </div>
 
         <p class="is-size-3">Source</p>
         <div class="box content">
-          <div class="is-flex is-justify-content-center is-align-items-center">
-            <figure class="image column is-one-third">
-              <image src="./figure" />
-            </figure>
-          </div>
-          <p>YYY</p>
-        </div>
-
-        <p class="is-size-3">XXX</p>
-        <div class="box content">
-          <p>YYY</p>
-        </div>
-
-        <p class="is-size-3">XXX</p>
-        <div class="box content">
           <ul style="padding-bottom: 20px">
             <li>
-              <a href="XXX" target="_blank"
-                >YYY <i class="fa-solid fa-arrow-up-right-from-square"></i
+              <a href="https://github.com/G33kzD3n/Catalogue" target="_blank"
+                >GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </li>
           </ul>
