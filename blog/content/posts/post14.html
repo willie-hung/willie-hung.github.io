@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Persisting data using Docker Volume and Bind Mount</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Persisting data using Docker Volume and Bind Mount
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>Learn how Docker persisting data.</p>
+        </div>
+
+        <p class="is-size-3">Tech Stack</p>
+        <div class="box content">
+          <div
+            class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-align-items-baseline pb-2"
+          >
+            <div class="buttons">
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                  />
+                </span>
+                <span>Docker</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg"
+                  />
+                </span>
+                <span>SQLite</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="is-size-3">Persist data</p>
+        <div class="box content">
+          <p class="is-size-5">The container’s filesystem</p>
+          <p>
+            When a container runs, it uses the various layers from an image for
+            its filesystem. Each container also gets its own “scratch space” to
+            create/update/remove files. Any changes won’t be seen in another
+            container, even if they’re using the same image.
+          </p>
+          <p class="is-size-5">Container volumes</p>
+          <p>
+            Volumes provide the ability to
+            <strong
+              >connect specific filesystem paths of the container back to the
+              host machine.</strong
+            >
+            If you mount a directory in the container, changes in that directory
+            are also seen on the host machine. If you mount that same directory
+            across container restarts, you’d see the same files. Check out the
+            <a href="https://docs.docker.com/storage/volumes/" target="_blank"
+              >official documentation</a
+            >
+            for a more detailed explanation.
+          </p>
+          <p class="is-size-5">Persist todo data</p>
+          <p>
+            By default, the todo app stores its data in a
+            <strong>SQLite database</strong> at /etc/todos/todo.db in the
+            container’s filesystem. It’s simply a relational database that
+            stores all the data in a single file. While this isn’t the best for
+            large-scale applications, it works for small demos.
+          </p>
+          <p>- Create a volume and start the container</p>
+          <pre>
+docker volume create todo-db
+          </pre>
+          <p>
+            - Stop and remove the todo app container once again, as it is still
+            running without using the persistent volume in the prevous blog
+            post.
+          </p>
+          <p>
+            - Start the todo app container, but add the
+            <strong>--mount option</strong> to specify a volume mount. Give the
+            volume a name, and mount it to /etc/todos in the container, which
+            <strong>captures all files created at the path.</strong>
+          </p>
+          <pre>
+docker run -dp 127.0.0.1:3000:3000 --mount type=volume,src=todo-db,target=/etc/todos getting-started
+          </pre>
+          <p>- Verify that the data persists</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post14/figure1.png" />
+            </figure>
+          </div>
+          <p>- Dive into the volume</p>
+          <p>
+            Use the inspect command to find out where Docker stores your data
+            when using a volume.
+          </p>
+          <pre>
+docker volume inspect todo-db
+          </pre>
+          <p>You should see something like this in your console:</p>
+          <script src="https://gist.github.com/Willie-The-Lord/f2813395d289af27dfff982f7e2c6aea.js"></script>
+        </div>
+
+        <p class="is-size-3">Docker volumes vs. Bind Mounts</p>
+        <div class="box content">
+          <p>
+            Docker provides <strong>volumes</strong> and
+            <strong>bind mounts</strong>, two mechanisms for persisting data in
+            your Docker container. Check out a more detailed comparison in this
+            <a
+              href="https://blog.logrocket.com/docker-volumes-vs-bind-mounts/"
+              target="_blank"
+              >blog post</a
+            >.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post14/figure3.png" />
+            </figure>
+          </div>
+          <p class="is-size-5">
+            <a
+              href="https://docs.docker.com/storage/bind-mounts/"
+              target="_blank"
+              >Bind Mounts</a
+            >
+          </p>
+          <p>
+            Bind mounts will mount a file or directory on to your container from
+            your host machine, which you can then reference via its absolute
+            path.
+          </p>
+          <p class="is-size-5">
+            <a href="https://docs.docker.com/storage/volumes/" target="_blank"
+              >Docker Volumes</a
+            >
+          </p>
+          <p>
+            Docker volumes are completely handled by Docker itself and therefore
+            independent of both your directory structure and the OS of the host
+            machine. When you use a volume, a new directory is created within
+            Docker’s storage directory on the host machine, and Docker manages
+            that directory’s contents. Volumes are easier to back up or migrate
+            than bind mounts.
+          </p>
+        </div>
+
+        <p class="is-size-3">Using Bind Mounts</p>
+        <div class="box content">
+          <p>
+            A bind mount is another type of mount, which lets you
+            <strong
+              >share a directory from the host’s filesystem into the
+              container.</strong
+            >
+            When working on an application, you can use a bind mount to mount
+            source code into the container. The container sees the changes you
+            make to the code immediately, as soon as you save a file. This means
+            that you can run processes in the container that watch for
+            filesystem changes and respond to them.
+          </p>
+          <p class="is-size-5">Development containers</p>
+          <p>
+            Using bind mounts is common for local development setups. The
+            advantage is that the development machine doesn’t need to have all
+            of the build tools and environments installed. With a single docker
+            run command, Docker pulls dependencies and tools.
+          </p>
+          <p>- Run your app in a development container</p>
+          <pre>
+docker run -dp 127.0.0.1:3000:3000 \
+            -w /app --mount type=bind,src="$(pwd)",target=/app \
+            node:18-alpine \
+            sh -c "yarn install && yarn run dev"
+        </pre
+          >
+          <p>
+            When reviewing the Docker log, you will likely come across something
+            similar to the following output. This is due to the inclusion of
+            <a href="https://www.npmjs.com/package/nodemon" target="_blank"
+              >nodemon</a
+            >
+            in the shipped application, which serves as a convenient monitoring
+            script for Node.js app development purposes. Check out the
+            <a href="https://nodemon.io/" target="_blank"
+              >nodemon official documentation</a
+            >
+            for more information.
+          </p>
+          <pre>
+docker logs -f CONTAINER_ID
+          </pre>
+          <pre>
+$ nodemon src/index.js
+            [nodemon] 2.0.20
+            [nodemon] to restart at any time, enter `rs`
+            [nodemon] watching path(s): *.*
+            [nodemon] watching extensions: js,mjs,json
+            [nodemon] starting `node src/index.js`
+            Using sqlite database at /etc/todos/todo.db
+            Listening on port 3000
+            </pre
+          >
+          <p>- Develop your app with the development container</p>
+          <p>
+            In the src/static/js/app.js file, on line 109, change the “Add Item”
+            button to simply say “Add” (You can change whatever you want, but we
+            are just changing the text of the button for this example):
+          </p>
+          <pre>- {submitting ? 'Adding...' : 'AddItem'}</pre>
+          <pre>+ {submitting ? 'Adding...' : 'Add'}</pre>
+
+          <p>
+            Each time you make a change and save a file, the nodemon process
+            restarts the app inside the container automatically and bind mount
+            persist your data.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post14/figure2.png" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>
+            Although Docker provides two mechanisms for persisting data in your
+            Docker container,
+            <strong>Volumes are the preferred mechanism</strong> for persisting
+            data generated by and used by Docker containers.Volumes have several
+            advantages over bind mounts:
+          </p>
+          <ul>
+            <li>Volumes are easier to back up or migrate than bind mounts.</li>
+            <li>
+              Volumes can be more safely shared among multiple containers.
+            </li>
+            <li>
+              New volumes can have their content pre-populated by a container.
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a href="https://docs.docker.com/" target="_blank"
+                >Docker documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 18, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
