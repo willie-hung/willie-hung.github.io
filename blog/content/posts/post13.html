@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Containerizing a Node.js app using Docker</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Containerizing a Node.js app using Docker
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>
+            Learn how to containerize an application and share it on Dockerhub.
+          </p>
+        </div>
+
+        <p class="is-size-3">Docker Image vs. Container</p>
+        <div class="box content">
+          <p>
+            I found a great explanation in
+            <a
+              href="https://circleci.com/blog/docker-image-vs-container/?utm_source=google&utm_medium=sem&utm_campaign=sem-google-dg--uscan-en-dsa-tROAS-auth-nb&utm_term=g_-_c__dsa_&utm_content=&gclid=Cj0KCQjwqs6lBhCxARIsAG8YcDiJcrERvi-TcPGcfNKRb9fD7_AkfhiYQMTw7jJbjfMvYv2kdYbxRs0aAkfOEALw_wcB"
+              target="_blank"
+              >CircleCI Blog</a
+            >: A Docker image executes code in a Docker container. You add a
+            writable layer of core functionalities on a Docker image to create a
+            running container.
+            <strong
+              >Think of a Docker container as a running image instance.</strong
+            >
+            You can create many containers from the same image, each with its
+            own unique data and state.
+          </p>
+        </div>
+
+        <p class="is-size-3">Get started</p>
+        <div class="box content">
+          <p>Clone the start project provided by Docker</p>
+          <pre>git clone https://github.com/docker/getting-started.git</pre>
+        </div>
+
+        <p class="is-size-3">Build the image</p>
+        <div class="box content">
+          <p>
+            I will not walk through this full-stack node.js project. Just keep
+            in mind that it is a full-stack node.js project including a frontend
+            and a backend.
+          </p>
+          <p class="is-size-5">Create Dockerfile</p>
+          <p>
+            In the app directory, the same location as the package.json file,
+            create a file named Dockerfile.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/ce77f1c85d7985b676cd5ecbed6b7f4c.js"></script>
+          <p>Let's walk through the Dockerfile step by step:</p>
+          <ul>
+            <li>
+              <strong>FROM node:18-alpine:</strong> Specifies the base image for
+              the Docker container. It uses the official node image with the tag
+              18-alpine, which is a lightweight version based on Alpine Linux.
+              This image provides a pre-configured environment for running
+              Node.js applications. Checkout the
+              <a
+                href="https://hub.docker.com/layers/library/node/18-alpine/images/sha256-bf6c61feabc1a1bd565065016abe77fa378500ec75efa67f5b04e5e5c4d447cd?context=explore"
+                target="_blank"
+                >spec</a
+              >
+              on Docker Hub.
+            </li>
+            <li>
+              <strong>WORKDIR /app:</strong> Sets the working directory inside
+              the container to /app. It means that any subsequent commands will
+              be executed relative to this directory.
+            </li>
+            <li>
+              <strong>COPY . .:</strong> Copies the contents of the current
+              directory (where the Dockerfile is located) into the /app
+              directory of the container. The first . represents the source
+              directory on the host machine, and the second . represents the
+              destination directory in the container (in this case, /app).
+            </li>
+            <li>
+              <strong>RUN yarn install --production:</strong> Runs the command
+              yarn install --production inside the container during the
+              <strong>image build process</strong>. It installs the dependencies
+              specified in the package.json file of the application. The
+              --production flag ensures that only production dependencies are
+              installed, excluding any development dependencies.
+            </li>
+            <li>
+              <strong>CMD ["node", "src/index.js"]:</strong> Sets the default
+              command to run when the container is started. It specifies that
+              the node command should be executed with the argument
+              src/index.js. This command launches the Node.js application,
+              assuming that the entry point is located at src/index.js.
+            </li>
+            <li>
+              <strong>EXPOSE 3000:</strong> Exposes port 3000 from the container
+              to the host machine. It doesn't actually publish the port, but
+              rather serves as documentation for users or developers to know
+              which port the application inside the container is expected to
+              listen on.
+            </li>
+          </ul>
+          <p class="is-size-5">Build the image</p>
+          <pre>docker build -t getting-started .</pre>
+          <p>
+            The <strong>docker build </strong>command uses the Dockerfile to
+            build a new container image. And the <strong>-t flag</strong> tags
+            your image. Think of this simply as a human-readable name for the
+            final image. Since you named the image getting-started, you can
+            refer to that image when you run a container.
+          </p>
+          <p class="is-size-5">Observation</p>
+          <p>
+            During the build process, you might have observed that Docker
+            fetched multiple <strong>"layers"</strong>. These layers are a
+            result of the instruction in the Dockerfile specifying the use of
+            the node:18-alpine image as the base. Since the node:18-alpine image
+            was not present on your local machine, Docker had to download it
+            from a remote repository.
+          </p>
+        </div>
+
+        <p class="is-size-3">Start an app container</p>
+        <div class="box content">
+          <p>
+            Now that you have an image, you can
+            <strong>run the application in a container.</strong> To do so, you
+            will use the docker run command.
+          </p>
+          <pre>
+docker run -dp 127.0.0.1:3000:3000 getting-started
+          </pre>
+          <p>
+            Open your web browser to http://localhost:3000. You should see your
+            app.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post13/figure1.png" />
+            </figure>
+          </div>
+
+          <p class="is-size-5">Update the application</p>
+          <p>
+            If you make changes to the code of your application and want to
+            <strong>run a new container with the updated code</strong>, it's
+            recommended to stop and remove the old container before starting a
+            new one. This ensures that you have a clean and up-to-date
+            environment for your application.
+          </p>
+          <p>Remove old container</p>
+          <pre>
+docker stop YOUR_CONTAINER_ID // Use the docker stop command to stop the container. 
+docker rm YOUR_CONTAINER_ID // Once the container has stopped, you can remove it by using the docker rm command.
+          </pre>
+          <p>Start the updated container and run:</p>
+          <pre>
+docker run -dp 127.0.0.1:3000:3000 getting-started
+          </pre>
+        </div>
+
+        <p class="is-size-3">Share the application</p>
+        <div class="box content">
+          <ul>
+            <li>
+              Create a repo on
+              <a href=" https://hub.docker.com/" target="_blank">docker Hub</a>
+            </li>
+            <li>Name the repo: <strong>getting-started-test</strong></li>
+            <li>Login the docker hub</li>
+            <li>
+              Use the docker tag command to give the getting-started image a new
+              name.
+            </li>
+            <pre>
+docker tag getting-started YOUR-USER-NAME/getting-started-test</pre
+            >
+            <li>Push the application to the remote repo</li>
+            <pre>docker push YOUR-USER-NAME/getting-started-test</pre>
+          </ul>
+          <p>You should see your application on docker hub now:</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post13/figure2.png" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>
+            Building a Docker image is a quick and easy process that offers
+            numerous benefits, such as:
+          </p>
+
+          <ul>
+            <li>
+              <strong>Portability:</strong> Docker images can run consistently
+              across different environments, making it easier to deploy and
+              scale applications.
+            </li>
+            <li>
+              <strong>Isolation:</strong> Each Docker container operates in its
+              own isolated environment, ensuring that applications and their
+              dependencies remain separate and do not interfere with each other.
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a href="https://docs.docker.com/" target="_blank"
+                >Docker Documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 17, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
