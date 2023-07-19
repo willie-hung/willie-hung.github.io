@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog | XXX</title>
+    <title>Blog | Simple Chat Application using Socket.io</title>
     <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
 
     <link
@@ -27,42 +27,290 @@
           <div
             class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
           >
-            <h1 class="title has-text-centered">XXX</h1>
+            <h1 class="title has-text-centered">
+              Simple Chat Application using Socket.io
+            </h1>
           </div>
         </div>
 
         <hr />
         <p class="is-size-3">Objectives</p>
         <div class="box level content">
-          <p>YYY</p>
+          <p>
+            Learn how to create a simple real-time chat app using socket.io.
+          </p>
         </div>
 
-        <p class="is-size-3">XXX</p>
+        <p class="is-size-3">Tech Stack</p>
         <div class="box content">
-          <p>YYY</p>
+          <div
+            class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-align-items-baseline pb-2"
+          >
+            <div class="buttons">
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                  />
+                </span>
+                <span>TypeScript</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg"
+                  />
+                </span>
+                <span>Socket.io</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                  />
+                </span>
+                <span>Node.js</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+                  />
+                </span>
+                <span>Express.js</span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <p class="is-size-3">XXX</p>
+        <p class="is-size-3">What is WebSocket?</p>
         <div class="box content">
+          <p>
+            WebSocket is a realtime technology that enables bidirectional,
+            full-duplex communication between client and server over a
+            persistent, single-socket connection. The WebSocket connection is
+            kept alive for as long as needed (in theory, it can last forever),
+            allowing the server and the client to send data at will, with
+            minimal overhead. To checkout more details, visit
+            <a href="https://ably.com/topic/websockets" target="_blank">here</a
+            >.
+          </p>
+        </div>
+
+        <p class="is-size-3">How do WebSockets work?</p>
+        <div class="box content">
+          <p>
+            In a nutshell, working with WebSockets involves three main steps:
+          </p>
+          <ul>
+            <li>
+              <strong>Opening a WebSocket connection:</strong> The process of
+              establishing a WebSocket connection is known as the opening
+              handshake, and consists of an HTTP request/response exchange
+              between the client and the server.
+            </li>
+            <li>
+              <strong>Data transmission over WebSockets:</strong> After a
+              successful WebSocket handshake, the client and server can exchange
+              messages (frames) over the persistent WebSocket connection.
+              WebSocket messages may contain string (plain text) or binary data.
+            </li>
+            <li>
+              <strong>Closing a WebSocket connection:</strong> Once the
+              persistent WebSocket connection has served its purposes, it can be
+              terminated; both the client and the server can initiate the
+              closing handshake by sending a close message.
+            </li>
+          </ul>
+          <p>
+            Take a look at the figure below, which will help you grasp the
+            concept more easily:
+          </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
-            <figure class="image column is-one-third">
-              <image src="./figure" />
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post15/figure1.png" />
             </figure>
           </div>
-          <p>YYY</p>
+        </div>
+
+        <p class="is-size-3">Use Socket.io</p>
+        <div class="box content">
+          <p class="is-size-5">What is Socket.io</p>
+          <p>
+            Socket.IO is a library that enables low-latency, bidirectional and
+            event-based communication between a client and a server.
+          </p>
+          <p>
+            It is built on top of the
+            <a href="https://en.wikipedia.org/wiki/WebSocket" target="_blank"
+              >WebSocket protocol</a
+            >
+            and provides additional guarantees like fallback to HTTP
+            long-polling or automatic reconnection.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post15/figure4.png" />
+            </figure>
+          </div>
+          <p>
+            We'll create a basic chat application to demonstrate how socket.io
+            works and explore it's convenient api.
+          </p>
+          <p id="client-server">
+            <strong>For the client side,</strong> I recommend include the client
+            bundle from a CDN. Checkout the
+            <a
+              href="https://socket.io/docs/v4/client-installation/"
+              target="_blank"
+              >Client Installation here</a
+            >.
+          </p>
+          <p>
+            <strong>For the server side,</strong>
+            <a href="https://nodejs.org/en" target="_blank">node</a> and
+            <a href="https://expressjs.com/" target="_blank">express</a> are
+            required. Checkout the
+            <a
+              href="https://socket.io/docs/v4/server-installation/"
+              target="_blank"
+              >Server Installation here</a
+            >.
+          </p>
+        </div>
+
+        <p class="is-size-3">Demo</p>
+        <div class="box content">
+          <p class="is-size-5">The web framework</p>
+          <p>
+            Our initial objective is to create a basic HTML webpage that
+            includes a form and a list of messages. To accomplish this, we will
+            utilize the Node.js web framework called
+            <a href="https://expressjs.com/" target="_blank">Express</a>.
+          </p>
+          <p class="is-size-5">Create a package.json</p>
+          <script src="https://gist.github.com/Willie-The-Lord/6e34ffd0cc760a80958ba0e182064ba7.js"></script>
+          <p class="is-size-5">Install express</p>
+          <pre>npm install express@4</pre>
+          <p class="is-size-5">Install typeScript</p>
+          <pre>npm install typescript --save-dev  </pre>
+          <p class="is-size-5">Create a index.ts file</p>
+          <script src="https://gist.github.com/Willie-The-Lord/f17c1a8f599cf17316aa1fbbc9a110ee.js"></script>
+          <p>
+            The <strong>app.get()</strong> method is used to define a route for
+            the root URL ("/") and specifies a callback function that handles
+            the request and response objects (req and res). Inside the callback
+            function, the server responds with the HTML string "Hello world"
+            using the res.send() method.
+          </p>
+          <p class="is-size-5">Execute the code</p>
+          <pre>ts-node index.ts</pre>
+          <p>You should see something similar on your browser:</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post15/figure2.png" />
+            </figure>
+          </div>
+          <p class="is-size-5">Serving HTML</p>
+          <p>
+            We don't want to serve all HTMLs in a single file. We can decouple
+            it to an index.html file.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/1de091796dfab91e786a18143d3ce5c7.js"></script>
+          <p class="is-size-5">Create index.html</p>
+          <p>
+            As this is a demo app, I will include the styling directly within
+            the HTML file for simplicity.
+          </p>
+          <p>
+            This is a straightforward webpage that features an input text field
+            and a submit button.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/9c0cdb627233726021ff060b0a70ca42.js"></script>
+          <p class="is-size-5">Integrating Socket.IO</p>
+          Socket.IO is composed of two parts, I've mentioned it
+          <a href="#client-server">earlier</a>.
+          <ul>
+            <li>
+              A server that integrates with (or mounts on) the Node.JS HTTP
+              Server
+              <a href="https://github.com/socketio/socket.io" target="_blank"
+                >socket.io</a
+              >
+            </li>
+            <li>
+              A client library that loads on the browser side
+              <a
+                href="https://github.com/socketio/socket.io-client"
+                target="_blank"
+                >socket.io-client</a
+              >
+            </li>
+          </ul>
+          <p class="is-size-5">Install the module</p>
+          <pre>npm install socket.io</pre>
+          <p class="is-size-5">For the server side, we modify index.ts</p>
+          <script src="https://gist.github.com/Willie-The-Lord/2f2872d4cd132d80ab7116f1d0e497e4.js"></script>
+          <ul>
+            <li>
+              <strong>io.on("connection", ...)</strong> listens for a
+              "connection" event, which occurs when a client establishes a
+              WebSocket connection with the server.
+            </li>
+            <li>
+              <strong>socket.on("chat message", ...)</strong> listens for a
+              "chat message" event sent by a client.
+            </li>
+            <li>
+              <strong>io.emit("chat message", msg)</strong> broadcasts the "chat
+              message" event and its payload (msg) to all connected sockets,
+              including the socket that sent the message.
+            </li>
+          </ul>
+          <p class="is-size-5">For the client side, we modify index.html</p>
+          <p>
+            I load the <strong>socket.io-client</strong> in the script tag using
+            CDN. And then I add simple Javascript code so that when the user
+            types in a message, the server gets it as a chat message event. And
+            on the client side when we capture a chat message event we’ll
+            include it in the page.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/d10f629c9f195c71dde89d2dc8b1ce27.js"></script>
+          <p>
+            Execute index.ts and you can see your application running on port
+            3000. And that's a wrap! I hope you enjoy it!
+          </p>
+
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post15/figure3.png" />
+            </figure>
+          </div>
         </div>
 
         <p class="is-size-3">Conclusion</p>
         <div class="box content">
-          <p>YYY</p>
+          <p>
+            In conclusion, Socket.io emerges as a game-changer in enabling
+            instant, bidirectional communication between servers and clients. By
+            <strong>eliminating the need for manual page refreshing</strong>, it
+            empowers <strong>real-time updates</strong>, enhancing user
+            experiences and improving the performance of web applications.
+          </p>
         </div>
 
         <p class="is-size-3">Source</p>
         <div class="box content">
           <ul style="padding-bottom: 20px">
             <li>
-              <a href="https://docs.docker.com/" target="_blank"
-                >Docker documentation
+              <a href="https://socket.io/docs/v4/" target="_blank"
+                >Socket.io documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://ably.com/topic/websockets" target="_blank"
+                >What is WebSocket?
                 <i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </li>
@@ -82,7 +330,7 @@
           >
           ❤️
         </p>
-        <p>Last update: <strong>XXX, 2023</strong></p>
+        <p>Last update: <strong>Jul 19, 2023</strong></p>
       </div>
     </footer>
 
