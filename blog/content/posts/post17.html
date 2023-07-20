@@ -36,7 +36,70 @@
         <hr />
         <p class="is-size-3">Objectives</p>
         <div class="box level content">
-          <p>YYY</p>
+          <p>
+            Learn how Auth0 authorization works and implement it in a demo
+            Next.js project.
+          </p>
+        </div>
+
+        <p class="is-size-3">Authorization Code Flow</p>
+        <div class="box content">
+          <p>
+            Before the demo, we need to know how authorization code flow works
+            in a web application integrated with Auth0.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post17/figure5.png" />
+            </figure>
+          </div>
+          <p class="is-size-5">
+            Let's walk through the steps provided by
+            <a
+              href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow"
+              target="_blank"
+              >Auth0</a
+            >
+          </p>
+          <ol>
+            <li>User selects Login within application.</li>
+            <li>
+              Auth0's SDK redirects user to Auth0 Authorization Server (
+              /authorize endpoint).
+            </li>
+            <li>
+              Auth0 Authorization Server redirects user to login and
+              authorization prompt.
+            </li>
+            <li>
+              User authenticates using
+              <strong>one of the configured login options</strong>, and may see
+              a consent prompt listing the permissions Auth0 will give to the
+              application.
+            </li>
+            <li>
+              Auth0 Authorization Server redirects user back to application with
+              single-use authorization code.
+            </li>
+            <li>
+              Auth0's SDK sends authorization code, application's client ID, and
+              application's credentials, such as client secret or Private Key
+              JWT, to Auth0 Authorization Server ( /oauth/token endpoint).
+            </li>
+            <li>
+              Auth0 Authorization Server verifies authorization code,
+              application's client ID, and application's credentials.
+            </li>
+            <li>
+              Auth0 Authorization Server responds with an ID token and access
+              token (and optionally, a refresh token)
+            </li>
+            <li>
+              Application can use the access token to call an API to access
+              information about the user.
+            </li>
+            <li>API responds with requested data.</li>
+          </ol>
         </div>
 
         <p class="is-size-3">Demo</p>
@@ -76,26 +139,27 @@
           <p class="is-size-5">Install the Auth0 Next.js SDK</p>
           <pre>npm install @auth0/nextjs-auth0</pre>
           <p class="is-size-5">Add credentials</p>
-          <p>
-            Swap these fields with your information in <i>.env.local</i>. You
-            should see your information in the project settings
-          </p>
+          <p>Swap these fields with your information in <i>.env.local</i>.</p>
           <script src="https://gist.github.com/Willie-The-Lord/5ac80949809f69cb6b16c83800ff921f.js"></script>
-          <p>The project setting page should look similar to this:</p>
+          <p>
+            You should see your information in the project settings. The project
+            setting page should look similar to this:
+          </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
             <figure class="image column is-two-thirds">
               <image src="./figures/post17/figure2.png" />
             </figure>
           </div>
+
+          <p class="is-size-5">Run the app</p>
           <p>
-            This next.js starter project handles most of the SDK configuration.
-            Feel free to checkout the
+            Notice that this next.js starter project handles most of the SDK
+            configuration. Feel free to checkout the
             <a href="https://github.com/auth0/nextjs-auth0" target="_blank"
               >auth0 documentation</a
             >
-            for more information about the SDK.
+            for more information about the SDK. Now, you can run the app using:
           </p>
-          <p class="is-size-5">Run the app</p>
           <pre>npm run dev</pre>
           <p>You can see the app hosting on port 3000.</p>
           <div class="is-flex is-justify-content-center is-align-items-center">
@@ -104,11 +168,11 @@
             </figure>
           </div>
           <p>
-            When you press the login button, it will take you to the login page.
-            And you can login with your account. After a successful login, you
-            will be redirected to the home page. You can see your profile on the
-            top right corner. That's it! You have successfully integrated a
-            Next.js application with Auth0.
+            When you press the <strong>login button</strong>, it will take you
+            to the login page. And you can login with your account. After a
+            successful login, you will be redirected to the home page. You can
+            see your profile on the top right corner. That's it! You have
+            successfully integrated a Next.js application with Auth0.
           </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
             <figure class="image column is-one-third">
