@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Integrating Auth0 with a Next.js Application</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Integrating Auth0 with a Next.js Application
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>YYY</p>
+        </div>
+
+        <p class="is-size-3">Demo</p>
+        <div class="box content">
+          <p class="is-size-5">Sign Up</p>
+          <p>
+            Sign up <a href="https://auth0.com/" target="_blank">auth0</a> and
+            create an account.
+          </p>
+          <p class="is-size-5">Create an application (Next.js)</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post17/figure1.png" />
+            </figure>
+          </div>
+          <p class="is-size-5">
+            Download the starter project
+            <a
+              href="https://github.com/auth0-samples/auth0-nextjs-samples/tree/main/Sample-01"
+              target="_blank"
+              >here.</a
+            >
+          </p>
+          <p>Install all the dependecies using <i>npm install</i>.</p>
+          <p class="is-size-5">Configure Callback URLs</p>
+          <p>
+            A callback URL is a URL in your application where Auth0 redirects
+            the user after they have authenticated. You should add it in your
+            project settings.
+          </p>
+          <p class="is-size-5">Configure Logout URLs</p>
+          <p>
+            A logout URL is a URL in your application that Auth0 can return to
+            after the user has been logged out of the authorization server. You
+            should add it in your project settings too.
+          </p>
+          <p class="is-size-5">Install the Auth0 Next.js SDK</p>
+          <pre>npm install @auth0/nextjs-auth0</pre>
+          <p class="is-size-5">Add credentials</p>
+          <p>
+            Swap these fields with your information in <i>.env.local</i>. You
+            should see your information in the project settings
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/5ac80949809f69cb6b16c83800ff921f.js"></script>
+          <p>The project setting page should look similar to this:</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post17/figure2.png" />
+            </figure>
+          </div>
+          <p>
+            This next.js starter project handles most of the SDK configuration.
+            Feel free to checkout the
+            <a href="https://github.com/auth0/nextjs-auth0" target="_blank"
+              >auth0 documentation</a
+            >
+            for more information about the SDK.
+          </p>
+          <p class="is-size-5">Run the app</p>
+          <pre>npm run dev</pre>
+          <p>You can see the app hosting on port 3000.</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post17/figure3.png" />
+            </figure>
+          </div>
+          <p>
+            When you press the login button, it will take you to the login page.
+            And you can login with your account. After a successful login, you
+            will be redirected to the home page. You can see your profile on the
+            top right corner. That's it! You have successfully integrated a
+            Next.js application with Auth0.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post17/figure4.png" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>
+            In conclusion, Auth0 simplifies the process of
+            <strong>adding authentication and identity management</strong> to
+            web applications. It also offers <strong>easy-to-use SDKs</strong>,
+            libraries, and plugins for various programming languages and
+            frameworks. In this post, I have demonstrated how to integrate Auth0
+            with a Next.js application. I hope you find this post helpful. Thank
+            you for reading! 😊
+          </p>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a href="https://auth0.com/docs" target="_blank"
+                >auth0 documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/auth0/nextjs-auth0/blob/main/EXAMPLES.md#basic-setup"
+                target="_blank"
+                >auth0-nextjs documentation (GitHub)
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 20, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
