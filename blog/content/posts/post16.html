@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Preserving and Resetting State in React</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Preserving and Resetting State in React
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>Learn how React manage states.</p>
+        </div>
+
+        <p class="is-size-3">State</p>
+        <div class="box content">
+          <p>
+            State is isolated between components. React keeps track of which
+            state belongs to which component
+            <strong>based on their place in the UI tree</strong>.
+          </p>
+        </div>
+
+        <p class="is-size-3">What is UI Tree?</p>
+        <div class="box content">
+          <p>
+            React makes UI trees from your JSX/TSX. Then React DOM updates the
+            browser DOM elements to match that UI tree.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post16/figure1.jpg" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">State is tied to a position in the tree</p>
+        <div class="box content">
+          <p>
+            When you assign state to a component, you may assume that the state
+            resides within the component itself. However, in reality, React
+            manages and stores the state. Each piece of state is associated with
+            the corresponding component based on its
+            <strong>position</strong> in the UI tree.
+          </p>
+          <p>Take a look at the code snippet below:</p>
+
+          <script src="https://gist.github.com/Willie-The-Lord/b9a2918cc04d884c4a649aa9bb8c85a7.js"></script>
+          <p>
+            There is only one Counter tsx, but it rendered at two different
+            positions. The state of the Counter component is tied to its place
+            in the UI tree. So they each have their own state (6 & 9).
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-fifth">
+              <image src="./figures/post16/figure2.png" />
+            </figure>
+          </div>
+          <p class="is-size-5">Delete the component</p>
+          <p>
+            However, if you stop rendering the component (for example, by
+            deleting it), its state will be <strong>completely removed</strong>. This occurs
+            because when React unmounts a component, it also destroys its state.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post16/figure6.png" />
+            </figure>
+          </div>
+          
+        </div>
+
+        <p class="is-size-3">
+          Same component at the same position preserves state
+        </p>
+        <div class="box content">
+          <p>
+            Checkout
+            <a
+              href="https://react.dev/learn/preserving-and-resetting-state#same-component-at-the-same-position-preserves-state"
+              target="_blank"
+              >React interactive demo</a
+            >. In the demo, When you tick or clear the checkbox, the counter state <strong>does not get reset</strong>. Whether isFancy is true or false, <strong>you always have a <i>Counter</i> as the first child of the div returned from the root App component</strong>:
+            <div class="is-flex is-justify-content-center is-align-items-center">
+              <figure class="image column is-one-third">
+                <image src="./figures/post16/figure3.png" />
+              </figure>
+            </div>
+          </p>
+          <p class="is-size-5">Pitfall</p>
+          <p>Remember that it’s <strong>the position in the UI tree</strong>—not in the JSX markup—that matters to React!</p>
+          
+          <p class="is-size-5">You should also aware that...</p>
+          <p>
+            Different components at the same position will reset state.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/840a67c207949c74caed5563f427fd4a.js"></script>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post16/figure4.jpg" />
+            </figure>
+          </div>
+          <p>Here, you switch between <strong>different component types (Counter -> p)</strong> at the same position. React removed the Counter from the UI tree and destroyed its state.</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post16/figure5.png" />
+            </figure>
+          </div>
+          <p class="is-size-5">To sum up</p>
+          <p> If you aim to maintain the state between re-renders, it is essential for <strong>the structure of your component tree to remain consistent</strong> from one render to another. If the structure changes, React will remove the component from the tree and, consequently, destroy its associated state.</p>
+        </div>
+
+        <p class="is-size-3">Resetting state at the same position</p>
+        <div class="box content">
+          <p>By default, React preserves the state of a component as long as it remains in the same position within its parent. This behavior aligns with the typical use case and is generally desired. However, there are situations where you might need to <strong>reset a component's state intentionally</strong>.</p>
+          <p class="is-size-5">Option 1: Rendering a component in different positions </p>
+          <p>Checkout this <a href="https://react.dev/learn/preserving-and-resetting-state#option-1-rendering-a-component-in-different-positions" target="_blank">interactive demo</a></p>
+          <p>This solution is convenient when you only have a few independent components rendered in the same place. In this example, you only have two, so it’s not a hassle to render both separately in the JSX.
+          </p>
+          <p class="is-size-5">Option 2: Resetting state with a key </p>
+          <p>Checkout this <a href="https://react.dev/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key" target="_blank">interactive demo</a></p>
+          <p>By specifying a key, React <strong>utilizes the key itself as a means of identifying the component's position</strong>, rather than relying on their order within the parent. Consequently, even if you render them in the same location in JSX, React recognizes them as two distinct counters. As a result, they will never share state since their keys serve as unique identifiers in the virtual DOM.</p>
+        </div>
+
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>
+            In React, each piece of state is associated with the corresponding component based on its  <strong>position</strong> in the UI tree. To maintain state between re-renders, it is crucial for the structure of your component tree to remain consistent across renders. If the structure changes, React will remove the component from the tree and, consequently, destroy its associated state. This is a breif summary of the article. If you want to know more, please check out the <a href="https://react.dev/learn/managing-state" target="_blank">React official documentation</a>. Hope you enjoy it!
+          </p>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a href="https://react.dev/learn/managing-state" target="_blank"
+                >React Documentation <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 20, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
