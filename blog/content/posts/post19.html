@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Code Splitting and Pre/Lazy Loading in Next.js</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Code Splitting and Pre/Lazy Loading in Next.js
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>
+            Learn how Next.js boosts web page loadings and enhances user
+            experience.
+          </p>
+        </div>
+
+        <p class="is-size-3">What is Code Splitting?</p>
+        <div class="box content">
+          <p>
+            Code splitting is the splitting of code into
+            <strong>various bundles or components</strong> which can then be
+            loaded on demand or in parallel. The primary objective is to enhance
+            the application's initial load time. For example in next.js, next.js
+            only load the necessary code to run each specific page. To learn
+            more about code splitting, checkout the MDN documentation
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Glossary/Code_splitting"
+              target="_blank"
+              >here</a
+            >.
+          </p>
+
+          <p class="is-size-5">In Next.js</p>
+          <p>
+            Next.js offers built-in support for code splitting. As you create
+            files within the <strong>pages/</strong> directory, they will
+            automatically be code-split into their individual JavaScript bundles
+            during the build process. This feature ensures a more efficient and
+            optimized user experience when navigating through the application.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post19/figure1.jpg" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">Preloading</p>
+        <div class="box content">
+          <p>
+            Preloading/Prefetching (for simplicity, we will not distinguish the
+            difference here) refers to loading a resource before it is actually
+            required,
+            <strong>reducing the waiting time for that resource</strong>. For
+            instance, a web browser may request copies of frequently accessed
+            web pages.
+          </p>
+          <p class="is-size-5">In Next.js</p>
+          <p>
+            &lt;Link&gt; is a React component that extends the HTML &lt;a&gt;
+            element to provide prefetching and client-side navigation between
+            routes. It is the primary way to navigate between routes in Next.js.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/179927a87e28d057ee3487d7211fa4ae.js"></script>
+          <p>
+            The rendered result of prefetched routes is added to the router's
+            <strong>client-side cache</strong>. This makes navigating to a
+            prefetched route near-instant.
+          </p>
+          <p class="is-size-5">Static and Dynamic Routes</p>
+          <ul>
+            <li>
+              <strong>Static Route:</strong> all the Server Component payloads
+              for the route segments will be prefetched.
+            </li>
+            <li>
+              <strong>Dynamic Route:</strong> the payload from the first shared
+              layout down until the first loading.js file is prefetched. This
+              reduces the cost of prefetching
+              <strong>the whole route dynamically</strong> and allows instant
+              loading states for dynamic routes.
+            </li>
+          </ul>
+        </div>
+
+        <p class="is-size-3">Lazy Loading</p>
+        <div class="box content">
+          <p>
+            Lazy loading is a strategy to identify resources as non-blocking
+            (non-critical) and load these only when needed. It's a way to
+            shorten the length of the <strong>critical rendering path</strong>,
+            which translates into reduced page load times.
+          </p>
+          <p class="is-size-5">What is critical rendering path(CRP)?</p>
+          <p>
+            The Critical Rendering Path is the sequence of steps the browser
+            goes through to convert the HTML, CSS, and JavaScript into pixels on
+            the screen.
+          </p>
+          <p class="is-size-5">In Next.js</p>
+          <p>
+            Lazy loading helps improve the initial loading performance of an
+            application by
+            <strong
+              >decreasing the amount of JavaScript needed to render a
+              route</strong
+            >. It allows you to defer loading of Client Components and imported
+            libraries, and only include them in the client bundle when they're
+            needed. For example, you might want to defer loading a modal until a
+            user clicks to open it.
+          </p>
+          <p>- Using Dynamic Imports with <strong>next/dynamic</strong></p>
+          <p>
+            The dynamic function is used for dynamic imports, which allow
+            components to be loaded asynchronously
+            <strong>when they are needed</strong>, rather than all at once
+            during the initial load. This can be especially useful for
+            components that are heavy or have large dependencies, as it helps to
+            improve the initial load time of your application.
+          </p>
+
+          <script src="https://gist.github.com/Willie-The-Lord/a1fca3b25e8c6d6b4e37c8df0b872e21.js"></script>
+          <p>
+            In this code snippet, the Home component is exported as the default
+            export of this module. Within the return statement, it renders the
+            HeavyComponent. However, since HeavyComponent is dynamically
+            imported, it will only be fetched and rendered when it's needed, not
+            during the initial page load.
+          </p>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>
+            That's it! Now you are familiar with the differences between these
+            terms and have a brief understanding of how Next.js works to reduce
+            loading time and enhance user experience!
+          </p>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://nextjs.org/docs/pages/api-reference/components/link"
+                target="_blank"
+                >Next.js documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Glossary/Code_splitting"
+                target="_blank"
+                >MDN documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+
+            <li>
+              <a
+                href="https://www.techopedia.com/definition/32421/prefetching"
+                target="_blank"
+                >What is pre-fetching
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 21, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
