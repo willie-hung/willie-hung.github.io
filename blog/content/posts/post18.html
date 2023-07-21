@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | JWS Authentication using Node.js and Express.js</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              JWS Authentication using Node.js and Express.js
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>
+            Learn how to use express.js to build a simple RESTful API to
+            demonstrate JWS authentication.
+          </p>
+        </div>
+
+        <p class="is-size-3">Tech Stack</p>
+        <div class="box content">
+          <div
+            class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-align-items-baseline pb-2"
+          >
+            <div class="buttons">
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                  />
+                </span>
+                <span>JavaScript</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                  />
+                </span>
+                <span>Node.js</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+                  />
+                </span>
+                <span>Express.js</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img src="../assets/nodemon.jpg" />
+                </span>
+                <span>Nodemon</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="is-size-3">What is Middleware?</p>
+        <div class="box content">
+          <p>
+            The middleware in node.js is a <strong>function</strong> that will
+            have all the access for requesting an object, responding to an
+            object, and moving to the next middleware function in the
+            application <strong>request-response cycle</strong>. This function
+            can be used for modifying the req and res objects for tasks like
+            adding response headers, parsing requesting bodies, and so on.
+            Checkout this
+            <a
+              href="https://www.turing.com/kb/building-middleware-for-node-js"
+              target="_blank"
+              >post</a
+            >
+            to learn more information about middleware.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post18/figure3.jpg" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">JWT Implementation: Access Token</p>
+        <div class="box content">
+          <p class="is-size-5">Overview</p>
+          <p>
+            This app is a Node.js application using Express.js that serves
+            <strong>a list of posts</strong>. It includes authentication using
+            <strong>JSON Web Tokens (JWT)</strong> to protect the "/posts"
+            endpoint, ensuring that only authorized users can access posts that
+            belong to them.
+          </p>
+          <p class="is-size-5">Create our server</p>
+          <script src="https://gist.github.com/Willie-The-Lord/88de52412e3701776df25afa480d73b9.js"></script>
+
+          <ul>
+            <li>
+              <strong>app.use(express.json()): </strong> Adds a middleware to
+              the Express application that parses incoming JSON data. It allows
+              the application to handle JSON payloads in requests.
+            </li>
+            <li>
+              <strong
+                >app.get("/posts", authenticateToken, (req, res) =>
+                {...}):</strong
+              >
+              Sets up an HTTP GET route at the path "/posts". When a client
+              sends a GET request to "/posts",
+              <u>the authenticateToken middleware function is executed first</u
+              >, and then the callback function for the route is called if the
+              authentication is successful.
+            </li>
+            <li>
+              <strong>function authenticateToken(req, res, next) {...}:</strong>
+              This is a middleware function named authenticateToken. Middleware
+              functions have access to the request (req) and response (res)
+              objects and can perform actions before passing control to the next
+              middleware or route handler.
+            </li>
+          </ul>
+          <p class="is-size-5">Create another authentication server</p>
+          <script src="https://gist.github.com/Willie-The-Lord/81b3a6d002ff9a520c1cfc3447219def.js"></script>
+          <p>
+            In this code snippet, when a client sends a POST request to "/login"
+            with a username in the request body, the server authenticates the
+            user
+            <strong
+              >(in this case, just creating a user object with the
+              username)</strong
+            >. The server then generates an access token using the
+            generateAccessToken function, which includes the user information
+            (username) and an expiration time of 60 seconds.
+          </p>
+          <p class="is-size-5">
+            Here we can utilize a vscode extension
+            <a
+              href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client"
+              target="_blank"
+              >REST Client</a
+            >
+            to test our server.
+          </p>
+          <p>Send a POST request to the server</p>
+          <pre>
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "username": "Willie"
+}
+          </pre>
+          <p>You will receive a response from the server similar to this:</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post18/figure1.png" />
+            </figure>
+          </div>
+          <p>
+            Substitute the access token in your GET request, and then you can
+            proceed to request the server again.
+          </p>
+          <pre>
+GET http://localhost:3000/posts
+Authorization: Bearer {YOUR_ACCESS_TOKEN}</pre
+          >
+          <p>
+            You will receive a response (all the posts belongs to a specific
+            user, in this case: Willie) from the server similar to this:
+          </p>
+
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post18/figure2.png" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">JWT Implementation: Refresh Token</p>
+        <div class="box content">
+          <p>
+            Here we modify authServer.js, and implement the
+            <strong>/token endpoint</strong> to exchange a refresh token for a
+            new access token. Notice that we are using an array to store the
+            refresh tokens, which is not a good practice in production. In
+            production, you should store the refresh tokens in a database.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/09512184c5c4ec72964b66172eb46e16.js"></script>
+          <p>
+            Now that we can
+            <strong>obtain access tokens based on the refresh token</strong>,
+            there is a concern that users could have infinite access to our API,
+            which is not desirable. To address this issue, we must implement a
+            <strong>deauthentication mechanism</strong> to revoke the refresh
+            token when necessary.
+          </p>
+
+          <p class="is-size-5">Deauthentication (Logout)</p>
+          <p>
+            In the code snippet below, we add a logout endpoint that deletes the
+            refresh token from the array of refresh tokens. In production, you
+            should delete the refresh token from the database.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/620a2d160f8ad32796c679162247fece.js"></script>
+          <p>Let's test out our /logout endpoint:</p>
+          <pre>
+DELETE http://localhost:4000/logout
+Content-Type: application/json
+
+{
+    "token": {YOUR_REFRESH_TOKEN}
+}</pre
+          >
+          <p>
+            When the user send a POST request to this endpoint, the user no
+            longer has the access to our backend anymore!
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post18/figure4.png" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>
+            That's a wrap! With Express.js, we can conveniently test
+            <strong>JWS Authentication</strong> and simulate how it works. Hope
+            you enjoy this post!
+          </p>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://www.youtube.com/watch?v=mbsmsi7l3r4&t=1479s"
+                target="_blank"
+                >JWT Authentication Tutorial - Node.js
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.turing.com/kb/building-middleware-for-node-js"
+                target="_blank"
+                >How to Build Middleware for Node.js: A Complete Guide
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 20, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
