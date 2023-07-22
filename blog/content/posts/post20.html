@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Integrating Pug with Express.js</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Integrating Pug with Express.js
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>
+            Learn how to integrate Pug with Express.js by creating a simple
+            multi-page app.
+          </p>
+        </div>
+
+        <p class="is-size-3">Tech Stack</p>
+        <div class="box content">
+          <div
+            class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-align-items-baseline pb-2"
+          >
+            <div class="buttons">
+              <button class="button">
+                <span class="icon">
+                  <img src="../assets/pug.png" />
+                </span>
+                <span>Pug</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+                  />
+                </span>
+                <span>Express.js</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                  />
+                </span>
+                <span>Node.js</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img src="../assets/nodemon.jpg" />
+                </span>
+                <span>Nodemon</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="is-size-3">What is Pug?</p>
+        <div class="box content">
+          Pug is a high-performance <strong>template engine</strong> heavily
+          influenced by
+          <a href="https://haml.info/" target="_blank">Haml</a> and implemented
+          with JavaScript for Node.js and browsers. Checkout the official Pug
+          doc
+          <a href="https://pugjs.org/api/getting-started.html" target="_blank"
+            >here</a
+          >.
+        </div>
+
+        <p class="is-size-3">Integrating with express.js</p>
+        <div class="box content">
+          Pug fully integrates with Express, a popular Node.js
+          <strong>web framework</strong>, as a supported view engine. Check out
+          <a
+            href="https://expressjs.com/en/guide/using-template-engines.html"
+            target="_blank"
+            >Express’s guide</a
+          >
+          for more detail on how to integrate Pug with Express.
+        </div>
+
+        <p class="is-size-3">Sample Usage</p>
+        <div class="box content">
+          <p>
+            Let's dive right in! This blog post will illustrate how to create a
+            straightforward <strong>multi-page app</strong> using Express and
+            Pug. I assume that you have a basic understanding of using Node.js
+            and JavaScript, so I won't go through the environment setup process.
+          </p>
+          <p>
+            Let's take a look at the project structure first. We have a folder
+            called <strong>views,</strong> which contains all the Pug files. We
+            also have a folder called <strong>public</strong>, which contains
+            all the static files such as images, and CSS files. Last but not
+            least, the app.js file is the entry point of this application.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/b685c101ae795865de8492997f6a5e3f.js"></script>
+          <p class="is-size-5">App.js</p>
+          <p>
+            First, we import the express module and create an instance of the
+            express application. Then, we set the view engine to Pug. This
+            <strong>tells Express to use Pug as the template engine</strong>.
+            Next, we set the views directory to the views folder. This tells
+            Express where to find the Pug files. Finally, we set the static
+            directory to the public folder. This tells Express where to find the
+            static files.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/dcc291400c8fb4f2a21c1a4071fce282.js"></script>
+
+          <p class="is-size-5">Layout.pug</p>
+          <p>
+            In the views folder, we create a layout.pug file. This file will be
+            the <strong>base template for all the pages</strong>. It contains
+            the basic HTML structure with the head and body tags. The head tag
+            contains the title or link to CSS files. The body tag contains the
+            header and the content block. The content block will be replaced by
+            the content of each page in next step.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/ae8ea448a90a44eca8e371785ba71d33.js"></script>
+
+          <p>
+            Next, we create a home.pug file. This file will be
+            <strong>the home page of the application</strong>. It extends the
+            layout.pug file and replaces the content block with the content of
+            the home page.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/8a6949fe2876ddf958336ca4729b3a96.js"></script>
+          <p>
+            We create a about.pug file. This file will be
+            <strong>the about page of the application</strong>. It extends the
+            layout.pug file and replaces the content block with the content of
+            the about page too.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/0735cdeb025b64e89e86d3c2df74b99b.js"></script>
+
+          <p>
+            After creating all the Pug files, we can add the
+            <strong>route handlers</strong> to the app.js file. We create a
+            route handler for the home page and the about page. The route
+            handler for the home page renders the home.pug file. The route
+            handler for the about page renders the about.pug file:)
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/780994e5ab1ed4a887a9ea19f5ea8d64.js"></script>
+          <p class="is-size-5">Let's take a look at the browser</p>
+          <p>
+            Now, we can start the server. We can see that the home page and the
+            about page are rendered correctly. Isn't it cool?
+          </p>
+          <p>Home page</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post20/figure2.png" />
+            </figure>
+          </div>
+          <p>About page</p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post20/figure1.png" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">Passing data from your Express.js routes</p>
+        <div class="box content">
+          <p>
+            To make the Pug files more dynamic, we can
+            <strong>pass data from the route handlers</strong> to the Pug files.
+            Let's take a look at an example. We create a product route handler.
+            The route handler passes an object to the product.pug file. The
+            object contains the name, the price and the description of the
+            product.
+          </p>
+
+          <script src="https://gist.github.com/Willie-The-Lord/3fe84ebc365939f296059ae22be191f6.js"></script>
+          <p>
+            The product.pug file renders the page using the object passed from
+            the route handler. It uses the Pug syntax to create a dynamic view.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/45e2c621dcfc752c35e3a95960f1be2a.js"></script>
+          <p>
+            Let's take a look at the browser. We can see that the product page
+            is all set up!
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post20/figure3.png" />
+            </figure>
+          </div>
+        </div>
+
+        <p class="is-size-3">Implement Logic</p>
+        <div class="box content">
+          <p>
+            We can also use the <strong>Pug syntax to implement logic</strong>.
+            Let's take a look at another example. We create a profile route
+            handler. The route handler passes an object to the profile.pug file.
+            The object contains the name, the age and the isAdmin property of
+            the user.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/a55d1d7448c3b1c634a009b1c9bdab53.js"></script>
+          <p>
+            The profile.pug file renders the page using the object passed from
+            the route handler. It uses the Pug syntax to implement logic. If the
+            user is an admin, it will display the admin message. Otherwise, it
+            will display the normal message.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/691c8f0507f39854e2a98c0beb171986.js"></script>
+          <p>
+            Let's take a look at the browser. We can see that the profile page
+            renders the correct message. I am the admin of the website 🙈.
+          </p>
+
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post20/figure4.png" />
+            </figure>
+          </div>
+          <p>
+            That's it! Pug helps us to implement logic in a really elegant way!
+          </p>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>
+            In this blog post, I illustrated how to create a simple multi-page
+            app using Express and Pug. I also show how to pass data from the
+            Express.js routes to the Pug files and how to use Pug syntax to
+            implement logic. I hope you find this blog post useful. If you want
+            to learn more about Pug, check out the official Pug doc
+            <a href="https://pugjs.org/api/getting-started.html" target="_blank"
+              >here</a
+            >. See you next time!
+          </p>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://pugjs.org/api/getting-started.html"
+                target="_blank"
+                >Pug Documentation<i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                ></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://expressjs.com/en/guide/using-template-engines.html"
+                target="_blank"
+                >Using template engines with Express<i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                ></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 21, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
