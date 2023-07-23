@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog | XXX</title>
+    <title>Blog | Client-Side Data Fetching in Next.js using SWR</title>
     <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
 
     <link
@@ -27,42 +27,291 @@
           <div
             class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
           >
-            <h1 class="title has-text-centered">XXX</h1>
+            <h1 class="title has-text-centered">
+              Client-Side Data Fetching in Next.js using SWR
+            </h1>
           </div>
         </div>
 
         <hr />
         <p class="is-size-3">Objectives</p>
         <div class="box level content">
-          <p>YYY</p>
+          <p>
+            Learn how to use <a href="https://swr.vercel.app/">SWR</a> to handle
+            client-side data fetching in Next.js.
+          </p>
         </div>
 
-        <p class="is-size-3">XXX</p>
+        <p class="is-size-3">Tech Stack</p>
         <div class="box content">
-          <p>YYY</p>
+          <div
+            class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-align-items-baseline pb-2"
+          >
+            <div class="buttons">
+              <button class="button">
+                <span class="icon">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                  />
+                </span>
+                <span>TypeScript</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <svg viewBox="0 0 128 128">
+                    <path
+                      d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c11.2 0 21.7-2.9 30.8-7.9L48.4 55.3v36.6h-6.8V41.8h6.8l50.5 75.8C116.4 106.2 128 86.5 128 64c0-35.3-28.7-64-64-64zm22.1 84.6l-7.5-11.3V41.8h7.5v42.8z"
+                    ></path>
+                  </svg>
+                </span>
+                <span>Next.js</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img src="../assets/swr.jpg" />
+                </span>
+                <span>SWR</span>
+              </button>
+              <button class="button">
+                <span class="icon">
+                  <img src="../assets/axios.jpg" />
+                </span>
+                <span>axios</span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <p class="is-size-3">XXX</p>
+        <p class="is-size-3">Client-side Fetching</p>
         <div class="box content">
+          <p>
+            Client-side data fetching is useful when you don't need to
+            <strong>pre-render your data</strong>, or
+            <strong
+              >when the content of your pages needs to update frequently</strong
+            >. Unlike server-side rendering APIs, client-side data fetching can
+            be employed at the component level, granting greater flexibility and
+            control over data retrieval. Check out more detail information in
+            next.js documentation
+            <a
+              href="https://nextjs.org/docs/basic-features/data-fetching#only-runs-on-the-server-side"
+              target="_blank"
+              >here</a
+            >.
+          </p>
+        </div>
+
+        <p class="is-size-3">useEffect</p>
+        <div class="box content">
+          <p>
+            When discussing client-side fetching, one of the first things that
+            may come to mind is the utilization of
+            <strong>useEffect in React</strong>. Let's explore a typical
+            approach for employing useEffect in React to handle such data
+            fetching tasks.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/57d608c2d822b13ed76b1295c2c58e82.js"></script>
+          <p>
+            In the above example, we are using useEffect to fetch data from an
+            API endpoint:
+            <a href="https://jsonplaceholder.typicode.com/" target="_blank"
+              >JSONPlaceholder</a
+            >. The useEffect hook is invoked
+            <strong>after the component mounts</strong>, and the data is stored
+            in the state variable. The data is then rendered to the page. This
+            approach is <strong>simple</strong>, but it does have its drawbacks.
+            For example, the data is fetched only after the component mounts,
+            which means that the user will experience a delay in data rendering.
+            This delay is especially noticeable
+            <strong>when the data is fetched from a remote server</strong>. In
+            addition, if the data is static and does not change frequently, the
+            data is unnecessarily fetched every time the component mounts,
+            resulting in a <strong>waste of resources</strong>.
+          </p>
+          <p>Let's summarize the drawbacks:</p>
+          <ul>
+            <li>
+              Data delay is noticeable when the data is fetched from a remote
+              server or low network speed.
+            </li>
+            <li>
+              Code is tedious and not intuitive. This way of fetching data is
+              kinda imperative — manually initiating the request, updating
+              loading states, and handling the final result.
+            </li>
+          </ul>
+
+          <p>
+            Fortunately, there is a solution to these problems. Let's explore
+            how we can use
+            <a href="https://swr.vercel.app/" target="_blank">SWR</a> to address
+            these issues.
+          </p>
+        </div>
+
+        <p class="is-size-3">useSWR</p>
+        <div class="box content">
+          <p class="is-size-5">What is SWR?</p>
+          <p>
+            From the official website, The name “SWR” is derived from
+            <strong>stale-while-revalidate</strong>, a HTTP cache invalidation
+            strategy popularized by
+            <a
+              href="https://datatracker.ietf.org/doc/html/rfc5861"
+              target="_blank"
+              >HTTP RFC 5861</a
+            >. SWR is a strategy to
+            <u
+              >first return the data from cache (stale), then send the fetch
+              request (revalidate), and finally come with the up-to-date
+              data.</u
+            >
+          </p>
+          <p class="is-size-5">The basic API of SWR is</p>
+          <pre>const { data, error } = useSWR(key, fetcher)</pre>
+          <p>
+            The <strong>fetcher</strong> here is an async function that accepts
+            the key of SWR, and returns the data. The returned value will be
+            passed as data, and if it throws, it will be caught as error.
+            Normally, the <strong>key</strong> is a unique identifier of the
+            request, such as the URL. In addition, useSWR returns data, error,
+            isLoading, and isValidating depending on the state of the fetcher
+            function.
+          </p>
+
+          <p class="is-size-5">
+            Let's take a look at how SWR returns values in some scenarios:
+          </p>
+          <p>
+            Fetch and Revalidate: This pattern is to fetch data and revalidate
+            it later.
+          </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
-            <figure class="image column is-one-third">
-              <image src="./figure" />
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post21/figure1.svg" />
             </figure>
           </div>
-          <p>YYY</p>
+
+          <p>
+            Key Change: This pattern is to fetch data and change the key and
+            revalidate it later.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post21/figure2.svg" />
+            </figure>
+          </div>
+
+          <p>
+            Key Change + Previous Data: This pattern is to fetch data and change
+            the key and revalidate it later with the keepPreviousData option.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post21/figure3.svg" />
+            </figure>
+          </div>
+
+          <p>
+            Fallback This pattern is to fetch data and revalidate it later with
+            fallback data.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post21/figure4.svg" />
+            </figure>
+          </div>
+          <p>
+            Checkout more diagrams
+            <a
+              href="https://swr.vercel.app/docs/advanced/understanding"
+              target="_blank"
+              >here.</a
+            >
+          </p>
+
+          <p class="is-size-5">SWR Implementation:</p>
+          <p>
+            Let's take a look at how we can implement SWR in our previous code
+            example.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/295b33cf019ee985711e20806a06832b.js"></script>
+          <p>
+            In the above code example, we are using SWR to fetch data from the
+            API endpoint agian:
+            <a href="https://jsonplaceholder.typicode.com/" target="_blank"
+              >JSONPlaceholder</a
+            >. The useSWR hook is invoked and
+            <strong>the api is much simpler</strong> than the previous example.
+            The data is then rendered to the page.
+          </p>
+          <p>
+            Let's summarize the advantages of using SWR for client-side data
+            fetching:
+          </p>
+          <ul>
+            <li>
+              Data is
+              <strong
+                >automatically cached and revalidated behind the scene</strong
+              >, which means that the user will not experience a huge delay in
+              data rendering.
+            </li>
+            <li>
+              SWR enables a more <strong>declarative approach</strong> where you
+              simply specify what data the component needs, making your code
+              cleaner and more straightforward.
+            </li>
+          </ul>
+
+          <p class="is-size-5">Use axios</p>
+          <p>
+            You can also use
+            <a href="https://www.npmjs.com/package/axios" target="_blank"
+              >axios</a
+            >
+            to fetch data in SWR. Let's take a look at how we can implement SWR
+            with axios in our previous code example.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/ee905fa59d038af8a369ea2bd95e1887.js"></script>
+          <p>
+            You can simply
+            <strong>pass the axios function as the fetcher</strong> to useSWR
+            and you are good to go! SWR is versatile and can be used with a
+            variety of data fetching libraries. Check out more detail
+            information in SWR documentation
+            <a href="https://swr.vercel.app/docs/data-fetching" target="_blank"
+              >here</a
+            >.
+          </p>
         </div>
 
         <p class="is-size-3">Conclusion</p>
         <div class="box content">
-          <p>YYY</p>
+          <p>
+            That's it! We have learned how to use SWR to handle client-side data
+            fetching in Next.js. Isn't it simple? The API is simple and easy to
+            use. I really enjoy using this library! I hope you enjoyed this
+            article. If you have any questions, please feel free to leave a
+            comment below. Thank you for reading!
+          </p>
         </div>
 
         <p class="is-size-3">Source</p>
         <div class="box content">
           <ul style="padding-bottom: 20px">
             <li>
-              <a href="XXX" target="_blank"
-                >YYY <i class="fa-solid fa-arrow-up-right-from-square"></i
+              <a href="https://swr.vercel.app/" target="_blank"
+                >SWR Documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://nextjs.org/docs/pages/building-your-application/data-fetching/client-side"
+                target="_blank"
+                >Next.js Documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </li>
           </ul>
@@ -92,7 +341,7 @@
           >
           ❤️
         </p>
-        <p>Last update: <strong>XXX, 2023</strong></p>
+        <p>Last update: <strong>Jul 23, 2023</strong></p>
       </div>
     </footer>
 
