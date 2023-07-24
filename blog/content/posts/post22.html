@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | My First VisionOS Application</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              My First VisionOS Application
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <p class="is-size-3">Objectives</p>
+        <div class="box level content">
+          <p>
+            Learn some basics of
+            <a href="https://developer.apple.com/visionos/" target="_blank"
+              >VisionOS</a
+            >
+            and build a simple app for it.
+          </p>
+        </div>
+
+        <p class="is-size-3">Background</p>
+        <div class="box level content">
+          <p>
+            I've been working on SwiftUI projects for a while, and I'm really
+            interested in the brand new upcoming operating system,
+            <strong>VisionOS</strong>. It utilizes frameworks like SwiftUI,
+            RealityKit, and ARKit. I just want to play around with it and build
+            a simple app for VisionOS.
+          </p>
+        </div>
+
+        <p class="is-size-3">Discover VisionOS</p>
+        <div class="box content">
+          <p>
+            Apple Vision Pro offers
+            <strong>an infinite spatial canvas</strong> to explore, experiment,
+            and play, giving you the freedom to completely rethink your
+            experience in 3D.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post22/figure2.jpg" />
+            </figure>
+          </div>
+
+          <p class="is-size-5">Some key components/blocks:</p>
+          <ul>
+            <div class="is-flex level">
+              <image src="./figures/post22/figure3.png" class="mr-2" />
+              <p>
+                <strong>Windows:</strong> You can create one or more windows in
+                your visionOS app. They’re built with SwiftUI and contain
+                traditional views and controls, and you can add depth to your
+                experience by adding 3D content.
+              </p>
+            </div>
+            <div class="is-flex level">
+              <image src="./figures/post22/figure4.png" class="mr-2" />
+              <p>
+                <strong>Volumes:</strong> Add depth to your app with a 3D
+                volume. Volumes are SwiftUI scenes that can showcase 3D content
+                using RealityKit or Unity, creating experiences that are
+                viewable from any angle in the Shared Space or an app’s Full
+                Space.
+              </p>
+            </div>
+            <div class="is-flex level">
+              <image src="./figures/post22/figure5.png" class="mr-2" />
+              <p>
+                <strong>Spaces:</strong> By default, apps launch into the Shared
+                Space, where they exist side by side — much like multiple apps
+                on a Mac desktop. Apps can use windows and volumes to show
+                content, and the user can reposition these elements wherever
+                they like.
+              </p>
+            </div>
+          </ul>
+          <p>
+            Checkout the
+            <a href="https://developer.apple.com/visionos/" target="_blank">
+              official documentation</a
+            >
+            to learn more.
+          </p>
+        </div>
+
+        <p class="is-size-3">Human Interface Guidlines for VisionOS</p>
+        <div class="box content">
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post22/figure1.png" />
+            </figure>
+          </div>
+          <p class="is-size-5">Characteristics and Patterns</p>
+          <ul>
+            <li>
+              <strong>Space:</strong> Apple Vision Pro offers a limitless canvas
+              where people can view virtual content like windows, volumes, and
+              3D objects.
+            </li>
+            <li>
+              <strong>Immersion:</strong> People can fluidly transition between
+              different levels of immersion.
+            </li>
+            <li>
+              <strong>Passthrough:</strong> Passthrough provides live video from
+              the device’s external cameras, and helps people interact with
+              virtual content while also seeing their actual surroundings.
+            </li>
+            <li>
+              <strong>Spatial Audio:</strong> Vision Pro combines acoustic and
+              visual-sensing technologies to model the sonic characteristics of
+              a person’s surroundings, automatically making audio sound natural
+              in their space.
+            </li>
+            <li>
+              <strong>Focus and gestures:</strong> In general, people interact
+              with Vision Pro using their eyes and hands.
+            </li>
+            <li>
+              <strong>Ergonomics:</strong> People can remain at rest while
+              engaging with apps and games.
+            </li>
+            <li>
+              <strong>Accessibility:</strong> Apple Vision Pro supports
+              accessibility technologies like VoiceOver, Switch Control, Dwell
+              Control, Guided Access, Head Pointer, and many more.
+            </li>
+          </ul>
+        </div>
+        <p class="is-size-3">Let's build our app!</p>
+        <div class="box content">
+          <p>
+            I'm going to build a simple app that allows users to choose a 3D
+            object from the list and display it.
+          </p>
+          <p>
+            In the development process, I found that is
+            <strong>almost the same as developing an SwiftUI app</strong>. If
+            you are familiar with SwiftUI, you are good to go!
+          </p>
+          <p class="is-size-5">Create a list</p>
+          <p>
+            First, I create a list of 3D objects. Since I'm a big fan of the
+            game "League of the Legends", I'm going to use some 3D champions of
+            the game. This is nothing special, just a list of strings.
+          </p>
+
+          <script src="https://gist.github.com/Willie-The-Lord/584b5e62b2f104cd7d2d9f021860758e.js"></script>
+          <p>
+            You will see a list of champion names on the
+            <strong>left hand side</strong>. But don't worry, we will display
+            the 3D model on the right hand side in the next step. You should see
+            something like this, isn't it cool?
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post22/figure6.png" />
+            </figure>
+          </div>
+
+          <p class="is-size-5">Find 3D models</p>
+          <p>
+            You can find some amazing free 3D models on
+            <a href="https://sketchfab.com/feed" target="_blank">SketchFab</a>.
+            But if you want to use your own 3D models, you can definitely do
+            that (Good luck 🤞). Make sure you export the 3D model as a
+            <strong>USDZ file</strong> (I guess Apple supports other formats as
+            well, I'm not quite sure about that).
+          </p>
+          <p class="is-size-5">Build the detail view</p>
+          <p>
+            Just like SwiftUI, we need to build a
+            <strong>detail view </strong>to display the 3D model. I'm going to
+            use the 3D model of champion "aatrox" as an example. You can check
+            out the
+            <a
+              href="https://developer.apple.com/documentation/visionos/creating-your-first-visionos-app"
+              target="_blank"
+              >official document</a
+            >
+            to further explore the APIs.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/1d6320e1dd65399a12db9d6fc182c729.js"></script>
+          <p>
+            Isn't it simple? We just need to create a new view and add the 3D
+            model to it. You can also add some animations to the 3D model. I am
+            not going to cover that in this post. You can check out the official
+            document to learn more.
+          </p>
+          <p>
+            You should see something like this. You can
+            <strong>rotate the 3D model by dragging it</strong>. You can also
+            <strong>zoom in/out by pinching it</strong>.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post22/figure7.png" />
+            </figure>
+          </div>
+          <p>
+            And that's it! Let's put everything together and watch the
+            <strong>final demo</strong>!
+          </p>
+        </div>
+
+        <p class="is-size-3">Final Demo</p>
+
+        <div class="box is-flex is-justify-content-center">
+          <iframe
+            width="1120"
+            height="630"
+            src="https://www.youtube.com/embed/uihSR_I0Weg"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>
+            That's a wrap! Building an app for VisionOS is not that hard. If you
+            are familiar with SwiftUI, you are in a good position. I'm looking
+            forward to the official release of VisionOS. I'm sure it will be a
+            game changer for the <strong>AR industry</strong>. I hope you enjoy
+            this post. If you have any questions, feel free to leave a comment
+            below. Thank you for reading! 🎮
+          </p>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://developer.apple.com/design/human-interface-guidelines/designing-for-visionos"
+                target="_blank"
+                >Apple Documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mr-5 ml-5 mb-5">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Willie-The-Lord/Sung-Jie-Blog-Comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 23, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
