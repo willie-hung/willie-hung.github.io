@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Static Site Generation(SSG) in Next.js (Page Router)</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Static Site Generation(SSG) in Next.js (Page Router)
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <h2 class="title is-4">Objectives</h2>
+        <div class="box level content">
+          <p>Learn how server-side data fetching (SSG) works in Next.js.</p>
+        </div>
+
+        <h2 class="title is-4">What is Static Generation?</h2>
+        <div class="box content">
+          <p>
+            Static Generation describes the process of compiling and rendering a
+            website or app at build time. The output is a bunch of static files,
+            including the HTML file itself and assets like JavaScript and CSS.
+          </p>
+        </div>
+
+        <h2 class="title is-4">How does Next.js use Static Generation?</h2>
+        <div class="box content">
+          <p>
+            Data fetching in Next.js allows you to render your content in
+            different ways, depending on your application's use case. These
+            include pre-rendering with Server-side Rendering or Static
+            Generation. For Static Generation, Next.js provides a few different
+            APIs to fetch data including getStaticProps and getServerSideProps,
+            which, depending on how they’re used, determines how Next.js will
+            build your app.
+          </p>
+        </div>
+
+        <h2 class="title is-4">getStaticProps</h2>
+        <div class="box content">
+          <h3 class="subtitle is-6">Implement</h3>
+          <p>
+            If you export a function called getStaticProps (Static Site
+            Generation) from a page, Next.js will pre-render this page at
+            <strong>build time</strong> using the props returned by
+            getStaticProps.
+          </p>
+          <p>
+            getStaticProps always runs on the server and never on the client.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/c100b7cef913c4125981feb5d95103e7.js"></script>
+          <h3 class="subtitle is-6">Write server code directly</h3>
+          <script src="https://gist.github.com/Willie-The-Lord/976382fd61a30bccfcf03185ea93a453.js"></script>
+          <script src="https://gist.github.com/Willie-The-Lord/869786d3ca7070c9e53fee042e7c126d.js"></script>
+        </div>
+
+        <h3 class="title is-5">getServerSideProps</h3>
+        <div class="box content">
+          <script src="https://gist.github.com/Willie-The-Lord/e9131345b0a0b6bdbf78846ccc05b4cb.js"></script>
+        </div>
+
+        <p class="is-size-3">XXX</p>
+        <div class="box content">
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figure" />
+            </figure>
+          </div>
+          <p>YYY</p>
+        </div>
+
+        <p class="is-size-3">Conclusion</p>
+        <div class="box content">
+          <p>YYY</p>
+        </div>
+
+        <p class="is-size-3">Source</p>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://www.freecodecamp.org/news/static-site-generation-with-nextjs/"
+                target="_blank"
+                >freecodecamp
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mr-5 ml-5 mb-5">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Willie-The-Lord/Sung-Jie-Blog-Comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>XXX, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
