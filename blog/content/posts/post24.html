@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Server Side Rendering(SSR) in Next.js (Page Router)</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Server Side Rendering(SSR) in Next.js (Page Router)
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <h2 class="title is-size-4">Objectives</h2>
+        <div class="box level content">
+          <p>Learn how SSR works in Next.js.</p>
+        </div>
+
+        <h2 class="title is-size-4">What is Server Side Rendering(SSR)?</h2>
+        <div class="box content">
+          <p>
+            Server-side rendering is where your site’s content is
+            <strong>rendered on the web server</strong> rather than the browser.
+            This server prepares an HTML file with user-specific data and sends
+            it to the user’s machine.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post24/figure2.png " />
+            </figure>
+          </div>
+        </div>
+
+        <h2 class="title is-4">getServerSideProps</h2>
+        <div class="box content">
+          <h3 class="title is-5">In Next.js</h3>
+          <p>
+            To use Server-side Rendering for a page in Next.js, you need to
+            export an async function called <strong>getServerSideProps</strong>.
+          </p>
+          <p>
+            If you export a function called getServerSideProps from a page,
+            Next.js will pre-render this page
+            <strong>on each request</strong> using the data returned by
+            getServerSideProps. If you've read the previous post, you should
+            know that getServerSideProps is similar to getStaticProps, but the
+            difference is that getServerSideProps is run on every request
+            instead of on build time.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post24/figure1.png" />
+            </figure>
+          </div>
+          <h3 class="title is-5">Implementation</h3>
+          <script src="https://gist.github.com/Willie-The-Lord/e9131345b0a0b6bdbf78846ccc05b4cb.js"></script>
+          <h3 class="title is-5">When does getServerSideProps run?</h3>
+          <p>
+            getServerSideProps <strong>only runs on server-side</strong> and
+            never runs on the browser.
+          </p>
+          <ul>
+            <li>
+              When you request this page directly, getServerSideProps runs at
+              request time, and this page will be pre-rendered with the returned
+              props.
+            </li>
+            <li>
+              When you request this page on client-side page transitions through
+              next/link or next/router, Next.js sends an API request to the
+              server, which runs getServerSideProps.
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="title is-size-4">Conclusion</h2>
+        <div class="box content">
+          <p>
+            That's it! You've learned how SSR works in Next.js and how to use it
+            in your project. If you want to learn more about SSR, you can check
+            out the source below. If you have any questions, please leave a note
+            in the comment section below. Thank you for reading!
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Source</h2>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering"
+                target="_blank"
+                >Next.js Documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.heavy.ai/technical-glossary/server-side-rendering"
+                target="_blank"
+                >Heavy.ai <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mr-5 ml-5 mb-5">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Willie-The-Lord/Sung-Jie-Blog-Comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 25, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

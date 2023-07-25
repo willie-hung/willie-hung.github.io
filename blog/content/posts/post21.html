@@ -34,7 +34,7 @@
         </div>
 
         <hr />
-        <p class="is-size-3">Objectives</p>
+        <h2 class="title is-size-4">Objectives</h2>
         <div class="box level content">
           <p>
             Learn how to use <a href="https://swr.vercel.app/">SWR</a> to handle
@@ -42,7 +42,7 @@
           </p>
         </div>
 
-        <p class="is-size-3">Tech Stack</p>
+        <h2 class="title is-size-4">Tech Stack</h2>
         <div class="box content">
           <div
             class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-align-items-baseline pb-2"
@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <p class="is-size-3">Client-side Fetching</p>
+        <h2 class="title is-size-4">Client-side Fetching</h2>
         <div class="box content">
           <p>
             Client-side data fetching is useful when you don't need to
@@ -101,7 +101,7 @@
           </p>
         </div>
 
-        <p class="is-size-3">useEffect</p>
+        <h2 class="title is-size-4">useEffect</h2>
         <div class="box content">
           <p>
             When discussing client-side fetching, one of the first things that
@@ -140,7 +140,6 @@
               loading states, and handling the final result.
             </li>
           </ul>
-
           <p>
             Fortunately, there is a solution to these problems. Let's explore
             how we can use
@@ -149,9 +148,9 @@
           </p>
         </div>
 
-        <p class="is-size-3">useSWR</p>
+        <h2 class="title is-size-4">useSWR</h2>
         <div class="box content">
-          <p class="is-size-5">What is SWR?</p>
+          <h3 class="subtitle is-size-5">What is SWR?</h3>
           <p>
             From the official website, The name “SWR” is derived from
             <strong>stale-while-revalidate</strong>, a HTTP cache invalidation
@@ -167,7 +166,7 @@
               data.</u
             >
           </p>
-          <p class="is-size-5">The basic API of SWR is</p>
+          <h3 class="subtitle is-size-5">The basic API of SWR is</h3>
           <pre>const { data, error } = useSWR(key, fetcher)</pre>
           <p>
             The <strong>fetcher</strong> here is an async function that accepts
@@ -178,10 +177,10 @@
             isLoading, and isValidating depending on the state of the fetcher
             function.
           </p>
-
-          <p class="is-size-5">
+          <h3 class="subtitle is-size-5">
             Let's take a look at how SWR returns values in some scenarios:
-          </p>
+          </h3>
+
           <p>
             Fetch and Revalidate: This pattern is to fetch data and revalidate
             it later.
@@ -230,7 +229,7 @@
             >
           </p>
 
-          <p class="is-size-5">SWR Implementation:</p>
+          <h3 class="subtitle is-size-5">SWR Implementation</h3>
           <p>
             Let's take a look at how we can implement SWR in our previous code
             example.
@@ -264,7 +263,7 @@
             </li>
           </ul>
 
-          <p class="is-size-5">Use axios</p>
+          <h3 class="subtitle is-size-5">Use axios</h3>
           <p>
             You can also use
             <a href="https://www.npmjs.com/package/axios" target="_blank"
@@ -286,7 +285,7 @@
           </p>
         </div>
 
-        <p class="is-size-3">Conclusion</p>
+        <h2 class="title is-size-4">Conclusion</h2>
         <div class="box content">
           <p>
             That's it! We have learned how to use SWR to handle client-side data
@@ -297,7 +296,7 @@
           </p>
         </div>
 
-        <p class="is-size-3">Source</p>
+        <h2 class="title is-size-4">Source</h2>
         <div class="box content">
           <ul style="padding-bottom: 20px">
             <li>
