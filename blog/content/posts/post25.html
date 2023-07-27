@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Dynamic Routing in Next.js (Page Router)</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Dynamic Routing in Next.js (Page Router)
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <h2 class="title is-size-4">Objectives</h2>
+        <div class="box level content">
+          <p>
+            Learn how to use Page Router to create dynamic routes in Next.js.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">What is Dynamic Routes</h2>
+        <div class="box content">
+          <p>
+            The definition of Dynamic Routes from the
+            <a
+              href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes"
+              target="_blank"
+              >official Next.js documentaion</a
+            >: When you don't know the exact segment names ahead of time and
+            want to create routes from dynamic data, you can use Dynamic
+            Segments that are filled in at <strong>request time</strong> or
+            <strong>prerendered at build time</strong>.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">File Structure</h2>
+        <div class="box content">
+          <p>
+            Let's take a look at the file structure of a typical Next.js project
+            using <strong>TypeScript</strong> and <strong>Page Router</strong>.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/d4d053b3b8973b8e0acc864233b3866f.js"></script>
+          <p>
+            Notice that the <code>pages</code> folder contains all the pages of
+            the website.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Add Dynamic Routes</h2>
+        <div class="box content">
+          <p>
+            To add dynamic routes, we need to create a file with the name of the
+            dynamic route and
+            <strong>wrap the file name with square brackets</strong>. For
+            example, if we want to create a dynamic route for the job post with
+            the id of 1, we can create a file named <code>[id].tsx</code> in the
+            <code>pages/jobs</code> folder.
+          </p>
+          <p>
+            Here is the file structure of the <code>pages</code> folder now.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/faaba305113b4fb589eac228578d1d91.js"></script>
+          <h3 class="subtitle is-size-5">
+            To test the dynamic route, we need to add some code to
+            <code>[id].tsx</code>
+          </h3>
+          <p>
+            In the <code>[id].tsx</code> file, we can use the
+            <code>useRouter</code> hook to get the id from the URL.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/0df1150e8ee1047275374a3cc6cc53c8.js"></script>
+          <h3 class="subtitle is-size-5">Check the result in the browser</h3>
+          <p>
+            Run <code>npm run dev</code> in the terminal and go to the browser.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post25/figure1.png" />
+            </figure>
+          </div>
+          <p>
+            Notice that the URL is <code>http://localhost:3001/jobs/1</code>,
+            which means the <code>[id].tsx</code> file is working. You can also
+            try to change the id in the URL to see if the page is updated.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Conclusion</h2>
+        <div class="box content">
+          <p>
+            Hooraay! We have learned how to create dynamic routes in Next.js.
+            Isn't it easy? To learn more about dynamic routes, please visit the
+            <a
+              href="https://nextjs.org/docs/routing/dynamic-routes"
+              target="_blank"
+              >official Next.js documentation</a
+            >. Thank you for reading. See you next time!
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Source</h2>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes"
+                target="_blank"
+                >Next.js documentaion
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mr-5 ml-5 mb-5">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Willie-The-Lord/Sung-Jie-Blog-Comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 26, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
