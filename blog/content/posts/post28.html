@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | useCallback hook in React</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">useCallback hook in React</h1>
+          </div>
+        </div>
+
+        <hr />
+        <h2 class="title is-size-4">Objectives</h2>
+        <div class="box level content">
+          <p>Learn how to use the useCallback hook.</p>
+        </div>
+
+        <h2 class="title is-size-4">useCallback</h2>
+        <div class="box content">
+          <p>
+            useCallback is to prevent a component from re-rendering unless its
+            dependencies change. This allows us to
+            <strong>isolate resource intensive functions</strong> so that they
+            will not automatically run on every render. You might be thinking,
+            "What's the difference between useCallback and useMemo?" Well,
+            useCallback is used to memoize functions, while useMemo is used to
+            memoize values. Check out
+            <a href="./post27.html" target="_blank">my previous post</a> on
+            useMemo if you want to learn more about it.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">useCallback</h2>
+
+        <div class="box content">
+          <h3 class="subtitle is-size-5">Problem</h3>
+          <p>
+            Let's say we have a component that renders
+            <strong>a list of random numbers</strong>. We want to be able to add
+            a new random number to the list when we click a button.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/5555ea266b74c008346cbcd039ef097a.js"></script>
+          <p>
+            Here, we have a parent component that renders the child component
+            <code>&ltNumber/&gt</code>. As above mentioned, the child component
+            renders a list of random numbers. The parent component has a button
+            that increments a counter. The child component has a button that
+            adds a new random number to the list.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/2736b4e59289048e6befdeeaa3b4adbd.js"></script>
+          <p>
+            Let's see what happens when we click the button in the parent
+            component.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post28/figure2.gif" />
+            </figure>
+          </div>
+
+          <p>
+            The problem is that
+            <strong
+              >every time we click the button in the parent component, the child
+              component re-renders</strong
+            >.
+          </p>
+
+          <p>
+            This is not ideal because we don't want the child component to
+            constantly re-render. We only want the child component to re-render
+            when the list changes. Let's fix this problem with useCallback.
+          </p>
+
+          <h3 class="subtitle is-size-5">useCallback</h3>
+          <p>
+            In the code below, we wrap the function that adds a new random
+            number to the list with useCallback. This will
+            <strong
+              >prevent the function from being re-created on every
+              render</strong
+            >. The function will only be re-created when the list changes.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/d716aa983d704fbb1a196a5c6631d8ac.js"></script>
+          <p>
+            Now, when we click the button in the parent component, the child
+            component does not re-render.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post28/figure1.gif" />
+            </figure>
+          </div>
+          <p>
+            Hooray for useCallback! Now, we can isolate resource intensive code
+            so that it will not automatically run on every render.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Conclusion</h2>
+        <div class="box content">
+          <p>
+            That's it! useCallback isn't too complicated. It's just
+            <strong
+              >a hook that prevents a component from re-rendering unless its
+              dependencies have changed</strong
+            >. Thank you for reading! I hope you learned something new! If you
+            have any questions or comments, please feel free to leave them
+            below! I'll see you in the next one!
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Source</h2>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://blog.logrocket.com/react-usememo-vs-usecallback/"
+                target="_blank"
+                >Logrocket <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.w3schools.com/react/react_usecallback.asp"
+                target="_blank"
+                >w3schools <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mr-5 ml-5 mb-5">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Willie-The-Lord/Sung-Jie-Blog-Comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>XXX, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

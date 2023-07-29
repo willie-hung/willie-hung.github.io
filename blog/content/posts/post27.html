@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog | XXX</title>
+    <title>Blog | useMemo hook in React</title>
     <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -26,22 +26,62 @@
           <div
             class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
           >
-            <h1 class="title has-text-centered">XXX</h1>
+            <h1 class="title has-text-centered">useMemo hook in React</h1>
           </div>
         </div>
 
         <hr />
+
         <h2 class="title is-size-4">Objectives</h2>
         <div class="box level content">
           <p>YYY</p>
         </div>
 
-        <h2 class="title is-size-4">XXX</h2>
+        <h2 class="title is-size-4">useMemo</h2>
         <div class="box content">
-          <p>YYY</p>
+          <p>
+            The useMemo Hook can be used to keep expensive, resource intensive
+            functions from <strong>needlessly</strong> running.
+          </p>
+          <p>
+            Let's say you have a function that takes a long time to run. If you
+            were to call this function in a component, the function would run
+            every time the component re-renders. This is not ideal, especially
+            if the function is not dependent on any of the component's props or
+            state.
+          </p>
+          <p>The code below shows a function that takes a long time to run.</p>
+          <script src="https://gist.github.com/Willie-The-Lord/d6bfc808feecc0f5c923145b8dfa8221.js"></script>
+          <p>
+            When changing the count or adding a todo, you will notice a delay in
+            execution. What a bad user experience 😞.
+          </p>
+          <h3 class="subtitle is-size-5">How useMemo works?</h3>
+          <p>
+            The useMemo Hook accepts two arguments: a function and a dependency
+            array. The function is the function that you want to memoize, and
+            the dependency array is an array of values that the function depends
+            on. The useMemo Hook will only recompute the memoized value when one
+            of the values in the dependency array changes.
+          </p>
+          <p>
+            In the following example, the expensive function will only run when
+            count is changed and not when todo's are added.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/247a0c4f76e8ff69dfb890d9d6fff82b.js"></script>
+          <p>
+            You can test this by changing the count and adding a todo. You will
+            notice that the function only runs when the count is changed. This
+            is way better than the previous example.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post27/figure1.png" />
+            </figure>
+          </div>
         </div>
 
-        <h2 class="title is-size-4">XXX</h2>
+        <h2 class="title is-size-4">useCallback</h2>
         <div class="box content">
           <div class="is-flex is-justify-content-center is-align-items-center">
             <figure class="image column is-one-third">
@@ -56,12 +96,14 @@
           <p>YYY</p>
         </div>
 
-        <h2 class="title is-size-4">Source</h2>
+        <h2 class="title is-size-4">Resource</h2>
         <div class="box content">
           <ul style="padding-bottom: 20px">
             <li>
-              <a href="XXX" target="_blank"
-                >YYY <i class="fa-solid fa-arrow-up-right-from-square"></i
+              <a
+                href="https://www.w3schools.com/react/react_usememo.asp"
+                target="_blank"
+                >w3schools <i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </li>
           </ul>
