@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Run Multi-Container Application using Docker Compose</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Run Multi-Container Application using Docker Compose
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <h2 class="title is-size-4">Objectives</h2>
+        <div class="box level content">
+          <p>
+            Learn how to use Docker Compose to run multiple containers at once.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Background</h2>
+        <div class="box content">
+          <p>
+            Follow up from the
+            <a href="./post14.html" target="_blank">previous Docker post</a>, we
+            have successfully created a Docker image and add volumes for our
+            Node.js application. However, we have to run the container manually
+            every time we want to use it. In this post, we will learn how to use
+            Docker Compose to run multiple containers at once.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Multi-Containers</h2>
+        <div class="box content">
+          <p>
+            Before we start, we need to know how to seperate our application to
+            multiple containers. In this example, we will seperate our
+            application into two containers: one for the Node.js application and
+            one for the MySQL database.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post29/figure1.png" />
+            </figure>
+          </div>
+        </div>
+
+        <h2 class="title is-size-4">Container Networking</h2>
+        <div class="box content">
+          <p>
+            In order to connect the Node.js application to the MySQL database,
+            we need to create a <strong>network</strong> for the containers to
+            communicate with each other. We can create a network using the
+            following command:
+            <code>docker network create todo-app</code>
+          </p>
+
+          <h3 class="subtitle is-size-5">
+            Start a MySQL container and attach it to the network.
+          </h3>
+          <pre>
+docker run -d \
+  --network todo-app --network-alias mysql \
+  -v todo-mysql-data:/var/lib/mysql \
+  -e MYSQL_ROOT_PASSWORD=secret \
+  -e MYSQL_DATABASE=todos \
+  mysql:8.0
+          </pre>
+
+          <h3 class="subtitle is-size-5">
+            Start your Node.js container and attach it to the network.
+          </h3>
+          <pre>
+docker run -dp 127.0.0.1:3000:3000 \
+  -w /app -v "$(pwd):/app" \
+  --network todo-app \
+  -e MYSQL_HOST=mysql \
+  -e MYSQL_USER=root \
+  -e MYSQL_PASSWORD=secret \
+  -e MYSQL_DB=todos \
+  node:18-alpine \
+  sh -c "yarn install && yarn run dev"
+          </pre>
+          <p>
+            If you look at the logs of the Node.js container, you should see a
+            message similar to this:
+          </p>
+          <pre>
+$ nodemon src/index.js
+  [nodemon] 2.0.20
+  [nodemon] to restart at any time, enter `rs`
+  [nodemon] watching path(s): *.*
+  [nodemon] watching extensions: js,mjs,json
+  [nodemon] starting `node src/index.js`
+  Waiting for mysql:3306.
+  Connected!
+  Connected to mysql db at host mysql
+  Listening on port 3000
+          </pre>
+          <p>
+            This means that the Node.js application has
+            <strong>successfully connected to the MySQL database</strong>.
+          </p>
+          <p>
+            You can add todo items by visiting http://localhost:3000 in your web
+            browser.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post29/figure2.png" />
+            </figure>
+          </div>
+
+          <p>
+            To verify the connection, you can connect to the mysql database and
+            prove that the items are being written to the database.
+          </p>
+          <p>In the mysql shell, you should see something like this:</p>
+          <pre>
+mysql> select * from todo_items;
++--------------------------------------+---------------------------+-----------+
+| id | name | completed |
++--------------------------------------+---------------------------+-----------+
+| e7e9ca55-be7e-416f-b334-7ac9225c3667 | Hi! | 0 | |
+818bcdf0-f409-4199-b08a-7f5d22c1f941 | This is Sung-Jie | 0 | |
+d8c47336-812f-4dae-a960-3d10bff9c950 | I'm a software engineer ? | 0 |
++--------------------------------------+---------------------------+-----------+
+3 rows in set (0.00 sec)
+          </pre>
+        </div>
+
+        <h2 class="title is-size-4">Using Docker Compose</h2>
+        <div class="box content">
+          <p>
+            In the previous section, we have successfully created a network and
+            connected our Node.js application to the MySQL database. However, we
+            have to run the containers manually every time we want to use it. In
+            this section, we will learn how to use
+            <strong>Docker Compose</strong> to run multiple containers at once.
+          </p>
+          <h3 class="subtitle is-size-5">Install Docker Compose</h3>
+          <p>
+            If you installed Docker Desktop for Windows, Mac, or Linux you
+            already have Docker Compose!
+          </p>
+
+          <h3 class="subtitle is-size-5">Create a Docker Compose file</h3>
+          <p>
+            Create a file named <code>docker-compose.yml</code> in your project
+            directory and paste the following:
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/a13b6e57f3baad8013911b5ed15336ea.js"></script>
+          <p>
+            This file defines two services: <code>app</code> and
+            <code>mysql</code>.
+          </p>
+          <p>
+            The <code>app</code> service uses the
+            <code>node:18-alpine</code> image. It binds the container and the
+            host machine to the exposed port, <code>3000</code>. It also mounts
+            the current directory on the host to the <code>/app</code> directory
+            in the container, allowing you to modify the code without having to
+            rebuild the image.
+          </p>
+          <p>
+            The <code>mysql</code> service uses the
+            <code>mysql:8.0</code> image. It also creates a named volume,
+            <code>todo-mysql-data</code>, which will be used to persist the
+            database data.
+          </p>
+          <p>
+            Notice that we need to define the volume mapping. This is because
+            when we ran the container with <code>docker run</code>, the named
+            volume was created automatically. However, that doesn’t happen when
+            running with Compose. We need to define the volume in the top-level
+            <code>volumes:</code>
+            section and then specify the mountpoint in the service config.
+          </p>
+
+          <h3 class="subtitle is-size-5">Start the application</h3>
+          <p>
+            Run the following command to start the application in the
+            background:
+          </p>
+          <pre>
+docker-compose up -d
+          </pre>
+          <p>You should see the following output:</p>
+          <pre>
+[+] Running 3/0
+ ✔ Network app_default    Created                                                                                                                                                                             0.0s 
+ ✔ Container app-app-1    Created                                                                                                                                                                             0.0s 
+ ✔ Container app-mysql-1  Created   
+          </pre>
+          <p>
+            At this point, the application should be running. You can verify by
+            visiting http://localhost:3000 in your web browser.
+          </p>
+          <p>
+            You can also see the app stack in Docker Desktop. Click on the
+            <code>app</code> stack and you should see something like this:
+          </p>
+
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post29/figure3.png" />
+            </figure>
+          </div>
+
+          <p>
+            Hooray! You have successfully deployed a Node.js application with a
+            MySQL database using Docker Compose (Just only a single command! )🎉
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Conclusion</h2>
+        <div class="box content">
+          <p>
+            We have successfully deployed an multi-containers application using
+            Docker Compose. Isn't it easy? 😎 To learn more about Docker
+            Compose, you can visit the
+            <a href="https://docs.docker.com/compose/" target="_blank"
+              >official documentation</a
+            >. If you have any questions, feel free to leave a comment below.
+            Hope you enjoy this article and see you next time!
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Resources</h2>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://docs.docker.com/get-started/07_multi_container/"
+                target="_blank"
+                >Docker documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mr-5 ml-5 mb-5">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Willie-The-Lord/Sung-Jie-Blog-Comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Jul 30, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
