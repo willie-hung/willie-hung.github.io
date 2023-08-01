@@ -559,6 +559,11 @@ a.hero-medium:hover {
   color: #000000;
 }
 
+a.hero-jipe:hover {
+  text-decoration: underline;
+  color: #F0DB4F
+}
+
 a.hero-duolingo:hover {
   text-decoration: underline;
   color: #f1bf00;
