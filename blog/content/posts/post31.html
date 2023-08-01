@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Statement and Expression in Rust 🦀</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Statement and Expression in Rust 🦀
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <h2 class="title is-size-4">Objectives</h2>
+        <div class="box level content">
+          <p>
+            Learn the difference between statements and expressions in Rust.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Background</h2>
+        <div class="box content">
+          <p>
+            I'm learning Rust recently and I'm reading the Rust documentation. I
+            found
+            <a
+              href="https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html?highlight=expressions#statements-and-expressions"
+              target="_blank"
+              >this page</a
+            >
+            about statements and expressions. I think it's a good idea to write
+            a blog about it.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Statements v.s. Expressions</h2>
+        <div class="box content">
+          <p>In short</p>
+          <ul>
+            <li>
+              <strong>Statements</strong> are instructions that perform some
+              action and do not return a value.
+            </li>
+            <li><strong>Expressions</strong> evaluate to a resultant value.</li>
+          </ul>
+        </div>
+
+        <h2 class="title is-size-4">In Rust</h2>
+        <div class="box content">
+          <h3 class="subtitle is-size-5">Let's look at a function in Rust</h3>
+          <p>
+            Function bodies are made up of a series of statements optionally
+            ending in an expression.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/13c3f60e866aac93da9376f3abfd39f6.js"></script>
+          <p>
+            In the above example, <code>let x: i32 = 69;</code> end with a
+            semicolon, so it's a statement. It assigns the value
+            <code>69</code> to the variable <code>x</code>.
+          </p>
+          <h3 class="subtitle is-size-5">Function definitions</h3>
+          <p>
+            Function definitions are also <strong>statements</strong>; the
+            entire example above is a statement in itself.
+          </p>
+          <p>
+            Statements do not return values. Therefore, you can’t assign a let
+            statement to another variable. For example, the following code will
+            not compile:
+          </p>
+
+          <script src="https://gist.github.com/Willie-The-Lord/9e7f856513cf1e45199f5eba333ec2fc.js"></script>
+
+          <p>
+            However, in other language like Python you can do this.
+            <strong>The assignment returns the value of the assignment.</strong>
+            You can write <code>x = y = 69</code> and have both x and y have the
+            value 69.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post31/figure1.png" />
+            </figure>
+          </div>
+          <h3 class="subtitle is-size-5">How about expressions?</h3>
+          <p>
+            Expressions do not include ending semicolons. If you add a semicolon
+            to the end of an expression, you turn it into a statement, and it
+            will then not return a value. In the following example,
+            <code>j + 1</code> is an expression so it returns a value and assign
+            it to <code>i</code>.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/dd377ad72d835a44dcbc892073db9856.js"></script>
+          <h3 class="subtitle is-size-5">Function with return value</h3>
+          <p>
+            You can return early from a function by using the
+            <code>return</code> keyword and specifying a value, but most
+            functions return the
+            <strong>last expression</strong>
+            implicitly. In this case,
+            <code>x + 1</code> is the expression that we want to return.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/ca48ac339ef1eb9b489d4c0bf3182e23.js"></script>
+          <p>
+            If we place a semicolon at the end of the line containing
+            <code>x + 1</code>, changing it from an expression to a statement.
+            This code will not compile:
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/35f71dd5b0c50b0bf041de33ed62bc2d.js"></script>
+          <p>
+            Instead you will get an <strong>mismatched type</strong> error
+            message like this:
+          </p>
+          <pre>
+implicitly returns `()` as its body has no tail or `return` expression</pre
+          >
+          <p>
+            We will not cover what unit type <code>()</code> is in this blog. If
+            you are interested, you can read the Rust documentation about it
+            <a
+              href="https://doc.rust-lang.org/std/primitive.unit.html"
+              target="_blank"
+              >here</a
+            >.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Conclusion</h2>
+        <div class="box content">
+          <p>
+            To summarize, statements do not return values, but expressions do.
+            If you add a semicolon to the end of an expression, you turn it into
+            a statement, which will then not return a value. Keep this in mind
+            when writing Rust code. If you have any questions, feel free to
+            leave a comment below. Thank you for reading!
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Resources</h2>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://doc.rust-lang.org/stable/book/ch03-03-how-functions-work.html?highlight=expressions#statements-and-expressions"
+                target="_blank"
+                >Rust documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mr-5 ml-5 mb-5">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Willie-The-Lord/Sung-Jie-Blog-Comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Aug 1, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
