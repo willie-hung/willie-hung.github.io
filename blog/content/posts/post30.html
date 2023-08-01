@@ -35,7 +35,9 @@
         <hr />
         <h2 class="title is-size-4">Objectives</h2>
         <div class="box level content">
-          <p>YYY</p>
+          <p>
+            Learn how to cache API data in a Node.js application using Redis.
+          </p>
         </div>
 
         <h2 class="title is-size-4">Tech Stack</h2>
@@ -94,14 +96,16 @@
         <h2 class="title is-size-4">What is Redis</h2>
         <div class="box content">
           <p>
-            Redis is an open source, in-memory data structure store used as a
-            database, cache, message broker, and streaming engine. It is a NoSQL
-            database that stores data in key-value pairs.
+            Redis is an open source,
+            <strong>in-memory data structure</strong> store used as a database,
+            cache, message broker, and streaming engine. It is a NoSQL database
+            that stores data in <strong>key-value pairs</strong>.
           </p>
         </div>
 
         <h2 class="title is-size-4">Fetching API without Redis</h2>
         <div class="box content">
+          <h3 class="title is-size-5">Setup</h3>
           <p>
             Create a new directory and initialize a new Node.js project. Install
             Express.js and Nodemon. We will use the
@@ -112,16 +116,17 @@
           </p>
           <p>
             Then, we setup a simple Express.js server that will make a request
-            to the API and return the data.
+            to the API and return the data. Everything familiar so far. 😇
           </p>
           <script src="https://gist.github.com/Willie-The-Lord/54221f7e307f4ab83db910c10b0ad16c.js"></script>
           <p>
-            Run the server and make a request to the API. We will use Postman to
-            make the API request. The response is shown below. Notice that the
-            response time is around 100ms. However, this is a simple API and the
-            response time is not that long. In a real world application, the
-            response time can be much longer. Therefore, we need to cache the
-            data to improve the performance of the application.
+            Run the server and make a request to the API. In this post, we will
+            use Postman to make the API request. The response is shown below.
+            Notice that the response time is <strong>around 100ms</strong>.
+            However, this is a simple API and the response time is not that
+            long. In a real world application, the response time can be much
+            longer. Therefore, we need to cache the data to improve the
+            performance of the application.
           </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
             <figure class="image column is-two-thirds">
@@ -132,6 +137,7 @@
 
         <h2 class="title is-size-4">Use Redis</h2>
         <div class="box content">
+          <h3 class="title is-size-5">Setup</h3>
           <p>
             Install Redis and the Node.js Redis client. Then, we create a Redis
             client and connect to the Redis server. We will use the
@@ -144,13 +150,14 @@
               >Node-redis documentation
             </a>
             for more information. This guide is amazing and it has a lot of code
-            examples. I highly recommend you to check it out.
+            examples. I highly recommend you to check it out!
           </p>
           <p>
-            In the code below, we create a Redis client and connect to the Redis
-            server. Then, we use the <code>GET</code> method to get the data
-            from Redis. If the data is not in Redis, we will make a request to
-            the API and store the data in Redis using the <code>SET</code>
+            In the code below, we create a <strong>Redis client</strong> and
+            <strong>connect to the Redis server</strong>. Then, we use the
+            <code>GET</code> method to get the data from Redis. If the data is
+            not in Redis, we will make a request to the API and store the data
+            in Redis using the <code>SET</code>
             method.
           </p>
 
@@ -159,19 +166,58 @@
             Now we run the server and make a request to the API. The response is
             shown below. Notice that the response time is around 100ms if we
             don't cache the API data (our previous approach). However, the
-            response time is around 20ms when we cache the API data using Redis.
-            This is a huge improvement!
+            response time is <strong>around 20ms</strong> when we cache the API
+            data using Redis. This is a huge improvement!
           </p>
           <div class="is-flex is-justify-content-center is-align-items-center">
             <figure class="image column is-two-thirds">
               <image src="./figures/post30/figure3.gif" />
             </figure>
           </div>
+
+          <h3 class="title is-size-5">Send query parameters</h3>
+          <p>
+            We can also <strong>send query parameters</strong> to the API. In
+            the code below, we cache the data with the query parameters.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/87c16fbda81836791d9d3176342e3e76.js"></script>
+          <p>
+            Now, the <strong>key</strong>
+            of the data in Redis becomes:
+            <code>`photos?albumId=${albumId}`</code>. We can check the key of
+            the data in the redis server using the <code>KEYS *</code> command.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post30/figure2.png" />
+            </figure>
+          </div>
+          <p>
+            Let's make a request to the API with query parameters. The response
+            time is significantly reduced. This is because we cache the data
+            with the query parameters. The data is <strong>smaller</strong> and
+            it is faster to retrieve the data from Redis.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-two-thirds">
+              <image src="./figures/post30/figure4.gif" />
+            </figure>
+          </div>
+          <p>
+            That's it! We have successfully cached the API data using Redis.
+            Isn't it amazing? Fast and simple!
+          </p>
         </div>
 
         <h2 class="title is-size-4">Conclusion</h2>
         <div class="box content">
-          <p>YYY</p>
+          <p>
+            In this post, we have learned how to cache API data using Redis. We
+            have also learned how to send query parameters to the API and cache
+            the data with the query parameters. This is a simple example, but
+            the concept can be applied to a real world application. I hope you
+            find this post useful. Thanks for reading! 😃
+          </p>
         </div>
 
         <h2 class="title is-size-4">Resources</h2>
@@ -226,7 +272,7 @@
           >
           ❤️
         </p>
-        <p>Last update: <strong>XXX, 2023</strong></p>
+        <p>Last update: <strong>Aug 1, 2023</strong></p>
       </div>
     </footer>
 
