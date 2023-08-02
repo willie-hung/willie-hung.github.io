@@ -561,7 +561,7 @@ a.hero-medium:hover {
 
 a.hero-jipe:hover {
   text-decoration: underline;
-  color: #F0DB4F
+  color: #f0db4f;
 }
 
 a.hero-duolingo:hover {
@@ -620,6 +620,11 @@ a.logitech:hover {
 a.dupont:hover {
   text-decoration: underline;
   color: #e61031;
+}
+
+a.general:hover {
+  text-decoration: underline;
+  color: #000;
 }
 
 code {
@@ -3089,6 +3094,13 @@ a.tag:hover {
 .title {
   color: #363636;
   font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
+.general {
+  color: #363636;
+  font-size: 1.4rem;
   font-weight: 600;
   line-height: 1.125;
 }
