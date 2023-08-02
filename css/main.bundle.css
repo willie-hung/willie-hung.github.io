@@ -564,6 +564,11 @@ a.hero-jipe:hover {
   color: #f0db4f;
 }
 
+a.hero-bits:hover {
+  text-decoration: underline;
+  color: #cba363;
+}
+
 a.hero-duolingo:hover {
   text-decoration: underline;
   color: #f1bf00;
