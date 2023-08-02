@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Unit Testing with Vitest: A Powerful Jest Alternative</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">
+              Unit Testing with Vitest: A Powerful Jest Alternative
+            </h1>
+          </div>
+        </div>
+
+        <hr />
+        <h2 class="title is-size-4">Objectives</h2>
+        <div class="box level content">
+          <p>Learn how to write unit tests with Vitest.</p>
+        </div>
+
+        <h2 class="title is-size-4">What is Vitest?</h2>
+        <div class="box content">
+          <p>
+            Vitest is a <strong>Vite-native</strong> unit test framework. With a
+            focus on speed, it is designed to be a fast and lightweight
+            alternative to Jest.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Basic test suite</h2>
+        <div class="box content">
+          <p>
+            Let's start by <strong>creating a basic test suite</strong>. A test
+            suite is a collection of test cases that are executed in a single
+            run. It is defined by a test suite function that contains one or
+            more test cases.
+          </p>
+          <p>
+            In below example, we have create a function that returns the sum of
+            a list of numbers.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/e2f071899a640d0f9544bf91e0cabe8a.js"></script>
+          <p>We then create a test suite that contains three test cases.</p>
+          <script src="https://gist.github.com/Willie-The-Lord/9d120bc0d27823baeeb9dcf8ab8c4d53.js"></script>
+          <p>
+            The logic of each test case is pretty straightforward. We simply
+            call the function with some input and check if the output is as
+            expected.
+          </p>
+          <p>
+            To run the test suite, we can use the
+            <code>npx vitest</code> command. And you should see the following
+            output in the terminal.
+          </p>
+          <pre>
+RERUN  sum.test.ts x1
+
+✓ sum.test.ts (3)
+  ✓ #SUM (3)
+    ✓ should return 0 for empty array
+    ✓ should return 1 for [1]
+    ✓ should return sum of all numbers
+
+Test Files  1 passed (1)
+      Tests  3 passed (3)
+  Start at  14:45:35
+  Duration  11ms
+
+
+PASS  Waiting for file changes...
+      press h to show help, press q to quit
+          </pre>
+          <p>
+            As you can see, all three test cases have passed. Well done! You
+            have successfully created your first test suite with Vitest.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">In-source Testing</h2>
+        <div class="box content">
+          <p>
+            Let's take a look at how we can
+            <strong
+              >write tests in the same file as the code being tested</strong
+            >.
+          </p>
+          <p>
+            In-source testing is a way to write tests in the same file as the
+            code being tested. It is useful for small projects where the
+            overhead of maintaining separate test files is not worth it. One of
+            the great things about Vitest is that it supports in-source testing
+            out of the box.
+          </p>
+          <p>
+            To enable in-source testing, you can simply add a
+            <code>test</code> block after the function definition.
+          </p>
+
+          <script src="https://gist.github.com/Willie-The-Lord/ce2914b9ea2c4fd6cce4f2c2f3073fef.js"></script>
+          <p>
+            If you are using TypeScript, you will need to add some configuration
+            to your <code>tsconfig.json</code> file to avoid your editor yelling
+            at you. Checkout the
+            <a href="https://vitest.dev/guide/in-source.html" target="_blank"
+              >Vitest documentation</a
+            >
+            for more details on in-source testing and TypeScript configuration.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Code Coverage</h2>
+        <div class="box content">
+          <p>Vitest comes with code coverage support!</p>
+          <p>
+            Code coverage is a measure of how much of your code is covered by
+            tests. It is a useful metric to track the quality of your tests.
+          </p>
+          <p>
+            To enable code coverage, we can use the <code>--coverage</code> flag
+            in the CLI.
+          </p>
+          <p>
+            After running the test suite, we can see the code coverage report in
+            the terminal.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post32/figure1.png" />
+            </figure>
+          </div>
+          <p>
+            We can also generate a code coverage report in HTML format. To do
+            that, we can edit the <code>vite.config.ts</code> file and add the
+            following code.
+          </p>
+
+          <script src="https://gist.github.com/Willie-The-Lord/ab9007689c8c707d9d84a32986d86cf4.js"></script>
+          <p>
+            After running the test suite, we can see the code coverage report in
+            the <code>coverage</code> folder.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/6966ae7e147643cfe9803335d2425917.js"></script>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post32/figure2.png" />
+            </figure>
+          </div>
+          <p>
+            As you can see, the code coverage report is generated in HTML format
+            and it is much easier to read than the one in the terminal.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Snapshot</h2>
+        <div class="box content">
+          <p>
+            Vitest comes with <strong>snapshot testing support</strong> too!
+            Let's see how it works.
+          </p>
+          <p>
+            Snapshot testing is a way to test if the output of a function is
+            correct. Let's see what it looks like in Vitest.
+          </p>
+          <p>
+            When using snapshot, Vitest will take a snapshot of the given value,
+            then
+            <strong
+              >compares it to a reference snapshot file stored alongside the
+              test</strong
+            >. The test will fail if the two snapshots do not match: either the
+            change is unexpected, or the reference snapshot needs to be updated
+            to the new version of the result.
+          </p>
+          <p>
+            Let's take a look at an example. We create a function that turns a
+            string into uppercase. Then we write a test case to test if the code
+            is working as expected.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/7066b136deb68e0da20153d4fca6bd4a.js"></script>
+          <p>
+            When we run the test suite for the first time, Vitest will create a
+            snapshot file for us.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/1c30dadf77838ca6f5ac961fc75f9c6a.js"></script>
+          <p>
+            The snapshot artifact should be committed alongside code changes,
+            and reviewed as part of your code review process.
+            <strong
+              >On subsequent test runs, Vitest will compare the rendered output
+              with the previous snapshot.</strong
+            >
+            If they match, the test will pass. If they don't match, either the
+            test runner found a bug in your code that should be fixed, or the
+            implementation has changed and the snapshot needs to be updated.
+          </p>
+          <p>
+            To Learn more, I recommend you to checkout the
+            <a href="https://vitest.dev/guide/snapshot.html" target="_blank"
+              >Vitest documentation</a
+            >
+            for more details on snapshot testing.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Conclusion</h2>
+        <div class="box content">
+          <p>
+            That's it for today! We have learned how to use Vitest to test our
+            TypeScript code and also some out of the box features that Vitest
+            provides. I hope you enjoy this post and see you in the next one!
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Resources</h2>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a href="https://vitest.dev/" target="_blank"
+                >Vitest documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://youtu.be/7f-71kYhK00" target="_blank"
+                >Why Vitest Is Better Than Jest
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mr-5 ml-5 mb-5">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Willie-The-Lord/Sung-Jie-Blog-Comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Aug 2, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
