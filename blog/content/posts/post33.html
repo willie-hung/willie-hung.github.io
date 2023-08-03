@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Event Loop in Node.js</title>
+    <link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="level">
+          <div class="level-left">
+            <a href="../index.html"
+              ><button class="button is-white">
+                <span style="color: #3f3f3f" class="icon"
+                  ><i class="fa-solid fa-reply"></i></span
+                ><span style="color: #3f3f3f">Back</span>
+              </button></a
+            >
+          </div>
+          <div
+            class="level-item is-flex is-flex-direction-row is-justify-content-center is-align-items-center"
+          >
+            <h1 class="title has-text-centered">Event Loop in Node.js</h1>
+          </div>
+        </div>
+
+        <hr />
+        <h2 class="title is-size-4">Objectives</h2>
+        <div class="box level content">
+          <p>Learn how event loop works in Node.js.</p>
+        </div>
+
+        <h2 class="title is-size-4">The basics</h2>
+        <div class="box content">
+          <h3 class="title is-size-5">What is Node.js?</h3>
+          <p>
+            Node.js is a JavaScript runtime built on Chrome's V8 engine. It
+            executes JavaScript code outside of a browser. It uses an
+            event-driven, non-blocking I/O model that makes it lightweight and
+            efficient.
+          </p>
+          <h3 class="title is-size-5">JavaScript</h3>
+          <p>
+            JavaScript is a synchronous, blocking, single-threaded language.
+          </p>
+          <h3 class="title is-size-5">The synchronous nature</h3>
+          <p>
+            In the code below, the <code>first function</code>is logged then the
+            <code>second function</code> is logged. This is because JavaScript
+            is synchronous. It executes code line by line. What if the first
+            function is a long-running function? The second function will have
+            to wait until the first function is done. This is called
+            <strong>blocking</strong>. The second function is blocked by the the
+            first function 😔. This is not ideal because it makes the program
+            slow and unresponsive.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/db41da7cab0764d223388e0d5357eb83.js"></script>
+        </div>
+
+        <h2 class="title is-size-4">Node.js Runtime</h2>
+        <div class="box content">
+          <p>
+            Here, Node.js comes to the rescue. Node.js is
+            <strong>asynchronous</strong> and <strong>non-blocking</strong>. It
+            uses a single thread to handle multiple requests. It provides us
+            with several APIs that allow us to make asynchronous calls.
+          </p>
+          <p>
+            Let's take a look at the high-level architecture of Node.js. This is
+            an image from
+            <a
+              href="https://www.builder.io/blog/visual-guide-to-nodejs-event-loop#visualizing-the-event-loop"
+              target="_blank"
+              >this amazing article</a
+            >. I highly recommend you read it.
+          </p>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post33/figure1.webp" />
+            </figure>
+          </div>
+          <p>
+            At its core, the Node runtime consists of three major components.
+          </p>
+          <ul>
+            <li>
+              A JavaScript library that provides functions and utilities to tap
+              into the C++ features from your JavaScript code
+            </li>
+            <li>
+              C++ features that provide for functionality such as file system
+              access and networking
+            </li>
+            <li>
+              External dependencies — such as V8, libuv, crypto — required by
+              Node.js for its functioning
+            </li>
+          </ul>
+          <p>
+            While all the parts are important, the key component for
+            asynchronous programming in Node.js is the external dependency,
+            <strong>libuv</strong>.
+          </p>
+          <h3 class="title is-size-5">What is libuv?</h3>
+          <div class="is-flex is-justify-content-center is-align-items-center">
+            <figure class="image column is-one-third">
+              <image src="./figures/post33/figure2.png" />
+            </figure>
+          </div>
+          <p>
+            Libuv is a multi-platform C library that provides support for
+            <strong>asynchronous I/O based on event loops</strong>. In the
+            Node.js runtime, its role is to provide support for handling
+            asynchronous operations. To dive deeper into libuv,
+            <a
+              href="https://www.scaler.com/topics/nodejs/libuv/"
+              target="_blank"
+              >this article</a
+            >
+            is a great start. In short though, Libuv helps nodejs to perform
+            these operations asynchronously and speed up the efficiency as well
+            as performance whereas the main thread handles the operation and
+            other workers complete the task. Libuv helps nodejs to enable smooth
+            asynchronous operation.
+          </p>
+
+          <h3 class="title is-size-5">What is event loop?</h3>
+          <p>
+            When Node.js starts, it initializes the event loop,
+            <strong>processes the provided input script</strong> which may make
+            async API calls, schedule timers, or call process.nextTick(), then
+            begins processing the event loop.
+          </p>
+
+          <p>
+            The following diagram shows a simplified overview of the event
+            loop's order of operations.
+          </p>
+          <script src="https://gist.github.com/Willie-The-Lord/f1f60b4243f19af0cd8bce3f3e092bcd.js"></script>
+          <p>
+            Each phase has a
+            <strong>FIFO queue of callbacks to execute</strong>. When the queue
+            has been exhausted or the callback limit is reached, the event loop
+            will move to the next phase, and so on.
+          </p>
+
+          <h3 class="title is-size-5">In action</h3>
+          <p>
+            Let's take a look at the code below. This is a typical asynchronous
+            code.
+          </p>
+
+          <script src="https://gist.github.com/Willie-The-Lord/687a5ef2512323e3233712625d1e75cd.js"></script>
+          <p>Let's break it down step by step.</p>
+          <ol>
+            <li>
+              The first console log statement is executed and "Hello from the
+              first function" is logged on the console. This task is then
+              completed and popped from the call stack.
+            </li>
+            <li>
+              The setTimeout function is encountered, and its callback function
+              is scheduled to run after a specified delay (in this case, 1000
+              ms). The setTimeout task is pushed to the queue,
+              <strong>and the function continues to the next task</strong>.
+            </li>
+            <li>
+              The third console log statement is executed, and "Hello from the
+              third function" is logged on the console. This task is completed
+              and popped from the call stack.
+            </li>
+            <li>
+              <strong
+                >Meanwhile, the event loop constantly checks if the call stack
+                is empty.</strong
+              >
+              When the timer set by the setTimeout function runs out (i.e.,
+              after 1000 ms), the callback function for the setTimeout task is
+              sent to the <strong>event queue</strong>.
+            </li>
+            <li>
+              The event loop identifies that the call stack is empty and
+              retrieves the next task from the event queue, which is the
+              callback function for the setTimeout.
+            </li>
+            <li>
+              The callback function is then pushed to the call stack and
+              executed. "Hello from the second function" is logged on the
+              console, and this task is subsequently popped from the call stack.
+            </li>
+          </ol>
+          <p>
+            This is a very simple example of how the event loop works. In
+            reality, the event loop is much more complex. For example, the event
+            loop has multiple phases, and each phase has its own queue. Checkout
+            the
+            <a
+              href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick#what-is-the-event-loop"
+              target="_blank"
+              >official documentation</a
+            >
+            for more details.
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Conclusion</h2>
+        <div class="box content">
+          <p>
+            In conclusion, the event loop is the backbone of Node.js. It is what
+            <strong>makes asynchronous programming possible</strong>.
+            Understanding how the event loop works is crucial to writing
+            performant Node.js applications. I hope this article has helped you
+            understand the event loop better. If you have any questions, feel
+            free to leave a comment below. Thanks for reading!
+          </p>
+        </div>
+
+        <h2 class="title is-size-4">Resources</h2>
+        <div class="box content">
+          <ul style="padding-bottom: 20px">
+            <li>
+              <a
+                href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick"
+                target="_blank"
+                >Node.js documentation
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.builder.io/blog/visual-guide-to-nodejs-event-loop#visualizing-the-event-loop"
+                target="_blank"
+                >Visual Guide to Node.js Event Loop
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.scaler.com/topics/nodejs/libuv/"
+                target="_blank"
+                >Libuv in Node.js
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.geeksforgeeks.org/node-js-event-loop/"
+                target="_blank"
+                >geeksforgeeks
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mr-5 ml-5 mb-5">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Willie-The-Lord/Sung-Jie-Blog-Comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Written by
+          <strong
+            ><a href="https://sungjiehung.com/" target="_blank"
+              >Sung-Jie Hung</a
+            ></strong
+          >
+          ❤️
+        </p>
+        <p>Last update: <strong>Aug 3, 2023</strong></p>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/7119540adb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
