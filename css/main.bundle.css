@@ -559,6 +559,11 @@ a.hero-medium:hover {
   color: #000000;
 }
 
+a.hero-better:hover {
+  text-decoration: underline;
+  color: #00e691;
+}
+
 a.hero-jipe:hover {
   text-decoration: underline;
   color: #f0db4f;
