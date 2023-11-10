@@ -1,0 +1,59 @@
+.tldr-title {
+  text-align: center;
+  /* font-family: "Luckiest Guy"; */
+  color: #3f3f3f;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.tldr-body {
+  padding-left: 12rem;
+  padding-right: 12rem;
+}
+
+@media (max-width: 768px) {
+  .tldr-body {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.black-link {
+  color: #3f3f3f !important;
+  font-weight: bold;
+}
+
+a {
+  color: #3f3f3f;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a strong {
+  color: currentColor;
+}
+
+a.awsopensearch:hover {
+  text-decoration: underline;
+  color: #00a6e2 !important;
+}
+
+a.apachesuperset:hover {
+  text-decoration: underline;
+  color: #bf2040 !important;
+}
+
+a.elastickibana:hover {
+  text-decoration: underline;
+  color: #fcd20b !important;
+}
+
+a.orca:hover {
+  text-decoration: underline;
+  color: #1524ef !important;
+}
+
+a.general:hover {
+  text-decoration: underline;
+  /* color: #1524ef !important; */
+}
