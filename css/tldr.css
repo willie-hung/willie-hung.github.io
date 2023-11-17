@@ -3,12 +3,12 @@
   /* font-family: "Luckiest Guy"; */
   color: #3f3f3f;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 45px;
 }
 
 .tldr-body {
-  padding-left: 12rem;
-  padding-right: 12rem;
+  padding-left: 16rem;
+  padding-right: 16rem;
 }
 
 @media (max-width: 768px) {
